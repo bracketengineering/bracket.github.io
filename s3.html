@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Backend Infrastructure Overview - Bracket Engineering Docs</title>
+        <title>S3 - Bracket Engineering Docs</title>
 
 
         <!-- Custom HTML head -->
@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="infrastructure.html" class="active"><strong aria-hidden="true">1.</strong> Backend Infrastructure Overview</a></li><li class="chapter-item expanded "><a href="neptune.html"><strong aria-hidden="true">2.</strong> Neptune</a></li><li class="chapter-item expanded "><a href="dynamo.html"><strong aria-hidden="true">3.</strong> Dynamo</a></li><li class="chapter-item expanded "><a href="s3.html"><strong aria-hidden="true">4.</strong> S3</a></li><li class="chapter-item expanded "><a href="lambda.html"><strong aria-hidden="true">5.</strong> Lambda</a></li><li class="chapter-item expanded "><a href="database.html"><strong aria-hidden="true">6.</strong> Database Codes</a></li><li class="chapter-item expanded "><a href="api/api-endpoints.html"><strong aria-hidden="true">7.</strong> Cookly APIs</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="infrastructure.html"><strong aria-hidden="true">1.</strong> Backend Infrastructure Overview</a></li><li class="chapter-item expanded "><a href="neptune.html"><strong aria-hidden="true">2.</strong> Neptune</a></li><li class="chapter-item expanded "><a href="dynamo.html"><strong aria-hidden="true">3.</strong> Dynamo</a></li><li class="chapter-item expanded "><a href="s3.html" class="active"><strong aria-hidden="true">4.</strong> S3</a></li><li class="chapter-item expanded "><a href="lambda.html"><strong aria-hidden="true">5.</strong> Lambda</a></li><li class="chapter-item expanded "><a href="database.html"><strong aria-hidden="true">6.</strong> Database Codes</a></li><li class="chapter-item expanded "><a href="api/api-endpoints.html"><strong aria-hidden="true">7.</strong> Cookly APIs</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -142,13 +142,62 @@
 
                 <div id="content" class="content">
                     <main>
-                        
+                        <h2 id="s3-data-structures-and-other-information"><a class="header" href="#s3-data-structures-and-other-information">S3 Data Structures and Other Information</a></h2>
+<h3 id="s3-overview"><a class="header" href="#s3-overview">S3 Overview</a></h3>
+<p><strong>What is S3?</strong></p>
+<p>Simply put, S3 (Simple Storage Service) is an object storage service in the cloud.</p>
+<p><code>IMPORTANT: NOT A DATABASE</code></p>
+<p><strong>Storage in S3</strong></p>
+<p>Storage in S3 is not structured, and is considered a data lake where data is stored in a single file</p>
+<p><code>Note: files and paths are for UI ease of use only</code></p>
+<h3 id="our-s3-storage-structure"><a class="header" href="#our-s3-storage-structure">Our S3 Storage Structure</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Bucket</th><th>Folders</th><th>Keys</th></tr></thead><tbody>
+<tr><td><code>Metadata</code></td><td><code>Session</code>, <code>Features</code></td><td>Session: <code>users/${userID}/sessions/${sessionID}</code>, Features: <code>users/${userID}/features/${feature}/${sessionID}</code></td></tr>
+<tr><td><code>Content</code></td><td><code>Images</code>, <code>Main_Content</code>, <code>Method</code></td><td>Images: <code>Image_${MealId}</code>, Main_Content: <code>Main_Content_${MealId}</code>, Method: <code>Method_${MealId}</code></td></tr>
+</tbody></table>
+</div>
+<h3 id="metadata-standard-structure"><a class="header" href="#metadata-standard-structure">Metadata standard structure</a></h3>
+<p><strong>For Feature metadata</strong></p>
+<pre><code class="language-javascript">{
+  userID: 
+  time:
+  request: // information to do with request e.g. ingredients for quick meals search
+  sessionMetadata: // device, sessionID etc
+}
+</code></pre>
+<h3 id="meal-json-format"><a class="header" href="#meal-json-format">Meal JSON Format</a></h3>
+<pre><code class="language-json">{
+  &quot;mealName&quot;: STRING,
+  &quot;servings&quot;: INT,
+  &quot;prepTime&quot;: {
+    &quot;time&quot;: INT,
+    &quot;unit&quot;: STR // E.g &quot;min&quot;, &quot;hr&quot;
+  },
+  &quot;cookTime&quot;: {
+    &quot;time&quot;: INT,
+    &quot;unit&quot;: STR
+  },
+  &quot;tags&quot;: [STRING], // E.g &quot;Vegan&quot;, &quot;Healthy&quot;. 
+  &quot;ingredientsText&quot;: { // Ingredients separated into their uses
+    &quot;Ingredients&quot;: [STRING], // E.g &quot;150g baby spinach&quot;
+    &quot;For the falafel&quot;: [...],
+    &quot;SECTION_NAME&quot;: [...]
+    // Ingredients in &quot;Ingredients&quot; section are not duplicated in the subsequent subsections
+  },
+  &quot;ingredients&quot;: [INT], // List of ingredient IDs
+  &quot;method&quot;: [STRING] // List of instructions
+}
+</code></pre>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="dynamo.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
 
-                            <a rel="next" href="neptune.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="lambda.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -158,8 +207,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="dynamo.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
-                    <a rel="next" href="neptune.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="lambda.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

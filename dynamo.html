@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Backend Infrastructure Overview - Bracket Engineering Docs</title>
+        <title>Dynamo - Bracket Engineering Docs</title>
 
 
         <!-- Custom HTML head -->
@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="infrastructure.html" class="active"><strong aria-hidden="true">1.</strong> Backend Infrastructure Overview</a></li><li class="chapter-item expanded "><a href="neptune.html"><strong aria-hidden="true">2.</strong> Neptune</a></li><li class="chapter-item expanded "><a href="dynamo.html"><strong aria-hidden="true">3.</strong> Dynamo</a></li><li class="chapter-item expanded "><a href="s3.html"><strong aria-hidden="true">4.</strong> S3</a></li><li class="chapter-item expanded "><a href="lambda.html"><strong aria-hidden="true">5.</strong> Lambda</a></li><li class="chapter-item expanded "><a href="database.html"><strong aria-hidden="true">6.</strong> Database Codes</a></li><li class="chapter-item expanded "><a href="api/api-endpoints.html"><strong aria-hidden="true">7.</strong> Cookly APIs</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="infrastructure.html"><strong aria-hidden="true">1.</strong> Backend Infrastructure Overview</a></li><li class="chapter-item expanded "><a href="neptune.html"><strong aria-hidden="true">2.</strong> Neptune</a></li><li class="chapter-item expanded "><a href="dynamo.html" class="active"><strong aria-hidden="true">3.</strong> Dynamo</a></li><li class="chapter-item expanded "><a href="s3.html"><strong aria-hidden="true">4.</strong> S3</a></li><li class="chapter-item expanded "><a href="lambda.html"><strong aria-hidden="true">5.</strong> Lambda</a></li><li class="chapter-item expanded "><a href="database.html"><strong aria-hidden="true">6.</strong> Database Codes</a></li><li class="chapter-item expanded "><a href="api/api-endpoints.html"><strong aria-hidden="true">7.</strong> Cookly APIs</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -142,13 +142,51 @@
 
                 <div id="content" class="content">
                     <main>
-                        
+                        <h3 id="example-api-item-structure"><a class="header" href="#example-api-item-structure">Example api item structure</a></h3>
+<pre><code class="language-JSON">Example structure for writing to user settings:
+  {
+    'userID': { S: `${userID}` },
+    '0' : { BOOL: `${setting0}` },
+    '1' : { BOOL: `${setting1}` },
+    '2' : { BOOL: `${setting2}` }
+   }
+</code></pre>
+<h3 id="likedmeals-table"><a class="header" href="#likedmeals-table">LikedMeals Table</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Column</th><th>Description</th><th>Type</th></tr></thead><tbody>
+<tr><td>userID</td><td></td><td>int</td></tr>
+<tr><td>mealID</td><td></td><td>int</td></tr>
+<tr><td>count</td><td>No. of times user has liked meal</td><td>int</td></tr>
+</tbody></table>
+</div>
+<h3 id="ingredients-table"><a class="header" href="#ingredients-table">Ingredients Table</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Column</th><th>Description</th><th>Type</th></tr></thead><tbody>
+<tr><td>ingredientID</td><td></td><td>int</td></tr>
+<tr><td>name</td><td>String name</td><td>str</td></tr>
+<tr><td>substitutions</td><td>List of ingredient IDs that can be substituted for this one</td><td>[int]</td></tr>
+</tbody></table>
+</div>
+<h3 id="categories-table"><a class="header" href="#categories-table">Categories Table</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Column</th><th>Description</th><th>Type</th></tr></thead><tbody>
+<tr><td>categoryID</td><td></td><td>int</td></tr>
+<tr><td>name</td><td>String name</td><td>str</td></tr>
+</tbody></table>
+</div>
+<h3 id="allergens-table"><a class="header" href="#allergens-table">Allergens Table</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Column</th><th>Description</th><th>Type</th></tr></thead><tbody>
+<tr><td>allergenID</td><td></td><td>int</td></tr>
+<tr><td>name</td><td>String name</td><td>str</td></tr>
+<tr><td>ingredients</td><td>List of ingredient IDs which include this allergen</td><td>[int]</td></tr>
+</tbody></table>
+</div>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="neptune.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
 
-                            <a rel="next" href="neptune.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="s3.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -158,8 +196,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="neptune.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
-                    <a rel="next" href="neptune.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="s3.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

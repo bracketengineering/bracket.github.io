@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Chapter 1 - Bracket Engineering Docs</title>
+        <title>Database Codes - Bracket Engineering Docs</title>
 
 
         <!-- Custom HTML head -->
@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html" class="active"><strong aria-hidden="true">1.</strong> Chapter 1</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="infrastructure.html"><strong aria-hidden="true">1.</strong> Backend Infrastructure Overview</a></li><li class="chapter-item expanded "><a href="neptune.html"><strong aria-hidden="true">2.</strong> Neptune</a></li><li class="chapter-item expanded "><a href="dynamo.html"><strong aria-hidden="true">3.</strong> Dynamo</a></li><li class="chapter-item expanded "><a href="s3.html"><strong aria-hidden="true">4.</strong> S3</a></li><li class="chapter-item expanded "><a href="lambda.html"><strong aria-hidden="true">5.</strong> Lambda</a></li><li class="chapter-item expanded "><a href="database.html" class="active"><strong aria-hidden="true">6.</strong> Database Codes</a></li><li class="chapter-item expanded "><a href="api/api-endpoints.html"><strong aria-hidden="true">7.</strong> Cookly APIs</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -142,13 +142,67 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="chapter-1"><a class="header" href="#chapter-1">Chapter 1</a></h1>
+                        <h1 id="database-codes"><a class="header" href="#database-codes">Database Codes</a></h1>
+<h2 id="ingredient-codes"><a class="header" href="#ingredient-codes">Ingredient Codes</a></h2>
+<p>Will be stored elsewhere as it will be a large list.</p>
+<h2 id="category-codes"><a class="header" href="#category-codes">Category Codes</a></h2>
+<p>As yet undecided.</p>
+<h2 id="allergen-codes"><a class="header" href="#allergen-codes">Allergen Codes</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Code</th><th>Allergen</th></tr></thead><tbody>
+<tr><td>1</td><td>Celery</td></tr>
+<tr><td>2</td><td>Gluten</td></tr>
+<tr><td>3</td><td>Crustaceans</td></tr>
+<tr><td>4</td><td>Eggs</td></tr>
+<tr><td>5</td><td>Fish</td></tr>
+<tr><td>6</td><td>Lupin</td></tr>
+<tr><td>7</td><td>Dairy</td></tr>
+<tr><td>8</td><td>Mollluscs</td></tr>
+<tr><td>9</td><td>Mustard</td></tr>
+<tr><td>10</td><td>Nuts</td></tr>
+<tr><td>11</td><td>Peanuts</td></tr>
+<tr><td>12</td><td>Sesame</td></tr>
+<tr><td>13</td><td>Soya</td></tr>
+<tr><td>14</td><td>Sulphites</td></tr>
+</tbody></table>
+</div>
+<h1 id="api-endpoints"><a class="header" href="#api-endpoints">API Endpoints</a></h1>
+<p><strong>Calling backend API from React Native</strong></p>
+<pre><code class="language-javascript">const API_URL = 'https://API_ID.execute-api.REGION.amazonaws.com/STAGE/container/';
+
+async function callFunction(id, name, args) {
+  try {
+    const response = await fetch(`${API_URL}${id}/function/${name}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        args,
+      }),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+</code></pre>
+<p>This function will send a <code>GET</code> request to the <code>/container/{id}</code> resource of the API, passing the id as a URL parameter. The <code>/function/${name}</code> specifies the name of the function that needs to be executed in the container. The response from the API will be parsed as JSON and returned by the function.</p>
+<p>You will need to replace <code>API_ID</code>, <code>REGION</code>, and <code>STAGE</code> with the appropriate values for the API. </p>
+<p>(the <code>STAGE</code> is just the version of the API you want to send the request to)</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="lambda.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
 
+                            <a rel="next" href="api/api-endpoints.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -156,7 +210,13 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="lambda.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
+                    <a rel="next" href="api/api-endpoints.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
             </nav>
 
         </div>
