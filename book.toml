@@ -1,0 +1,6 @@
+[book]
+authors = ["0xFarted"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Bracket Engineering Docs"
