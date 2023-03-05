@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="api/api-endpoints.html">Cookly APIs</a></li><li class="chapter-item expanded "><a href="api/backend/backend.html"><strong aria-hidden="true">1.</strong> Backend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="api/backend/dynamo.html"><strong aria-hidden="true">1.1.</strong> Dynamo</a></li><li class="chapter-item expanded "><a href="api/backend/neptune.html"><strong aria-hidden="true">1.2.</strong> Neptune</a></li><li class="chapter-item expanded "><a href="api/backend/s3.html"><strong aria-hidden="true">1.3.</strong> S3</a></li><li class="chapter-item expanded "><a href="api/backend/other-scripts.html"><strong aria-hidden="true">1.4.</strong> Other Scripts</a></li></ol></li><li class="chapter-item expanded "><a href="api/frontend/frontend.html"><strong aria-hidden="true">2.</strong> Frontend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="api/frontend/cognito.html"><strong aria-hidden="true">2.1.</strong> Cognito Via Amplify</a></li><li class="chapter-item expanded "><a href="api/frontend/lambda-calls.html"><strong aria-hidden="true">2.2.</strong> API Caller</a></li></ol></li><li class="chapter-item expanded "><a href="infrastructure.html">Infrastructure</a></li><li class="chapter-item expanded affix "><a href="neptune.html">Neptune</a></li><li class="chapter-item expanded affix "><a href="dynamo.html">Dynamo</a></li><li class="chapter-item expanded affix "><a href="s3.html">S3</a></li><li class="chapter-item expanded affix "><a href="lambda.html">Lambda</a></li><li class="chapter-item expanded affix "><a href="database.html">Database Codes</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="api/api-endpoints.html">Cookly APIs</a></li><li class="chapter-item expanded "><a href="api/backend/backend.html"><strong aria-hidden="true">1.</strong> Backend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="api/backend/dynamo.html"><strong aria-hidden="true">1.1.</strong> Dynamo</a></li><li class="chapter-item expanded "><a href="api/backend/neptune.html"><strong aria-hidden="true">1.2.</strong> Neptune</a></li><li class="chapter-item expanded "><a href="api/backend/s3.html"><strong aria-hidden="true">1.3.</strong> S3</a></li><li class="chapter-item expanded "><a href="api/backend/other-scripts.html"><strong aria-hidden="true">1.4.</strong> Other Scripts</a></li></ol></li><li class="chapter-item expanded "><a href="api/frontend/frontend.html"><strong aria-hidden="true">2.</strong> Frontend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="api/frontend/cognito.html"><strong aria-hidden="true">2.1.</strong> Cognito Via Amplify</a></li><li class="chapter-item expanded "><a href="api/frontend/lambda-calls.html"><strong aria-hidden="true">2.2.</strong> API Caller</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="api/frontend/generic-call.html"><strong aria-hidden="true">2.2.1.</strong> #genericCall()</a></li><li class="chapter-item expanded "><a href="api/frontend/get-explore-page.html"><strong aria-hidden="true">2.2.2.</strong> getExplorePage()</a></li><li class="chapter-item expanded "><a href="api/frontend/get-category-info.html"><strong aria-hidden="true">2.2.3.</strong> getCategoryInfo()</a></li><li class="chapter-item expanded "><a href="api/frontend/get-full-meal-info.html"><strong aria-hidden="true">2.2.4.</strong> getFullMealInfo()</a></li><li class="chapter-item expanded "><a href="api/frontend/get-meal-info.html"><strong aria-hidden="true">2.2.5.</strong> getMealInfo()</a></li><li class="chapter-item expanded "><a href="api/frontend/get-neptune-user-info.html"><strong aria-hidden="true">2.2.6.</strong> getNeptuneUserInfo()</a></li><li class="chapter-item expanded "><a href="api/frontend/get-qm-search.html"><strong aria-hidden="true">2.2.7.</strong> getQMSearch</a></li><li class="chapter-item expanded "><a href="api/frontend/get-meals-in-categories.html"><strong aria-hidden="true">2.2.8.</strong> getMealsInCategories</a></li><li class="chapter-item expanded "><a href="api/frontend/set-metadata.html"><strong aria-hidden="true">2.2.9.</strong> setMetadata</a></li><li class="chapter-item expanded "><a href="api/frontend/set-neptune-user-info.html"><strong aria-hidden="true">2.2.10.</strong> setNeptuneUserInfo</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="infrastructure.html">Infrastructure</a></li><li class="chapter-item expanded affix "><a href="neptune.html">Neptune</a></li><li class="chapter-item expanded affix "><a href="dynamo.html">Dynamo</a></li><li class="chapter-item expanded affix "><a href="s3.html">S3</a></li><li class="chapter-item expanded affix "><a href="lambda.html">Lambda</a></li><li class="chapter-item expanded affix "><a href="database.html">Database Codes</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -168,6 +168,281 @@ throw new Error(`getVertexByID: notFound ${vertexID}`);
 //example use
 apiCaller.methodName(params);
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><p>#<code>#genericCall()</code>
+###Function Information</p>
+<ul>
+<li><code>#genericCall()</code> is a protected function</li>
+<li>Sould not be called directly</li>
+<li>Makes call via AWS Amplify SDK to endpoint specified in the <code>methodPath</code></li>
+</ul>
+<p>###Input Structure</p>
+<div class="table-wrapper"><table><thead><tr><th>Parameter Name</th><th>Type</th><th>Information</th></tr></thead><tbody>
+<tr><td><strong><code>apiName</code></strong></td><td>String</td><td>type of api call (either get or set)</td></tr>
+<tr><td><strong><code>methodPath</code></strong></td><td>String</td><td>path of method in API gateway</td></tr>
+<tr><td><strong><code>data</code></strong></td><td>Object</td><td>JSON object of data payload to be sent to lambda function</td></tr>
+</tbody></table>
+</div>
+<p>###Output Structure
+| Parameter Name | Type | Information
+| ----------- | ----------- | ----------- |
+| <strong><code>body</code></strong> | Object | JSON object returned from the api call specified by the input parameters |</p>
+<hr />
+<ul>
+<li>Defined here: <a href="https://github.com/bracketengineering/quick-meals/blob/2d5008af9118de94462c417512302639d0137e27/app/apiScripts/apiCalls/apiCaller.js#L7">#genericCall().Structure</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><p>#<code>getExplorePage()</code></p>
+<p>###Function Information</p>
+<ul>
+<li>Does not take any parameters</li>
+<li>Sends multiple requests to various services with just the userID</li>
+<li>returns all required information in the following form:</li>
+</ul>
+<pre><code class="language-JSON">body: {
+    recentCategories: recentCategories,
+    recentMeals: recentMeals,
+    standardCategories: standardCategories,
+    likedMeals: likedMeals,
+    predictedMeals: predictedMeal,
+}
+</code></pre>
+<p>###Input Structure</p>
+<div class="table-wrapper"><table><thead><tr><th>Parameter Name</th><th>Type</th><th>Information</th></tr></thead><tbody>
+<tr><td></td><td></td><td></td></tr>
+</tbody></table>
+</div>
+<p>###Output Structure
+| Parameter Name | Type | Information
+| ----------- | ----------- | ----------- |
+| <strong><code>body</code></strong> | Object | JSON object containg <code>recentCategories</code>, <code>recent meals</code>, <code>standardCategories</code>, <code>likedMeals</code>, <code>predictedMeals</code> |</p>
+<hr />
+<ul>
+<li>
+<p>Defined here: <a href="https://github.com/bracketengineering/quick-meals/blob/2d5008af9118de94462c417512302639d0137e27/app/apiScripts/apiCalls/apiCaller.js#L37">getExplorePage().Structure</a></p>
+</li>
+<li>
+<p>Underlying Lambda function: <a href="api/frontend/">getExplorePage.js</a></p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><p>#<code>getCategoryInfo()</code></p>
+<ul>
+<li>Returns things like category name, image etc</li>
+<li>Expected return shape:</li>
+</ul>
+<pre><code class="language-JSON">body: {
+    categoryName: STRING,
+    imageBase64: STRING
+}
+</code></pre>
+<p>###Input Structure</p>
+<div class="table-wrapper"><table><thead><tr><th>Parameter Name</th><th>Type</th><th>Information</th></tr></thead><tbody>
+<tr><td><strong><code>categoryID</code></strong></td><td>Number</td><td>ID of category information being requested</td></tr>
+</tbody></table>
+</div>
+<p>###Output Structure
+| Parameter Name | Type | Information
+| ----------- | ----------- | ----------- |
+| <strong><code>body</code></strong> | Object | JSON object returned from S3 containg information about the corresponding categoryID |</p>
+<hr />
+<ul>
+<li>
+<p>Defined here: <a href="https://github.com/bracketengineering/quick-meals/blob/2d5008af9118de94462c417512302639d0137e27/app/apiScripts/apiCalls/apiCaller.js#L55">getCategoryInfo.Structure</a></p>
+</li>
+<li>
+<p>Underlying Lambda function: <a href="api/frontend/">getCategoryInfo.js</a></p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><p>#<code>getFullMealInfo()</code></p>
+<p>###Function Information</p>
+<ul>
+<li>Gets remaining meal info when meal card is clicked</li>
+<li>Returns JSON object of method steps:</li>
+</ul>
+<pre><code class="language-JSON">body: {
+    method: {
+        step1: String,
+        step2: String
+    }
+}
+</code></pre>
+<p>###Input Structure</p>
+<div class="table-wrapper"><table><thead><tr><th>Parameter Name</th><th>Type</th><th>Information</th></tr></thead><tbody>
+<tr><td><strong><code>mealID</code></strong></td><td>Number</td><td>ID of meal that information is being request about</td></tr>
+</tbody></table>
+</div>
+<p>###Output Structure
+| Parameter Name | Type | Information
+| ----------- | ----------- | ----------- |
+| <strong><code>body</code></strong> | Object | JSON object returned from S3 containing method for given meal ID  |</p>
+<hr />
+<ul>
+<li>
+<p>Defined here: <a href="https://github.com/bracketengineering/quick-meals/blob/2d5008af9118de94462c417512302639d0137e27/app/apiScripts/apiCalls/apiCaller.js#L70">getFullMealInfo().Structure</a></p>
+</li>
+<li>
+<p>Underlying Lambda function: <a href="api/frontend/">getFullMealInfo.js</a></p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><p>#<code>getMealInfo()</code></p>
+<p>###Function Information</p>
+<ul>
+<li>Gets basic meal info when meal card is clicked</li>
+<li>Return shape:</li>
+</ul>
+<pre><code class="language-JSON">body: {
+    mealName: String,
+    description: String,
+    ingredients: [String],
+    mealInfo: {
+        time: String,
+        difficulty: String,
+        Rating: Int
+    }
+}
+</code></pre>
+<p>###Input Structure</p>
+<div class="table-wrapper"><table><thead><tr><th>Parameter Name</th><th>Type</th><th>Information</th></tr></thead><tbody>
+<tr><td><strong><code>mealID</code></strong></td><td>Number</td><td>ID of meal that information is being request about</td></tr>
+</tbody></table>
+</div>
+<p>###Output Structure
+| Parameter Name | Type | Information
+| ----------- | ----------- | ----------- |
+| <strong><code>body</code></strong> | Object | JSON object returned from S3 containing the basic information for given meal ID  |</p>
+<hr />
+<ul>
+<li>
+<p>Defined here: <a href="https://github.com/bracketengineering/quick-meals/blob/2d5008af9118de94462c417512302639d0137e27/app/apiScripts/apiCalls/apiCaller.js#L89">getMealInfo().Structure</a></p>
+</li>
+<li>
+<p>Underlying Lambda function: <a href="api/frontend/">getMealInfo.js</a></p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><p>#<code>getNeptuneUserInfo()</code></p>
+<p>###Function Information</p>
+<ul>
+<li>Returns JSON object of user attributes from neptune</li>
+</ul>
+<p>###Input Structure</p>
+<div class="table-wrapper"><table><thead><tr><th>Parameter Name</th><th>Type</th><th>Information</th></tr></thead><tbody>
+<tr><td><strong><code>userID</code></strong></td><td>Number</td><td>ID of user that information is being request about</td></tr>
+</tbody></table>
+</div>
+<p>###Output Structure
+| Parameter Name | Type | Information
+| ----------- | ----------- | ----------- |
+| <strong><code>body</code></strong> | Object | JSON object returned from neptune containing all attributes attached to the given user  |</p>
+<hr />
+<ul>
+<li>
+<p>Defined here: <a href="https://github.com/bracketengineering/quick-meals/blob/2d5008af9118de94462c417512302639d0137e27/app/apiScripts/apiCalls/apiCaller.js#L104">getNeptuneUserInfo().Structure</a></p>
+</li>
+<li>
+<p>Underlying Lambda function: <a href="api/frontend/">getNeptuneUserInfo.js</a></p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><p>#<code>getQMSearch()</code></p>
+<ul>
+<li>Returns array of meal IDs as a JSON object ordered by rating</li>
+<li>Expected return shape:</li>
+</ul>
+<pre><code class="language-JSON">body: {
+    meals: [INT]
+}
+</code></pre>
+<p>###Input Structure</p>
+<div class="table-wrapper"><table><thead><tr><th>Parameter Name</th><th>Type</th><th>Information</th></tr></thead><tbody>
+<tr><td><strong><code>ingredients</code></strong></td><td>[Int]</td><td>Array of ingredient IDs inputted by user</td></tr>
+</tbody></table>
+</div>
+<p>###Output Structure
+| Parameter Name | Type | Information
+| ----------- | ----------- | ----------- |
+| <strong><code>body</code></strong> | Object | JSON object containing an meal IDs ordered by rating |</p>
+<hr />
+<ul>
+<li>
+<p>Defined here: <a href="https://github.com/bracketengineering/quick-meals/blob/2d5008af9118de94462c417512302639d0137e27/app/apiScripts/apiCalls/apiCaller.js#L119">getQMSearch().Structure</a></p>
+</li>
+<li>
+<p>Underlying Lambda function: <a href="api/frontend/">getQMSearch.js</a></p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><p>#<code>getMealsInCategories()</code></p>
+<p>###Function Information </p>
+<ul>
+<li>Calls neptune to get meals filtered by categories</li>
+<li>Expected return shape:</li>
+</ul>
+<pre><code class="language-JSON">body: {
+    meals: [INT]
+}
+</code></pre>
+<p>###Input Structure</p>
+<div class="table-wrapper"><table><thead><tr><th>Parameter Name</th><th>Type</th><th>Information</th></tr></thead><tbody>
+<tr><td><strong><code>categories</code></strong></td><td>[Int]</td><td>IDs of categories that User wants to search for</td></tr>
+</tbody></table>
+</div>
+<p>###Output Structure
+| Parameter Name | Type | Information
+| ----------- | ----------- | ----------- |
+| <strong><code>body</code></strong> | Object | Array of meal IDs returned from neptune that match categories  |</p>
+<hr />
+<ul>
+<li>
+<p>Defined here: <a href="https://github.com/bracketengineering/quick-meals/blob/2d5008af9118de94462c417512302639d0137e27/app/apiScripts/apiCalls/apiCaller.js#L138">getMealInCategories().Structure</a></p>
+</li>
+<li>
+<p>Underlying Lambda function: <a href="api/frontend/">getMealInCategories.js</a></p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><p>#<code>setMetadata()</code></p>
+<ul>
+<li>Sends metadata information to S3</li>
+<li>To be used for things like button presses etc</li>
+</ul>
+<p>###Input Structure</p>
+<div class="table-wrapper"><table><thead><tr><th>Parameter Name</th><th>Type</th><th>Information</th></tr></thead><tbody>
+<tr><td><strong><code>feature</code></strong></td><td>String</td><td>name of feature from which request metadata is being sent</td></tr>
+<tr><td><strong><code>query</code></strong></td><td>Object</td><td>JSON object of information sent in query</td></tr>
+<tr><td>See here for <a href="api/frontend/">query parameter input shape</a></td><td></td><td></td></tr>
+</tbody></table>
+</div>
+<p>###Output Structure
+| Parameter Name | Type | Information
+| ----------- | ----------- | ----------- |
+|</p>
+<hr />
+<ul>
+<li>
+<p>Defined here: <a href="https://github.com/bracketengineering/quick-meals/blob/2d5008af9118de94462c417512302639d0137e27/app/apiScripts/apiCalls/apiCaller.js#L157">setMetadata().Structure</a></p>
+</li>
+<li>
+<p>Underlying Lambda function: <a href="api/frontend/">setMetadata.js</a></p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><p>#<code>setNeptuneUserInfo()</code></p>
+<ul>
+<li>Updates attributes in user nodes</li>
+</ul>
+<p>###Input Structure</p>
+<div class="table-wrapper"><table><thead><tr><th>Parameter Name</th><th>Type</th><th>Information</th></tr></thead><tbody>
+<tr><td><strong><code>property</code></strong></td><td>String</td><td>String name of property being changed</td></tr>
+<tr><td><strong><code>newValue</code></strong></td><td>[Int]</td><td>Array of integers for new values of property</td></tr>
+</tbody></table>
+</div>
+<p>###Output Structure
+| Parameter Name | Type | Information
+| ----------- | ----------- | ----------- |
+|</p>
+<hr />
+<ul>
+<li>
+<p>Defined here: <a href="https://github.com/bracketengineering/quick-meals/blob/2d5008af9118de94462c417512302639d0137e27/app/apiScripts/apiCalls/apiCaller.js#L178">setNeptuneUserInfo().Structure</a></p>
+</li>
+<li>
+<p>Underlying Lambda function: <a href="api/frontend/">setNeptuneUserInfo.js</a></p>
+</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h2 id="neptune-data-structure"><a class="header" href="#neptune-data-structure">Neptune Data Structure</a></h2>
 <h3 id="meal-nodes"><a class="header" href="#meal-nodes">Meal Nodes</a></h3>
 <p>When providing data to create a new meal, it <strong>must</strong> be in the following format:</p>
