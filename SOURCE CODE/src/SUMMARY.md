@@ -6,6 +6,7 @@
     - [Dynamo](./api/backend/dynamo.md)
     - [Neptune](./api/backend/neptune.md)
     - [S3](./api/backend/s3.md)
+    - [Lambda](./api/backend/lambda.md)
     - [Other Scripts](./api/backend/other-scripts.md)
 - [Frontend](./api/frontend/frontend.md)
     - [Cognito Via Amplify](./api/frontend/cognito.md)
