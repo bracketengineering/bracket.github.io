@@ -7,3 +7,6 @@ title = "Bracket Engineering Docs"
 
 [build]
 build-dir="./docs"
+
+[output.html]
+cname="docs.bracket.software"
