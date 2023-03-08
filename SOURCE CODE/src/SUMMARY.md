@@ -5,7 +5,6 @@
   - [API Caller](./frontend/api/lambda-calls.md)
       - [#genericCall()](./frontend/api/generic-call.md)
       - [getExplorePage()](./frontend/api/get-explore-page.md)
-      - [getCategoryInfo()](./frontend/api/get-category-info.md)
       - [getFullMealInfo()](./frontend/api/get-full-meal-info.md)
       - [getMealInfo()](./frontend/api/get-meal-info.md)
       - [getNeptuneUserInfo()](./frontend/api/get-neptune-user-info.md)

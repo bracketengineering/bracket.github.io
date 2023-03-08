@@ -22,7 +22,7 @@ return {
       basic_info: {
         categoryName: String
       },
-      image: String
+      image: String // Base 64 encoded image
   }
 }
 ```
