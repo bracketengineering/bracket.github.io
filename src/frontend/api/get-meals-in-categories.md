@@ -25,6 +25,6 @@ body: {
 
 ___
 
-- Defined here: [getMealInCategories](https://github.com/bracketengineering/quick-meals/blob/2d5008af9118de94462c417512302639d0137e27/app/apiScripts/apiCalls/apiCaller.js#L134)
+- Defined here: [getMealsInCategories](https://github.com/bracketengineering/quick-meals/blob/2d5008af9118de94462c417512302639d0137e27/app/apiScripts/apiCalls/apiCaller.js#L134)
 
 - Underlying Lambda function: [getMealInCategories.js]()
