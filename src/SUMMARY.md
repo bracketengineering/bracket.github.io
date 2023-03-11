@@ -4,7 +4,6 @@
   - [Cognito Via Amplify](./frontend/api/cognito.md)
   - [API Caller](./frontend/api/lambda-calls.md)
       - [#genericCall()](./frontend/api/generic-call.md)
-      - [getQMSearch](./frontend/api/get-qm-search.md)
       - [setMetadata](./frontend/api/set-metadata.md)
       - [setNeptuneUserInfo](./frontend/api/set-neptune-user-info.md)
 

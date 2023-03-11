@@ -1,23 +1,17 @@
-### Example api item structure
+# DynamoDB
+
+## Example Input Structure
 
 ```javascript
-//Example structure for writing to user settings:
-{
-  'userID': { S: `${userID}` },
-  '0' : { BOOL: `${setting0}` },
-  '1' : { BOOL: `${setting1}` },
-  '2' : { BOOL: `${setting2}` }
-  }
+//Example structure for writing to recently cooked meals:
+const item = {
+  userID: { S: `${userID}` },
+  mealID: { S: `${mealID}` },
+  lastUsed: { N: `${Date.now()}`}
+}
 ```
 
-### LikedMeals Table
-
-| Column | Description                      | Type |
-| ------ | -------------------------------- | ---- |
-| userID |                                  | str  |
-| mealID |                                  | str  |
-| count  | No. of times user has liked meal | int  |
-
+## Tables
 ### Recently Cooked Meals
 Table Name: `cookly-user-recent-meals`
 
@@ -28,6 +22,7 @@ Table Name: `cookly-user-recent-meals`
 | lastUsed | UNIX timestamp format (ms since 01/01/1970) | int  |
 
 ### Ingredients Table
+Table Name: `cookly-ingredients`
 
 | Column        | Description                                                 | Type  |
 | ------------- | ----------------------------------------------------------- | ----- |
@@ -35,14 +30,25 @@ Table Name: `cookly-user-recent-meals`
 | name          | String name                                                 | str   |
 | substitutions | List of ingredient IDs that can be substituted for this one | [int] |
 
-### Categories Table
+### Categories
+Table Name: `cookly-categories`
 
 | Column     | Description | Type |
 | ---------- | ----------- | ---- |
 | categoryID |             | str  |
 | name       | String name | str  |
 
-### Allergens Table
+### Recently Used Categories
+Table Name: `cookly-user-recent-categories`
+
+| Column     | Description                                 | Type |
+| ---------- | ------------------------------------------- | ---- |
+| userID     |                                             | str  |
+| categoryID |                                             | str  |
+| lastUsed   | UNIX timestamp format (ms since 01/01/1970) | int  |
+
+### Allergens
+Table Name: `cookly-allergens`
 
 | Column      | Description                                        | Type  |
 | ----------- | -------------------------------------------------- | ----- |

@@ -23,7 +23,8 @@ return {
       mealID: String,
       categories: [String, ...],
       edgeType: String,
-      value: Integer
+      value: Integer,
+      recommendedOrder: Float // For sorting results on frontend
     }, 
     ...
    ]
