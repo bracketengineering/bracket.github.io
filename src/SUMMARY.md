@@ -4,11 +4,6 @@
   - [Cognito Via Amplify](./frontend/api/cognito.md)
   - [API Caller](./frontend/api/lambda-calls.md)
       - [#genericCall()](./frontend/api/generic-call.md)
-      - [setMetadata](./frontend/api/set-metadata.md)
-      - [setNeptuneUserInfo](./frontend/api/set-neptune-user-info.md)
-
-
----
 
 - [Backend](./backend/backend_prefix.md)
   - [Infrastructure](./backend/infrastructure.md)
@@ -23,6 +18,7 @@
     - [getQMSearch](./backend/lambda/getQMSearch.md)
     - [setMetadata](./backend/lambda/setMetadata.md)
     - [setNeptuneUserInfo](./backend/lambda/setNeptuneUserInfo.md)
+    - [userSignUp](./backend/lambda/userSignUp.md)
   - [Neptune](./backend/neptune/neptune.md)
   - [Dynamo](./backend/dynamo.md)
   - [S3](./backend/s3.md)
