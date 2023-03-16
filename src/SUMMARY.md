@@ -16,6 +16,8 @@
     - [getMealInfo](./backend/lambda/getMealInfo.md)
     - [getNeptuneUserInfo](./backend/lambda/getNeptuneUserInfo.md)
     - [getQMSearch](./backend/lambda/getQMSearch.md)
+    - [rateMeal](./backend/lambda/rateMeal.md)
+    - [saveMeal](./backend/lambda/saveMeal.md)
     - [setMetadata](./backend/lambda/setMetadata.md)
     - [setNeptuneUserInfo](./backend/lambda/setNeptuneUserInfo.md)
     - [userSignUp](./backend/lambda/userSignUp.md)
