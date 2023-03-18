@@ -71,12 +71,10 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = null;
+            var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
-            } else {
-                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -219,7 +217,11 @@ apiCaller.methodName(params);
 <li>Defined here: <a href="https://github.com/bracketengineering/quick-meals/blob/2d5008af9118de94462c417512302639d0137e27/app/apiScripts/apiCalls/apiCaller.js#L7">#genericCall</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="backend"><a class="header" href="#backend">Backend</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="lambda"><a class="header" href="#lambda">Lambda</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="infrastructure"><a class="header" href="#infrastructure">Infrastructure</a></h1>
+<p>Our Infrastructure is laid out in the image below.
+We make use of AWS for all of our storage, computing, user authentication, and analytics.</p>
+<p><img src="backend/Infrastructure-Diagram.png" alt="Infrastructure Diagram" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="lambda"><a class="header" href="#lambda">Lambda</a></h1>
 <h3 id="what-is-lambda"><a class="header" href="#what-is-lambda">What is Lambda?</a></h3>
 <p>AWS Lambda is a serverless, event-driven compute service that lets you run code for virtually any type of application or backend service without provisioning or managing servers. You only need to pay for what you use.</p>
 <h3 id="our-lambda-function-structure"><a class="header" href="#our-lambda-function-structure">Our Lambda Function Structure</a></h3>

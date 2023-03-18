@@ -1,0 +1,228 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>getFullMealInfo() - Bracket Engineering Docs</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">Frontend</li><li class="chapter-item expanded "><a href="../../api/backend/backend.html"><strong aria-hidden="true">1.</strong> Backend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../api/backend/dynamo.html"><strong aria-hidden="true">1.1.</strong> Dynamo</a></li><li class="chapter-item expanded "><a href="../../api/backend/neptune.html"><strong aria-hidden="true">1.2.</strong> Neptune</a></li><li class="chapter-item expanded "><a href="../../api/backend/s3.html"><strong aria-hidden="true">1.3.</strong> S3</a></li><li class="chapter-item expanded "><a href="../../api/backend/other-scripts.html"><strong aria-hidden="true">1.4.</strong> Other Scripts</a></li></ol></li><li class="chapter-item expanded "><a href="../../api/frontend/frontend.html"><strong aria-hidden="true">2.</strong> Frontend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../api/frontend/cognito.html"><strong aria-hidden="true">2.1.</strong> Cognito Via Amplify</a></li><li class="chapter-item expanded "><a href="../../api/frontend/lambda-calls.html"><strong aria-hidden="true">2.2.</strong> API Caller</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../api/frontend/generic-call.html"><strong aria-hidden="true">2.2.1.</strong> #genericCall()</a></li><li class="chapter-item expanded "><a href="../../api/frontend/get-explore-page.html"><strong aria-hidden="true">2.2.2.</strong> getExplorePage()</a></li><li class="chapter-item expanded "><a href="../../api/frontend/get-category-info.html"><strong aria-hidden="true">2.2.3.</strong> getCategoryInfo()</a></li><li class="chapter-item expanded "><a href="../../api/frontend/get-full-meal-info.html" class="active"><strong aria-hidden="true">2.2.4.</strong> getFullMealInfo()</a></li><li class="chapter-item expanded "><a href="../../api/frontend/get-meal-info.html"><strong aria-hidden="true">2.2.5.</strong> getMealInfo()</a></li><li class="chapter-item expanded "><a href="../../api/frontend/get-neptune-user-info.html"><strong aria-hidden="true">2.2.6.</strong> getNeptuneUserInfo()</a></li><li class="chapter-item expanded "><a href="../../api/frontend/get-qm-search.html"><strong aria-hidden="true">2.2.7.</strong> getQMSearch</a></li><li class="chapter-item expanded "><a href="../../api/frontend/get-meals-in-categories.html"><strong aria-hidden="true">2.2.8.</strong> getMealsInCategories</a></li><li class="chapter-item expanded "><a href="../../api/frontend/set-metadata.html"><strong aria-hidden="true">2.2.9.</strong> setMetadata</a></li><li class="chapter-item expanded "><a href="../../api/frontend/set-neptune-user-info.html"><strong aria-hidden="true">2.2.10.</strong> setNeptuneUserInfo</a></li></ol></li></ol></li><li class="chapter-item expanded "><li class="part-title">Backend</li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Bracket Engineering Docs</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="getfullmealinfo"><a class="header" href="#getfullmealinfo"><code>getFullMealInfo()</code></a></h1>
+<h3 id="function-information"><a class="header" href="#function-information">Function Information</a></h3>
+<ul>
+<li>Gets remaining meal info when meal card is clicked</li>
+<li>Returns JSON object of method steps:</li>
+</ul>
+<pre><code class="language-JSON">body: {
+    method: {
+        step1: String,
+        step2: String
+    }
+}
+</code></pre>
+<h3 id="input-structure"><a class="header" href="#input-structure">Input Structure</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Parameter Name</th><th>Type</th><th>Information</th></tr></thead><tbody>
+<tr><td><strong><code>mealID</code></strong></td><td>Number</td><td>ID of meal that information is being request about</td></tr>
+</tbody></table>
+</div>
+<h3 id="output-structure"><a class="header" href="#output-structure">Output Structure</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Parameter Name</th><th>Type</th><th>Information</th></tr></thead><tbody>
+<tr><td><strong><code>body</code></strong></td><td>Object</td><td>JSON object returned from S3 containing method for given meal ID</td></tr>
+</tbody></table>
+</div>
+<hr />
+<ul>
+<li>
+<p>Defined here: <a href="https://github.com/bracketengineering/quick-meals/blob/2d5008af9118de94462c417512302639d0137e27/app/apiScripts/apiCalls/apiCaller.js#L70">getFullMealInfo().Structure</a></p>
+</li>
+<li>
+<p>Underlying Lambda function: <a href="">getFullMealInfo.js</a></p>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../api/frontend/get-category-info.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../api/frontend/get-meal-info.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../api/frontend/get-category-info.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../api/frontend/get-meal-info.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
