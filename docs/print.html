@@ -145,10 +145,34 @@
                     <main>
                         <h1 id="frontend"><a class="header" href="#frontend">Frontend</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="cognito-via-amplify"><a class="header" href="#cognito-via-amplify">Cognito Via Amplify</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="api-caller"><a class="header" href="#api-caller">API Caller</a></h1>
+<h3 id="imports"><a class="header" href="#imports">Imports</a></h3>
+<pre><code class="language-javascript">import CognitoAPI from './apiScripts/amplify/cognitoAPI.js';
+</code></pre>
+<p>### Instantiation</p>
+<pre><code class="language-javascript">const cognito = new CognitoAPI();
+
+// example use
+cognito.methodName(params);
+</code></pre>
+<hr />
+<h3 id="methods"><a class="header" href="#methods">Methods</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Method Name</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>signUp</code></td><td>Submits user information to cognito - <strong>not to be used directly.</strong> Instead use <a href="https://github.com/bracketengineering/quick-meals/blob/63ac5b9f97bc7cee734b3faedc08d288fe71e22d/app/apiScripts/apiCalls/apiCaller.js#L217">apiCaller.signUpUser</a></td></tr>
+<tr><td><code>confirmSignUp</code></td><td>Uses username and code from email to verify a new user</td></tr>
+<tr><td><code>signIn</code></td><td>Signs in a user</td></tr>
+<tr><td><code>signOut</code></td><td>Signs out a user</td></tr>
+<tr><td><code>globalSignOut</code></td><td>Signs out a user from all devices</td></tr>
+<tr><td><code>verifyAttribute</code></td><td>Verifies updated email</td></tr>
+<tr><td><code>resendConfirmationCode</code></td><td>Resends confirmation code</td></tr>
+<tr><td><code>changePassword</code></td><td>Sends code to email, takes this code and new password to update a user's password</td></tr>
+<tr><td><code>updateAttributes</code></td><td>Updates a user setting</td></tr>
+<tr><td><code>getAccessToken</code></td><td>Gets user's current access token</td></tr>
+<tr><td><code>getCognitoInfo</code></td><td>Gets given name, email or userID for current user</td></tr>
+</tbody></table>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="api-caller"><a class="header" href="#api-caller">API Caller</a></h1>
 <p>API caller is a JavaScript class which can be used in the front end code to make requests to our backend infrastructure.
 This is done by making use of a <a href="frontend/api/generic-call.html">generic API call</a>.</p>
-<h3 id="imports"><a class="header" href="#imports">Imports</a></h3>
+<h3 id="imports-1"><a class="header" href="#imports-1">Imports</a></h3>
 <pre><code class="language-Javascript">import apiCaller from 'apiCaller.js';
 </code></pre>
 <h3 id="instantiation"><a class="header" href="#instantiation">Instantiation</a></h3>
