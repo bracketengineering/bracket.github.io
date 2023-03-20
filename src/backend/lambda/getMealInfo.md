@@ -32,13 +32,7 @@ return {
       String,
       ...
     ],
-    ingredientsText: {
-      // Header names vary meal to meal
-      // Header name describes ingredients for one part of the meal, i.e "For the sauce"
-      "SECTION1_HEADER": [String, String, ...], 
-      "SECTION2_HEADER": [String, String, ...], 
-      ...
-    },
+    ingredientsText: [String, String, ...],
     image: String // Base 64 encoded image ready to be put into html
 }
 ```

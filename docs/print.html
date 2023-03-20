@@ -461,13 +461,7 @@ We make use of AWS for all of our storage, computing, user authentication, and a
       String,
       ...
     ],
-    ingredientsText: {
-      // Header names vary meal to meal
-      // Header name describes ingredients for one part of the meal, i.e &quot;For the sauce&quot;
-      &quot;SECTION1_HEADER&quot;: [String, String, ...], 
-      &quot;SECTION2_HEADER&quot;: [String, String, ...], 
-      ...
-    },
+    ingredientsText: [String, String, ...],
     image: String // Base 64 encoded image ready to be put into html
 }
 </code></pre>
