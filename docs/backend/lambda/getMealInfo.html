@@ -70,10 +70,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -156,32 +158,29 @@
 <pre><code class="language-javascript">return {
   statusCode: 200,
   body: {
-    info: {
-      mealName: String,
-      servings: Integer,
-      prepTime: {
-        time: Integer,
-        unit: String // E.g &quot;min&quot;, &quot;hr&quot;
-      },
-      cookTime: {
-        time: Integer,
-        unit: String
-      },
-      tags: [
-        String,
-        String,
-        ...
-      ],
-      ingredientsText: {
-        // Header names vary meal to meal
-        // Header name describes ingredients for one part of the meal, i.e &quot;For the sauce&quot;
-        &quot;SECTION1_HEADER&quot;: [String, String, ...], 
-        &quot;SECTION2_HEADER&quot;: [String, String, ...], 
-        ...
-      }
+    mealName: String,
+    servings: Integer,
+    prepTime: {
+      time: Integer,
+      unit: String // E.g &quot;min&quot;, &quot;hr&quot;
+    },
+    cookTime: {
+      time: Integer,
+      unit: String
+    },
+    tags: [
+      String,
+      String,
+      ...
+    ],
+    ingredientsText: {
+      // Header names vary meal to meal
+      // Header name describes ingredients for one part of the meal, i.e &quot;For the sauce&quot;
+      &quot;SECTION1_HEADER&quot;: [String, String, ...], 
+      &quot;SECTION2_HEADER&quot;: [String, String, ...], 
+      ...
     },
     image: String // Base 64 encoded image ready to be put into html
-  }
 }
 </code></pre>
 <h2 id="return-value-on-failure"><a class="header" href="#return-value-on-failure">Return Value On Failure</a></h2>
