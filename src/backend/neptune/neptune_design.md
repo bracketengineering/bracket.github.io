@@ -49,6 +49,7 @@ For meal nodes, all information apart from the image is to be stored on the node
 | timeToPrepare     | Total time (prep + cook) stored in minutes. Could be useful for querying "quick & easy meals"                                                                                      | Integer |
 | ingredientsString | JSON String containing ingredients. Stored on node to reduce loading time for frontend meal info retrieval                                                                         | String  |
 | methodString      | JSON String containing method steps.                                                                                                                                               | String  |
+| avgRating         | An averaged rating from all `rates` edges linked to this node                                                                                                                      | Number  |
 
 ### Outgoing Edges
 

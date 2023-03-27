@@ -144,7 +144,212 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="api-design"><a class="header" href="#api-design">API Design</a></h1>
+                        <h1 id="neptune-api-design"><a class="header" href="#neptune-api-design">Neptune API Design <!-- omit from toc --></a></h1>
+<p><strong>NOTE</strong>: I'm not yet sure if we want to allow both &quot;liking&quot; and &quot;disliking&quot; meals and categories. I'm not quite seeing how it will tie in well with app functionality and it would be a little bit complicated to implement. Please consider this and let me know before I go ahead with implementing those particular functions. I won't repeat the liking/disliking docs below for Categories until we've decided what to do on this matter.</p>
+<p>This document outlines the functions that will be offered by our Neptune client/API, written in Javascript, and how they will work with regards to querying the graph.</p>
+<p>The final section also outlines which of the Neptune API functions will be used for our features (currently running in Lambda).</p>
+<p>I will add more documentation here as more requirements arise.</p>
+<h2 id="todo"><a class="header" href="#todo">TODO <!-- omit from toc --></a></h2>
+<ul>
+<li>Describe how adding nodes will work</li>
+<li>Add more getters (e.g getMeal, getIngredients etc)</li>
+<li>Start implementing</li>
+</ul>
+<h2 id="contents"><a class="header" href="#contents">Contents <!-- omit from toc --></a></h2>
+<ul>
+<li><a href="#getters">Getters</a>
+<ul>
+<li><a href="#getrecentcookedmealsuserid-limit-lastpage0"><code>getRecentCookedMeals(userID, limit, lastPage=0)</code></a></li>
+<li><a href="#getrecentviewedmealsuserid-limit-lastpage0"><code>getRecentViewedMeals(userID, limit, lastPage=0)</code></a></li>
+<li><a href="#getsavedmealsuserid-limit-lastpage0"><code>getSavedMeals(userID, limit, lastPage=0)</code></a></li>
+<li><a href="#getrecentviewedcategoriesuserid-limit-lastpage0"><code>getRecentViewedCategories(userID, limit, lastPage=0)</code></a></li>
+<li><a href="#getcategorieslimit-lastpage0"><code>getCategories(limit, lastPage=0)</code></a></li>
+<li><a href="#getmealsincategorycategoryid-limit-lastpage0"><code>getMealsInCategory(categoryID, limit, lastPage=0)</code></a></li>
+<li><a href="#getuserallergensuserid"><code>getUserAllergens(userID)</code></a></li>
+<li><a href="#getuseringredientpreferencesuserid"><code>getUserIngredientPreferences(userID)</code></a></li>
+<li><a href="#getquickmealssearchuserid-ingredients"><code>getQuickMealsSearch(userID, ingredients)</code></a></li>
+</ul>
+</li>
+<li><a href="#setters">Setters</a>
+<ul>
+<li><a href="#addmeal"><code>addMeal()</code></a></li>
+<li><a href="#adduser"><code>addUser()</code></a></li>
+<li><a href="#addingredient"><code>addIngredient()</code></a></li>
+<li><a href="#addcategory"><code>addCategory()</code></a></li>
+<li><a href="#userviewsmealuserid-mealid"><code>userViewsMeal(userID, mealID)</code></a></li>
+<li><a href="#userviewscategoryuserid-mealid"><code>userViewsCategory(userID, mealID)</code></a></li>
+<li><a href="#updateuserallergensuserid-allergens"><code>updateUserAllergens(userID, allergens)</code></a></li>
+<li><a href="#usersavesmealuserid-mealid"><code>userSavesMeal(userID, mealID)</code></a></li>
+<li><a href="#userunsavesmealuserid-mealid"><code>userUnsavesMeal(userID, mealID)</code></a></li>
+<li><a href="#userratesmealuserid-mealid-rating"><code>userRatesMeal(userID, mealID, rating)</code></a></li>
+<li><a href="#usercooksmealuserid-mealid"><code>userCooksMeal(userID, mealID)</code></a></li>
+<li><a href="#userlikesingredientuserid-mealid"><code>userLikesIngredient(userID, mealID)</code></a></li>
+<li><a href="#userunlikesingredientuserid-mealid"><code>userUnlikesIngredient(userID, mealID)</code></a></li>
+<li><a href="#userdislikesingredientuserid-mealid"><code>userDislikesIngredient(userID, mealID)</code></a></li>
+<li><a href="#userundislikesingredientuserid-mealid"><code>userUndislikesIngredient(userID, mealID)</code></a></li>
+<li><a href="#updateuseringredientpreferencesuserid-likes-dislikes"><code>updateUserIngredientPreferences(userID, likes, dislikes)</code></a></li>
+</ul>
+</li>
+<li><a href="#frontend-features">Frontend Features</a>
+<ul>
+<li><a href="#getaccountmeals">getAccountMeals</a></li>
+<li><a href="#getexplorepage">getExplorePage</a></li>
+<li><a href="#getmealsincategory">getMealsInCategory</a></li>
+<li><a href="#user-preferences-page">User Preferences Page</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="getters"><a class="header" href="#getters">Getters</a></h2>
+<p>The following functions simply retrieve information from the graph, some returning values in a sorted fashion</p>
+<h3 id="getrecentcookedmealsuserid-limit-lastpage0"><a class="header" href="#getrecentcookedmealsuserid-limit-lastpage0"><code>getRecentCookedMeals(userID, limit, lastPage=0)</code></a></h3>
+<p>Input Params: <code>(userID: STR, limit: INT, lastPage: INT)</code></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
+<tr><td style="text-align: left">Gets meals a user has recently cooked</td><td style="text-align: left">Traverse from user to all meals with <code>hasCooked</code> edge, sort by <code>lastCooked</code> edge property, descending.</td></tr>
+</tbody></table>
+</div>
+<h3 id="getrecentviewedmealsuserid-limit-lastpage0"><a class="header" href="#getrecentviewedmealsuserid-limit-lastpage0"><code>getRecentViewedMeals(userID, limit, lastPage=0)</code></a></h3>
+<p>Input Params: <code>(userID: STR, limit: INT, lastPage: INT)</code></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
+<tr><td style="text-align: left">Gets meals a user has recently viewed</td><td style="text-align: left">Traverse from user to all meals with <code>hasViewed</code> edge, sort by <code>lastViewed</code> edge property, descending.</td></tr>
+</tbody></table>
+</div>
+<h3 id="getsavedmealsuserid-limit-lastpage0"><a class="header" href="#getsavedmealsuserid-limit-lastpage0"><code>getSavedMeals(userID, limit, lastPage=0)</code></a></h3>
+<p>Input Params: <code>(userID: STR, limit: INT, lastPage: INT)</code></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
+<tr><td style="text-align: left">Gets meals a user has saved</td><td style="text-align: left">Traverse from user to all meals with <code>hasSaved</code> edge.</td></tr>
+</tbody></table>
+</div>
+<h3 id="getrecentviewedcategoriesuserid-limit-lastpage0"><a class="header" href="#getrecentviewedcategoriesuserid-limit-lastpage0"><code>getRecentViewedCategories(userID, limit, lastPage=0)</code></a></h3>
+<p>Input Params: <code>(userID: STR, limit: INT, lastPage: INT)</code></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
+<tr><td style="text-align: left">Gets categories a user has recently viewed</td><td style="text-align: left">Traverse from user to all categories with <code>hasViewed</code> edge, sorted by <code>lastViewed</code> edge property, descending</td></tr>
+</tbody></table>
+</div>
+<h3 id="getcategorieslimit-lastpage0"><a class="header" href="#getcategorieslimit-lastpage0"><code>getCategories(limit, lastPage=0)</code></a></h3>
+<p>Input Params: <code>(limit: INT, lastPage: INT)</code></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
+<tr><td style="text-align: left">Gets all category nodes up to <code>limit</code></td><td style="text-align: left"></td></tr>
+</tbody></table>
+</div>
+<h3 id="getmealsincategorycategoryid-limit-lastpage0"><a class="header" href="#getmealsincategorycategoryid-limit-lastpage0"><code>getMealsInCategory(categoryID, limit, lastPage=0)</code></a></h3>
+<p>Input Params: <code>(categoryID: STR, limit: INT, lastPage: INT)</code></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
+<tr><td style="text-align: left">Gets all meals in a category up to <code>limit</code></td><td style="text-align: left"></td></tr>
+</tbody></table>
+</div>
+<h3 id="getuserallergensuserid"><a class="header" href="#getuserallergensuserid"><code>getUserAllergens(userID)</code></a></h3>
+<p>Input Params: <code>(userID: STR)</code></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
+<tr><td style="text-align: left">Returns a user's allergens</td><td style="text-align: left">Traverse from user to all allergens with an <code>allergicTo</code> link</td></tr>
+</tbody></table>
+</div>
+<h3 id="getuseringredientpreferencesuserid"><a class="header" href="#getuseringredientpreferencesuserid"><code>getUserIngredientPreferences(userID)</code></a></h3>
+<p>Input Params: <code>(userID: STR)</code></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
+<tr><td style="text-align: left">Returns a user's ingredient preferences</td><td style="text-align: left">Traverse from user to all ingredients with a <code>likes</code> and <code>dislikes</code> link, returning those sets as two lists.</td></tr>
+</tbody></table>
+</div>
+<h3 id="getquickmealssearchuserid-ingredients"><a class="header" href="#getquickmealssearchuserid-ingredients"><code>getQuickMealsSearch(userID, ingredients)</code></a></h3>
+<p>Recommendations in QuickMeals searches are to be implemented later.</p>
+<p>Input Params: <code>(userID: STR, ingredients: [STR])</code></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
+<tr><td style="text-align: left">Performs a quickmeals search given the ingredients</td><td style="text-align: left">Traverse from ingredients in the input to all meals, filtering out meals that have links to ingredients or categories a user <code>dislike</code>s, and filtering out meals that have links to allergens that a user is <code>allergicTo</code>. Count the number of times that meal occurs in the result (i.e the number of ingredients matched), and sort by descending order of that count.</td></tr>
+</tbody></table>
+</div>
+<h2 id="setters"><a class="header" href="#setters">Setters</a></h2>
+<h3 id="addmeal"><a class="header" href="#addmeal"><code>addMeal()</code></a></h3>
+<h3 id="adduser"><a class="header" href="#adduser"><code>addUser()</code></a></h3>
+<h3 id="addingredient"><a class="header" href="#addingredient"><code>addIngredient()</code></a></h3>
+<h3 id="addcategory"><a class="header" href="#addcategory"><code>addCategory()</code></a></h3>
+<h3 id="userviewsmealuserid-mealid"><a class="header" href="#userviewsmealuserid-mealid"><code>userViewsMeal(userID, mealID)</code></a></h3>
+<p>Input Params: <code>(userID: STR, mealID: STR)</code></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
+<tr><td style="text-align: left">A user clicks on a full view meal card</td><td style="text-align: left">Add a <code>hasViewed</code> link from user to meal with the current UNIX timestamp as the <code>lastViewed</code> edge property</td></tr>
+</tbody></table>
+</div>
+<h3 id="userviewscategoryuserid-mealid"><a class="header" href="#userviewscategoryuserid-mealid"><code>userViewsCategory(userID, mealID)</code></a></h3>
+<p>Input Params: <code>(userID: STR, categoryID: STR)</code></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
+<tr><td style="text-align: left">A user requests to view meals in a category</td><td style="text-align: left">Remove a <code>hasViewed</code> link if one exists then add a <code>hasViewed</code> link from user to category with the current UNIX timestamp as the <code>lastViewed</code> edge property</td></tr>
+</tbody></table>
+</div>
+<h3 id="updateuserallergensuserid-allergens"><a class="header" href="#updateuserallergensuserid-allergens"><code>updateUserAllergens(userID, allergens)</code></a></h3>
+<p>Input Params: <code>(userID: STR, allergens: [STR])</code></p>
+<p><code>allergens</code> is a list of allergenIDs that the user is allergic to.</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
+<tr><td style="text-align: left">User updates their preferences in their profile page</td><td style="text-align: left">Remove all <code>allergicTo</code> links from user and add ones for each allergen in <code>allergens</code></td></tr>
+</tbody></table>
+</div>
+<h3 id="usersavesmealuserid-mealid"><a class="header" href="#usersavesmealuserid-mealid"><code>userSavesMeal(userID, mealID)</code></a></h3>
+<p>Input Params: <code>(userID: STR, mealID: STR)</code></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
+<tr><td style="text-align: left">User saves a meal to their profile</td><td style="text-align: left">Add a <code>hasSaved</code> link from user to meal</td></tr>
+</tbody></table>
+</div>
+<h3 id="userunsavesmealuserid-mealid"><a class="header" href="#userunsavesmealuserid-mealid"><code>userUnsavesMeal(userID, mealID)</code></a></h3>
+<p>Input Params: <code>(userID: STR, mealID: STR)</code></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
+<tr><td style="text-align: left">User unsaves a meal to their profile</td><td style="text-align: left">Remove a <code>hasSaved</code> link from user to meal</td></tr>
+</tbody></table>
+</div>
+<h3 id="userratesmealuserid-mealid-rating"><a class="header" href="#userratesmealuserid-mealid-rating"><code>userRatesMeal(userID, mealID, rating)</code></a></h3>
+<p>Input Params: <code>(userID: STR, mealID: STR, rating: FLOAT)</code></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
+<tr><td style="text-align: left">User rates a meal out of 5 stars</td><td style="text-align: left">Add a <code>rates</code> link from user to meal with <code>rating</code> as an edge property</td></tr>
+</tbody></table>
+</div>
+<h3 id="usercooksmealuserid-mealid"><a class="header" href="#usercooksmealuserid-mealid"><code>userCooksMeal(userID, mealID)</code></a></h3>
+<p>Input Params: <code>(userID: STR, mealID: STR)</code></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
+<tr><td style="text-align: left">User runs through the cooking walkthrough for a meal</td><td style="text-align: left">Add a <code>hasCooked</code> link from user to meal with the current UNIX timestamp as the <code>lastCooked</code> edge property</td></tr>
+</tbody></table>
+</div>
+<h3 id="userlikesingredientuserid-mealid"><a class="header" href="#userlikesingredientuserid-mealid"><code>userLikesIngredient(userID, mealID)</code></a></h3>
+<p>Input Params: <code>(userID: STR, mealID: STR)</code></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
+<tr><td style="text-align: left">User likes an ingredient in their preferences menu</td><td style="text-align: left">Add a <code>likes</code> link from user to meal and remove a <code>dislikes</code> link if one exists</td></tr>
+</tbody></table>
+</div>
+<h3 id="userunlikesingredientuserid-mealid"><a class="header" href="#userunlikesingredientuserid-mealid"><code>userUnlikesIngredient(userID, mealID)</code></a></h3>
+<p>Input Params: <code>(userID: STR, mealID: STR)</code></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
+<tr><td style="text-align: left">User unlikes an ingredient in their preferences menu</td><td style="text-align: left">Remove a <code>likes</code> link from user to meal</td></tr>
+</tbody></table>
+</div>
+<h3 id="userdislikesingredientuserid-mealid"><a class="header" href="#userdislikesingredientuserid-mealid"><code>userDislikesIngredient(userID, mealID)</code></a></h3>
+<p>Input Params: <code>(userID: STR, mealID: STR)</code></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
+<tr><td style="text-align: left">User dislikes an ingredient in their preferences menu</td><td style="text-align: left">Add a <code>dislikes</code> link from user to meal and remove a <code>likes</code> link if one exists</td></tr>
+</tbody></table>
+</div>
+<h3 id="userundislikesingredientuserid-mealid"><a class="header" href="#userundislikesingredientuserid-mealid"><code>userUndislikesIngredient(userID, mealID)</code></a></h3>
+<p>Input Params: <code>(userID: STR, mealID: STR)</code></p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
+<tr><td style="text-align: left">User un-dislikes an ingredient in their preferences menu</td><td style="text-align: left">Remove a <code>dislikes</code> link from user to meal</td></tr>
+</tbody></table>
+</div>
+<h3 id="updateuseringredientpreferencesuserid-likes-dislikes"><a class="header" href="#updateuseringredientpreferencesuserid-likes-dislikes"><code>updateUserIngredientPreferences(userID, likes, dislikes)</code></a></h3>
+<p>Input Params: <code>(userID: STR, likes: [OBJ], dislikes: [OBJ])</code></p>
+<p>Object Shape: </p>
+<pre><code class="language-javascript">const obj = {
+  mealID: String,
+  toBeRemoved: Integer
+}
+</code></pre>
+<p>Since user preferences are represented as links, but we want to be able to edit preferences all in one go with minimal queries, we simply submit the preferences that have <strong>changed</strong> on the clientside and submit them to the server. The server can then remove and add links as needed.</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
+<tr><td style="text-align: left">Updates a user's ingredient preferences</td><td style="text-align: left">Iterate over <code>likes</code> and <code>dislikes</code> input parameters, making use of <code>userLikesMeal</code>, <code>userDislikesMeal</code>, <code>userUnlikesMeal</code> and <code>userUndislikesMeal</code></td></tr>
+</tbody></table>
+</div>
+<h2 id="frontend-features"><a class="header" href="#frontend-features">Frontend Features</a></h2>
+<h3 id="getaccountmeals"><a class="header" href="#getaccountmeals">getAccountMeals</a></h3>
+<p><a href="#getrecentcookedmealsuserid-limit"><code>getRecentCookedMeals</code></a> and <a href="#getsavedmealsuserid-limit-lastpage0"><code>getSavedMeals</code></a>, return results together.</p>
+<h3 id="getexplorepage"><a class="header" href="#getexplorepage">getExplorePage</a></h3>
+<p><a href="#getrecentcookedmealsuserid-limit"><code>getRecentCookedMeals</code></a>, <a href="#getrecentviewedcategoriesuserid-limit-lastpage0"><code>getRecentViewedCategories</code></a>, <a href="#getcategorieslimit-lastpage0"><code>getCategories</code></a> and then <a href="#getsavedmealsuserid-limit-lastpage0"><code>getSavedMeals</code></a>. Return all results together.</p>
+<h3 id="getmealsincategory"><a class="header" href="#getmealsincategory">getMealsInCategory</a></h3>
+<p>Run <a href="#userviewscategoryuserid-mealid"><code>userViewsCategory</code></a> and return results from <a href="#getmealsincategorycategoryid-limit-lastpage0"><code>getMealsInCategory</code></a>.</p>
+<h3 id="user-preferences-page"><a class="header" href="#user-preferences-page">User Preferences Page</a></h3>
+<p>Make use of <a href="#getuseringredientpreferencesuserid"><code>getUserIngredientPreferences</code></a> and <a href="#updateuseringredientpreferencesuserid-likes-dislikes"><code>updateUserIngredientPreferences</code></a> as needed.</p>
 
                     </main>
 
