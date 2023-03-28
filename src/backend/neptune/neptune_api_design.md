@@ -10,8 +10,6 @@ I will add more documentation here as more requirements arise.
 
 ## TODO <!-- omit from toc -->
 
-- Describe how adding nodes will work
-- Add more getters (e.g getMeal, getIngredients etc)
 - Start implementing
 
 ## Contents <!-- omit from toc -->
@@ -21,8 +19,10 @@ I will add more documentation here as more requirements arise.
   - [`getSavedMeals(userID, limit, lastPage=0)`](#getsavedmealsuserid-limit-lastpage0)
   - [`getRecentViewedCategories(userID, limit, lastPage=0)`](#getrecentviewedcategoriesuserid-limit-lastpage0)
   - [`getCategories(limit, lastPage=0)`](#getcategorieslimit-lastpage0)
+  - [`getMeal(userID, mealID)`](#getmealuserid-mealid)
   - [`getMealsInCategory(categoryID, limit, lastPage=0)`](#getmealsincategorycategoryid-limit-lastpage0)
   - [`getUserAllergens(userID)`](#getuserallergensuserid)
+  - [`getIngredients(query, limit, lastPage=0)`](#getingredientsquery-limit-lastpage0)
   - [`getUserIngredientPreferences(userID)`](#getuseringredientpreferencesuserid)
   - [`getQuickMealsSearch(userID, ingredients)`](#getquickmealssearchuserid-ingredients)
 - [Setters](#setters)
@@ -92,6 +92,14 @@ Input Params: `(limit: INT, lastPage: INT)`
 | :------------------------------------ | :------------ |
 | Gets all category nodes up to `limit` |               |
 
+### `getMeal(userID, mealID)`
+
+Input Params: `(userID: STR, mealID: STR)`
+
+| Description              | Query Outline                                     |
+| :----------------------- | :------------------------------------------------ |
+| Gets a meal given its ID | Return the meal node and also run `userViewsMeal` |
+
 ### `getMealsInCategory(categoryID, limit, lastPage=0)`
 
 Input Params: `(categoryID: STR, limit: INT, lastPage: INT)`
@@ -107,6 +115,17 @@ Input Params: `(userID: STR)`
 | Description                | Query Outline                                                 |
 | :------------------------- | :------------------------------------------------------------ |
 | Returns a user's allergens | Traverse from user to all allergens with an `allergicTo` link |
+
+### `getIngredients(query, limit, lastPage=0)`
+
+Input Params: `(query: STR, limit: INT, lastPage: INT)`
+
+
+Search for ingredients, optionally with a search query.
+
+| Description                                                      | Query Outline                                                                                              |
+| :--------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------- |
+| Search for ingredients in the database that match a string query | Traverse all ingredients up to `limit`. If `query` exists, filtering for those whose names contain `query` |
 
 ### `getUserIngredientPreferences(userID)`
 

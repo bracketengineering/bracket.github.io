@@ -22,10 +22,11 @@ This document outlines the design details of the data that will be stored in our
     - [Outgoing Edges](#outgoing-edges-3)
     - [Incoming Edges](#incoming-edges-3)
   - [Category Nodes](#category-nodes)
+    - [Node Properties](#node-properties-4)
     - [Outgoing Edges](#outgoing-edges-4)
     - [Incoming Edges](#incoming-edges-4)
   - [Nutrient Nodes](#nutrient-nodes)
-    - [Node Properties](#node-properties-4)
+    - [Node Properties](#node-properties-5)
     - [Outgoing Edges](#outgoing-edges-5)
     - [Incoming Edges](#incoming-edges-5)
 # Nodes & Relationships
@@ -46,7 +47,7 @@ For meal nodes, all information apart from the image is to be stored on the node
 | label             | "meal", describing the type of node                                                                                                                                                | String  |
 | name              |                                                                                                                                                                                    | String  |
 | macroString       | Although macros are represented through graph relationships, this property is here to quickly print the macros to the user. JSON String of values, outlined in Macro Tracking docs | String  |
-| timeToPrepare     | Total time (prep + cook) stored in minutes. Could be useful for querying "quick & easy meals"                                                                                      | Integer |
+| minutesToPrepare     | Total time (prep + cook) stored in minutes. Could be useful for querying "quick & easy meals"                                                                                      | Integer |
 | ingredientsString | JSON String containing ingredients. Stored on node to reduce loading time for frontend meal info retrieval                                                                         | String  |
 | methodString      | JSON String containing method steps.                                                                                                                                               | String  |
 | avgRating         | An averaged rating from all `rates` edges linked to this node                                                                                                                      | Number  |
@@ -145,6 +146,8 @@ It may be worth considering adding "meat" and "gluten" etc as allergen nodes so 
 | `user -[allergicTo]-> allergen ` |                 |
 
 ## Category Nodes
+
+### Node Properties
 
 | Name | Description               | Type   |
 | :--- | :------------------------ | :----- |
