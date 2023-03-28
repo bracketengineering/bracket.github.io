@@ -29,9 +29,9 @@ The AWS Glue Crawler tool connects to your data sources and automatically discov
 
 ### AWS Athena
 
-AWS Athena is a serverless query service that makes it easy to analyze large amounts of data stored in Amazon S3 using standard SQL syntax. With Athena, you can quickly query data in S3 without having to set up or manage any infrastructure.
+AWS Athena is a serverless query service that makes it easy to analyze large amounts of data stored in Amazon S3 using standard SQL syntax.
 
 **Our Process**
 1. Create a table in Athena that references the data sources that we crawled in AWS Glue. This table definition should include information about the data schema, the location of the data in Amazon S3, and other metadata about the data. 
 2. In the "Location" field of the table definition, specify the S3 location where the data is stored. 
-3. Once the table is defined, we can start querying your data using SQL queries in Athena. The AWS Glue Data Catalog provides metadata about the data, such as column names, data types, and relationships between tables, which we can use in our queries.
+3. Once the table is defined, we can start querying our data using SQL queries in Athena. The AWS Glue Data Catalog provides metadata about the data, such as column names, data types, and relationships between tables, which we can use in our queries.
