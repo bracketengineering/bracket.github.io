@@ -25,6 +25,7 @@
     - [Design Proposal](./backend/neptune/design_proposal.md)
     - [Database Schema](./backend/neptune/neptune_design.md)
     - [API Design](./backend/neptune/neptune_api_design.md)
+  - [Data Analytics](./backend/data_analytics/data_analytics.md)
   - [Dynamo](./backend/dynamo.md)
   - [S3](./backend/s3.md)
   - [Database Codes](./backend/database.md)
