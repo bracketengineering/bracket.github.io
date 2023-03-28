@@ -904,17 +904,17 @@ The advantage of having macros stored in the database is that we can make meal r
 <ul>
 <li><a href="backend/neptune/neptune_api_design.html#getters">Getters</a>
 <ul>
-<li><a href="backend/neptune/neptune_api_design.html#getrecentcookedmealsuserid-limit-lastpage0"><code>getRecentCookedMeals(userID, limit, lastPage=0)</code></a></li>
-<li><a href="backend/neptune/neptune_api_design.html#getrecentviewedmealsuserid-limit-lastpage0"><code>getRecentViewedMeals(userID, limit, lastPage=0)</code></a></li>
-<li><a href="backend/neptune/neptune_api_design.html#getsavedmealsuserid-limit-lastpage0"><code>getSavedMeals(userID, limit, lastPage=0)</code></a></li>
-<li><a href="backend/neptune/neptune_api_design.html#getrecentviewedcategoriesuserid-limit-lastpage0"><code>getRecentViewedCategories(userID, limit, lastPage=0)</code></a></li>
-<li><a href="backend/neptune/neptune_api_design.html#getcategorieslimit-lastpage0"><code>getCategories(limit, lastPage=0)</code></a></li>
+<li><a href="backend/neptune/neptune_api_design.html#getrecentcookedmealsuserid-limit10-lastpage0"><code>getRecentCookedMeals(userID, limit=10, lastPage=0)</code></a></li>
+<li><a href="backend/neptune/neptune_api_design.html#getrecentviewedmealsuserid-limit10-lastpage0"><code>getRecentViewedMeals(userID, limit=10, lastPage=0)</code></a></li>
+<li><a href="backend/neptune/neptune_api_design.html#getsavedmealsuserid-limit10-lastpage0"><code>getSavedMeals(userID, limit=10, lastPage=0)</code></a></li>
+<li><a href="backend/neptune/neptune_api_design.html#getrecentviewedcategoriesuserid-limit10-lastpage0"><code>getRecentViewedCategories(userID, limit=10, lastPage=0)</code></a></li>
+<li><a href="backend/neptune/neptune_api_design.html#getcategorieslimit10-lastpage0"><code>getCategories(limit=10, lastPage=0)</code></a></li>
 <li><a href="backend/neptune/neptune_api_design.html#getmealuserid-mealid"><code>getMeal(userID, mealID)</code></a></li>
-<li><a href="backend/neptune/neptune_api_design.html#getmealsincategorycategoryid-limit-lastpage0"><code>getMealsInCategory(categoryID, limit, lastPage=0)</code></a></li>
+<li><a href="backend/neptune/neptune_api_design.html#getmealsincategorycategoryid-limit10-lastpage0"><code>getMealsInCategory(categoryID, limit=10, lastPage=0)</code></a></li>
 <li><a href="backend/neptune/neptune_api_design.html#getuserallergensuserid"><code>getUserAllergens(userID)</code></a></li>
-<li><a href="backend/neptune/neptune_api_design.html#getingredientsquery-limit-lastpage0"><code>getIngredients(query, limit, lastPage=0)</code></a></li>
+<li><a href="backend/neptune/neptune_api_design.html#getingredientsquery-limit10-lastpage0"><code>getIngredients(query, limit=10, lastPage=0)</code></a></li>
 <li><a href="backend/neptune/neptune_api_design.html#getuseringredientpreferencesuserid"><code>getUserIngredientPreferences(userID)</code></a></li>
-<li><a href="backend/neptune/neptune_api_design.html#getquickmealssearchuserid-ingredients"><code>getQuickMealsSearch(userID, ingredients)</code></a></li>
+<li><a href="backend/neptune/neptune_api_design.html#getquickmealssearchuserid-ingredients-limit10-lastpage0"><code>getQuickMealsSearch(userID, ingredients, limit=10, lastPage=0)</code></a></li>
 </ul>
 </li>
 <li><a href="backend/neptune/neptune_api_design.html#setters">Setters</a>
@@ -948,31 +948,31 @@ The advantage of having macros stored in the database is that we can make meal r
 </ul>
 <h2 id="getters"><a class="header" href="#getters">Getters</a></h2>
 <p>The following functions simply retrieve information from the graph, some returning values in a sorted fashion</p>
-<h3 id="getrecentcookedmealsuserid-limit-lastpage0"><a class="header" href="#getrecentcookedmealsuserid-limit-lastpage0"><code>getRecentCookedMeals(userID, limit, lastPage=0)</code></a></h3>
+<h3 id="getrecentcookedmealsuserid-limit10-lastpage0"><a class="header" href="#getrecentcookedmealsuserid-limit10-lastpage0"><code>getRecentCookedMeals(userID, limit=10, lastPage=0)</code></a></h3>
 <p>Input Params: <code>(userID: STR, limit: INT, lastPage: INT)</code></p>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
 <tr><td style="text-align: left">Gets meals a user has recently cooked</td><td style="text-align: left">Traverse from user to all meals with <code>hasCooked</code> edge, sort by <code>lastCooked</code> edge property, descending.</td></tr>
 </tbody></table>
 </div>
-<h3 id="getrecentviewedmealsuserid-limit-lastpage0"><a class="header" href="#getrecentviewedmealsuserid-limit-lastpage0"><code>getRecentViewedMeals(userID, limit, lastPage=0)</code></a></h3>
+<h3 id="getrecentviewedmealsuserid-limit10-lastpage0"><a class="header" href="#getrecentviewedmealsuserid-limit10-lastpage0"><code>getRecentViewedMeals(userID, limit=10, lastPage=0)</code></a></h3>
 <p>Input Params: <code>(userID: STR, limit: INT, lastPage: INT)</code></p>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
 <tr><td style="text-align: left">Gets meals a user has recently viewed</td><td style="text-align: left">Traverse from user to all meals with <code>hasViewed</code> edge, sort by <code>lastViewed</code> edge property, descending.</td></tr>
 </tbody></table>
 </div>
-<h3 id="getsavedmealsuserid-limit-lastpage0"><a class="header" href="#getsavedmealsuserid-limit-lastpage0"><code>getSavedMeals(userID, limit, lastPage=0)</code></a></h3>
+<h3 id="getsavedmealsuserid-limit10-lastpage0"><a class="header" href="#getsavedmealsuserid-limit10-lastpage0"><code>getSavedMeals(userID, limit=10, lastPage=0)</code></a></h3>
 <p>Input Params: <code>(userID: STR, limit: INT, lastPage: INT)</code></p>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
 <tr><td style="text-align: left">Gets meals a user has saved</td><td style="text-align: left">Traverse from user to all meals with <code>hasSaved</code> edge.</td></tr>
 </tbody></table>
 </div>
-<h3 id="getrecentviewedcategoriesuserid-limit-lastpage0"><a class="header" href="#getrecentviewedcategoriesuserid-limit-lastpage0"><code>getRecentViewedCategories(userID, limit, lastPage=0)</code></a></h3>
+<h3 id="getrecentviewedcategoriesuserid-limit10-lastpage0"><a class="header" href="#getrecentviewedcategoriesuserid-limit10-lastpage0"><code>getRecentViewedCategories(userID, limit=10, lastPage=0)</code></a></h3>
 <p>Input Params: <code>(userID: STR, limit: INT, lastPage: INT)</code></p>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
 <tr><td style="text-align: left">Gets categories a user has recently viewed</td><td style="text-align: left">Traverse from user to all categories with <code>hasViewed</code> edge, sorted by <code>lastViewed</code> edge property, descending</td></tr>
 </tbody></table>
 </div>
-<h3 id="getcategorieslimit-lastpage0"><a class="header" href="#getcategorieslimit-lastpage0"><code>getCategories(limit, lastPage=0)</code></a></h3>
+<h3 id="getcategorieslimit10-lastpage0"><a class="header" href="#getcategorieslimit10-lastpage0"><code>getCategories(limit=10, lastPage=0)</code></a></h3>
 <p>Input Params: <code>(limit: INT, lastPage: INT)</code></p>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
 <tr><td style="text-align: left">Gets all category nodes up to <code>limit</code></td><td style="text-align: left"></td></tr>
@@ -984,7 +984,7 @@ The advantage of having macros stored in the database is that we can make meal r
 <tr><td style="text-align: left">Gets a meal given its ID</td><td style="text-align: left">Return the meal node and also run <code>userViewsMeal</code></td></tr>
 </tbody></table>
 </div>
-<h3 id="getmealsincategorycategoryid-limit-lastpage0"><a class="header" href="#getmealsincategorycategoryid-limit-lastpage0"><code>getMealsInCategory(categoryID, limit, lastPage=0)</code></a></h3>
+<h3 id="getmealsincategorycategoryid-limit10-lastpage0"><a class="header" href="#getmealsincategorycategoryid-limit10-lastpage0"><code>getMealsInCategory(categoryID, limit=10, lastPage=0)</code></a></h3>
 <p>Input Params: <code>(categoryID: STR, limit: INT, lastPage: INT)</code></p>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
 <tr><td style="text-align: left">Gets all meals in a category up to <code>limit</code></td><td style="text-align: left"></td></tr>
@@ -996,7 +996,7 @@ The advantage of having macros stored in the database is that we can make meal r
 <tr><td style="text-align: left">Returns a user's allergens</td><td style="text-align: left">Traverse from user to all allergens with an <code>allergicTo</code> link</td></tr>
 </tbody></table>
 </div>
-<h3 id="getingredientsquery-limit-lastpage0"><a class="header" href="#getingredientsquery-limit-lastpage0"><code>getIngredients(query, limit, lastPage=0)</code></a></h3>
+<h3 id="getingredientsquery-limit10-lastpage0"><a class="header" href="#getingredientsquery-limit10-lastpage0"><code>getIngredients(query, limit=10, lastPage=0)</code></a></h3>
 <p>Input Params: <code>(query: STR, limit: INT, lastPage: INT)</code></p>
 <p>Search for ingredients, optionally with a search query.</p>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
@@ -1009,9 +1009,9 @@ The advantage of having macros stored in the database is that we can make meal r
 <tr><td style="text-align: left">Returns a user's ingredient preferences</td><td style="text-align: left">Traverse from user to all ingredients with a <code>likes</code> and <code>dislikes</code> link, returning those sets as two lists.</td></tr>
 </tbody></table>
 </div>
-<h3 id="getquickmealssearchuserid-ingredients"><a class="header" href="#getquickmealssearchuserid-ingredients"><code>getQuickMealsSearch(userID, ingredients)</code></a></h3>
+<h3 id="getquickmealssearchuserid-ingredients-limit10-lastpage0"><a class="header" href="#getquickmealssearchuserid-ingredients-limit10-lastpage0"><code>getQuickMealsSearch(userID, ingredients, limit=10, lastPage=0)</code></a></h3>
 <p>Recommendations in QuickMeals searches are to be implemented later.</p>
-<p>Input Params: <code>(userID: STR, ingredients: [STR])</code></p>
+<p>Input Params: <code>(userID: STR, ingredients: [STR], limit: INT, lastPage: INT)</code></p>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Description</th><th style="text-align: left">Query Outline</th></tr></thead><tbody>
 <tr><td style="text-align: left">Performs a quickmeals search given the ingredients</td><td style="text-align: left">Traverse from ingredients in the input to all meals, filtering out meals that have links to ingredients or categories a user <code>dislike</code>s, and filtering out meals that have links to allergens that a user is <code>allergicTo</code>. Count the number of times that meal occurs in the result (i.e the number of ingredients matched), and sort by descending order of that count.</td></tr>
 </tbody></table>

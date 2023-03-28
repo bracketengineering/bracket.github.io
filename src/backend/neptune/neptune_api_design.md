@@ -14,17 +14,17 @@ I will add more documentation here as more requirements arise.
 
 ## Contents <!-- omit from toc -->
 - [Getters](#getters)
-  - [`getRecentCookedMeals(userID, limit, lastPage=0)`](#getrecentcookedmealsuserid-limit-lastpage0)
-  - [`getRecentViewedMeals(userID, limit, lastPage=0)`](#getrecentviewedmealsuserid-limit-lastpage0)
-  - [`getSavedMeals(userID, limit, lastPage=0)`](#getsavedmealsuserid-limit-lastpage0)
-  - [`getRecentViewedCategories(userID, limit, lastPage=0)`](#getrecentviewedcategoriesuserid-limit-lastpage0)
-  - [`getCategories(limit, lastPage=0)`](#getcategorieslimit-lastpage0)
+  - [`getRecentCookedMeals(userID, limit=10, lastPage=0)`](#getrecentcookedmealsuserid-limit10-lastpage0)
+  - [`getRecentViewedMeals(userID, limit=10, lastPage=0)`](#getrecentviewedmealsuserid-limit10-lastpage0)
+  - [`getSavedMeals(userID, limit=10, lastPage=0)`](#getsavedmealsuserid-limit10-lastpage0)
+  - [`getRecentViewedCategories(userID, limit=10, lastPage=0)`](#getrecentviewedcategoriesuserid-limit10-lastpage0)
+  - [`getCategories(limit=10, lastPage=0)`](#getcategorieslimit10-lastpage0)
   - [`getMeal(userID, mealID)`](#getmealuserid-mealid)
-  - [`getMealsInCategory(categoryID, limit, lastPage=0)`](#getmealsincategorycategoryid-limit-lastpage0)
+  - [`getMealsInCategory(categoryID, limit=10, lastPage=0)`](#getmealsincategorycategoryid-limit10-lastpage0)
   - [`getUserAllergens(userID)`](#getuserallergensuserid)
-  - [`getIngredients(query, limit, lastPage=0)`](#getingredientsquery-limit-lastpage0)
+  - [`getIngredients(query, limit=10, lastPage=0)`](#getingredientsquery-limit10-lastpage0)
   - [`getUserIngredientPreferences(userID)`](#getuseringredientpreferencesuserid)
-  - [`getQuickMealsSearch(userID, ingredients)`](#getquickmealssearchuserid-ingredients)
+  - [`getQuickMealsSearch(userID, ingredients, limit=10, lastPage=0)`](#getquickmealssearchuserid-ingredients-limit10-lastpage0)
 - [Setters](#setters)
   - [`addMeal()`](#addmeal)
   - [`addUser()`](#adduser)
@@ -52,7 +52,7 @@ I will add more documentation here as more requirements arise.
 
 The following functions simply retrieve information from the graph, some returning values in a sorted fashion
 
-### `getRecentCookedMeals(userID, limit, lastPage=0)`
+### `getRecentCookedMeals(userID, limit=10, lastPage=0)`
 
 Input Params: `(userID: STR, limit: INT, lastPage: INT)`
 
@@ -60,7 +60,7 @@ Input Params: `(userID: STR, limit: INT, lastPage: INT)`
 | :------------------------------------ | :----------------------------------------------------------------------------------------------------- |
 | Gets meals a user has recently cooked | Traverse from user to all meals with `hasCooked` edge, sort by `lastCooked` edge property, descending. |
 
-### `getRecentViewedMeals(userID, limit, lastPage=0)`
+### `getRecentViewedMeals(userID, limit=10, lastPage=0)`
 
 Input Params: `(userID: STR, limit: INT, lastPage: INT)`
 
@@ -68,7 +68,7 @@ Input Params: `(userID: STR, limit: INT, lastPage: INT)`
 | :------------------------------------ | :----------------------------------------------------------------------------------------------------- |
 | Gets meals a user has recently viewed | Traverse from user to all meals with `hasViewed` edge, sort by `lastViewed` edge property, descending. |
 
-### `getSavedMeals(userID, limit, lastPage=0)`
+### `getSavedMeals(userID, limit=10, lastPage=0)`
 
 Input Params: `(userID: STR, limit: INT, lastPage: INT)`
 
@@ -76,7 +76,7 @@ Input Params: `(userID: STR, limit: INT, lastPage: INT)`
 | :-------------------------- | :---------------------------------------------------- |
 | Gets meals a user has saved | Traverse from user to all meals with `hasSaved` edge. |
 
-### `getRecentViewedCategories(userID, limit, lastPage=0)`
+### `getRecentViewedCategories(userID, limit=10, lastPage=0)`
 
 Input Params: `(userID: STR, limit: INT, lastPage: INT)`
 
@@ -84,7 +84,7 @@ Input Params: `(userID: STR, limit: INT, lastPage: INT)`
 | :----------------------------------------- | :----------------------------------------------------------------------------------------------------------- |
 | Gets categories a user has recently viewed | Traverse from user to all categories with `hasViewed` edge, sorted by `lastViewed` edge property, descending |
 
-### `getCategories(limit, lastPage=0)`
+### `getCategories(limit=10, lastPage=0)`
 
 Input Params: `(limit: INT, lastPage: INT)`
 
@@ -100,7 +100,7 @@ Input Params: `(userID: STR, mealID: STR)`
 | :----------------------- | :------------------------------------------------ |
 | Gets a meal given its ID | Return the meal node and also run `userViewsMeal` |
 
-### `getMealsInCategory(categoryID, limit, lastPage=0)`
+### `getMealsInCategory(categoryID, limit=10, lastPage=0)`
 
 Input Params: `(categoryID: STR, limit: INT, lastPage: INT)`
 
@@ -116,7 +116,7 @@ Input Params: `(userID: STR)`
 | :------------------------- | :------------------------------------------------------------ |
 | Returns a user's allergens | Traverse from user to all allergens with an `allergicTo` link |
 
-### `getIngredients(query, limit, lastPage=0)`
+### `getIngredients(query, limit=10, lastPage=0)`
 
 Input Params: `(query: STR, limit: INT, lastPage: INT)`
 
@@ -135,11 +135,11 @@ Input Params: `(userID: STR)`
 | :-------------------------------------- | :----------------------------------------------------------------------------------------------------------- |
 | Returns a user's ingredient preferences | Traverse from user to all ingredients with a `likes` and `dislikes` link, returning those sets as two lists. |
 
-### `getQuickMealsSearch(userID, ingredients)` 
+### `getQuickMealsSearch(userID, ingredients, limit=10, lastPage=0)` 
 
 Recommendations in QuickMeals searches are to be implemented later.
 
-Input Params: `(userID: STR, ingredients: [STR])`
+Input Params: `(userID: STR, ingredients: [STR], limit: INT, lastPage: INT)`
 
 | Description                                        | Query Outline                                                                                                                                                                                                                                                                                                                                                            |
 | :------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
