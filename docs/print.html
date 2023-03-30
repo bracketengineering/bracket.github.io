@@ -892,14 +892,9 @@ The advantage of having macros stored in the database is that we can make meal r
 <tr><td style="text-align: left"><code>ingredient -[contains]-&gt; nutrient</code></td><td style="text-align: left"><code>quantity: Number</code> / <code>unit: String</code> (e.g &quot;g&quot;, &quot;mg&quot;)</td></tr>
 </tbody></table>
 </div><div style="break-before: page; page-break-before: always;"></div><h1 id="neptune-api-design"><a class="header" href="#neptune-api-design">Neptune API Design <!-- omit from toc --></a></h1>
-<p><strong>NOTE</strong>: I'm not yet sure if we want to allow both &quot;liking&quot; and &quot;disliking&quot; meals and categories. I'm not quite seeing how it will tie in well with app functionality and it would be a little bit complicated to implement. Please consider this and let me know before I go ahead with implementing those particular functions. I won't repeat the liking/disliking docs below for Categories until we've decided what to do on this matter.</p>
 <p>This document outlines the functions that will be offered by our Neptune client/API, written in Javascript, and how they will work with regards to querying the graph.</p>
 <p>The final section also outlines which of the Neptune API functions will be used for our features (currently running in Lambda).</p>
 <p>I will add more documentation here as more requirements arise.</p>
-<h2 id="todo"><a class="header" href="#todo">TODO <!-- omit from toc --></a></h2>
-<ul>
-<li>Start implementing</li>
-</ul>
 <h2 id="contents-1"><a class="header" href="#contents-1">Contents <!-- omit from toc --></a></h2>
 <ul>
 <li><a href="backend/neptune/neptune_api_design.html#getters">Getters</a>

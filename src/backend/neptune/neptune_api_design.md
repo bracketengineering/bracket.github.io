@@ -1,16 +1,10 @@
 # Neptune API Design <!-- omit from toc -->
 
-**NOTE**: I'm not yet sure if we want to allow both "liking" and "disliking" meals and categories. I'm not quite seeing how it will tie in well with app functionality and it would be a little bit complicated to implement. Please consider this and let me know before I go ahead with implementing those particular functions. I won't repeat the liking/disliking docs below for Categories until we've decided what to do on this matter.
-
 This document outlines the functions that will be offered by our Neptune client/API, written in Javascript, and how they will work with regards to querying the graph.
 
 The final section also outlines which of the Neptune API functions will be used for our features (currently running in Lambda).
 
 I will add more documentation here as more requirements arise.
-
-## TODO <!-- omit from toc -->
-
-- Start implementing
 
 ## Contents <!-- omit from toc -->
 - [Getters](#getters)
