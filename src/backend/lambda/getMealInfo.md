@@ -11,31 +11,15 @@ const event = {
 }
  ```
  
-
  ## Return Value On Success
 ```javascript
 return {
   statusCode: 200,
-  body: {
-    mealName: String,
-    servings: Integer,
-    prepTime: {
-      time: Integer,
-      unit: String // E.g "min", "hr"
-    },
-    cookTime: {
-      time: Integer,
-      unit: String
-    },
-    tags: [
-      String,
-      String,
-      ...
-    ],
-    ingredientsText: [String, String, ...],
-    image: String // Base 64 encoded image ready to be put into html
+  body: Image // Meal object
 }
 ```
+
+> Meal Object structure outlined [here](../neptune/neptune_design.md#node-properties)
 
 ## Return Value On Failure
 ```javascript

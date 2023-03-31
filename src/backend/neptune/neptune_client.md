@@ -6,8 +6,10 @@ This document outlines the functions provided by our Javascript Neptune Client a
 - [Accessors/Getters](#accessorsgetters)
   - [`getIngredients`](#getingredients)
   - [`getCategories`](#getcategories)
+  - [`getMeal`](#getmeal)
   - [`getSavedMeals`](#getsavedmeals)
   - [`getRecentCookedMeals`](#getrecentcookedmeals)
+  - [`getMealsInCategory`](#getmealsincategory)
 - [Mutators/Setters](#mutatorssetters)
   - [`addMeal`](#addmeal)
   - [`addCategory`](#addcategory)
@@ -30,6 +32,15 @@ Returns: `[categoryObject]`
 
 > Category Object structure outlined [here](../neptune/neptune_design.md#node-properties-4)
 
+### `getMeal`
+
+Input: `(mealID: String)`
+
+Returns: `Object`, meal objects
+
+> Meal Object structure outlined [here](../neptune/neptune_design.md#node-properties)
+
+
 ### `getSavedMeals`
 
 Input: `(userID: String, limit?=10: Integer, lastPage?=0: Integer)`
@@ -43,6 +54,14 @@ Returns: `[mealObject]`
 Input: `(userID: String, limit?=10: Integer, lastPage?=0: Integer)`
 
 Returns: `[mealObject]`
+
+> Meal Object structure outlined [here](../neptune/neptune_design.md#node-properties)
+
+### `getMealsInCategory`
+
+Input: `(categoryID: String)`
+
+Returns: `[Object]`, meal objects
 
 > Meal Object structure outlined [here](../neptune/neptune_design.md#node-properties)
 

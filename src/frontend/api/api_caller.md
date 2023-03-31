@@ -14,7 +14,9 @@ Input arguments followed by a `?` question mark indicate that those arguments ar
   - [`getCategoryImage`](#getcategoryimage)
   - [`getExplorePage`](#getexplorepage)
   - [`getIngredients`](#getingredients)
+  - [`getMealInfo`](#getmealinfo)
   - [`getMealImage`](#getmealimage)
+  - [`getMealsInCategory`](#getmealsincategory)
 
 ## Imports
 ```Javascript
@@ -32,7 +34,7 @@ apiCaller.methodName(params);
 ## Available Functions
 
 ### `getAccountMeals`
-Input: `()`
+Input: `(limit?=10: Integer, lastPage?=0: Integer)`
 
 Returns: `{ savedMeals: [Object, ...], recentCookedMeals: [Object, ...], lastPage: Integer }`
 
@@ -80,8 +82,24 @@ Returns: `{ ingredients: [Object, ...], lastPage: Integer }`
 
 > Ingredient Object structure outlined [here](../neptune/neptune_design.md#node-properties-2)
 
+### `getMealInfo`
+
+Input: `(mealID: String)`
+
+Returns: `Object`, meal Object
+
+> Meal Object structure outlined [here](../neptune/neptune_design.md#node-properties)
+
 ### `getMealImage`
 
 Input: `(mealID: String)`
 
 Returns: `String`, base64 encoded image.
+
+### `getMealsInCategory`
+
+Input: `(categoryID: String, limit?=10: Integer, lastPage?=0: Integer)`
+
+Returns: `[Object]`, meal objects
+
+> Meal Object structure outlined [here](../neptune/neptune_design.md#node-properties)

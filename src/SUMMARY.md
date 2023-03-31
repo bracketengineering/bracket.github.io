@@ -14,7 +14,7 @@
     - [getExplorePage](./backend/lambda/getExplorePage.md)
     - [getIngredients](./backend/lambda/getIngredients.md)
     - [getMealImage](./backend/lambda/getMealImage.md)
-    - [getMealsInCategories](./backend/lambda/getMealsInCategories.md)
+    - [getMealsInCategory](./backend/lambda/getMealsInCategory.md)
     - [getMealInfo](./backend/lambda/getMealInfo.md)
     - [getNeptuneUserInfo](./backend/lambda/getNeptuneUserInfo.md)
     - [getQMSearch](./backend/lambda/getQMSearch.md)

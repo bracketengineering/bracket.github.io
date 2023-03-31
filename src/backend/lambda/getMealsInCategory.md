@@ -1,4 +1,4 @@
-# getMealsInCategories
+# getMealsInCategory
 
 | Lambda ARN                                                          |
 | ------------------------------------------------------------------- |
@@ -8,27 +8,18 @@
  ```javascript
 const event = {
   userID: String,
-  categories: [String, ...] 
+  categoryID: String,
+  limit: Integer,
+  lastPage: Integer
 }
  ```
- 
+> Meal Object structure outlined [here](../neptune/neptune_design.md#node-properties)
 
  ## Return Value On Success
 ```javascript
 return {
   statusCode: 200,
-  body: {
-   [
-    {
-      mealID: String,
-      categories: [String, ...],
-      edgeType: String,
-      value: Integer,
-      recommendedOrder: Float // For sorting results on frontend
-    }, 
-    ...
-   ]
-  }
+  body: [Object, ...]
 }
 ```
 
