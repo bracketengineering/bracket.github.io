@@ -159,20 +159,12 @@
 <h2 id="return-value-on-success"><a class="header" href="#return-value-on-success">Return Value On Success</a></h2>
 <pre><code class="language-javascript">return {
   statusCode: 200,
-  body: {
-   [
-    {
-      mealID: String,
-      categories: [String, ...],
-      edgeType: String,
-      value: Integer,
-      recommendedOrder: Float // For sorting results on frontend
-    }, 
-    ...
-   ]
-  }
+  body: [Object, ...] // Meal objects
 }
 </code></pre>
+<blockquote>
+<p>Meal Object structure outlined <a href="../neptune/neptune_design.html#node-properties">here</a></p>
+</blockquote>
 <h2 id="return-value-on-failure"><a class="header" href="#return-value-on-failure">Return Value On Failure</a></h2>
 <pre><code class="language-javascript">return {
   statusCode: 500,

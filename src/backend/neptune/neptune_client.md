@@ -13,6 +13,7 @@ This document outlines the functions provided by our Javascript Neptune Client a
 - [Mutators/Setters](#mutatorssetters)
   - [`addMeal`](#addmeal)
   - [`addCategory`](#addcategory)
+  - [`getQuickMealsSearch`](#getquickmealssearch)
 
 ## Accessors/Getters
 
@@ -99,3 +100,11 @@ Input: `name: String, meals?: [String]`
 > `meals?` is a list of Meal IDs that this category includes.
 
 Returns: `String`, new Category ID
+
+### `getQuickMealsSearch`
+
+Input: `(userID: String, ingredients: [String])`
+
+Returns: `[Object]`, meal objects
+
+> Meal Object structure outlined [here](../neptune/neptune_design.md#node-properties)

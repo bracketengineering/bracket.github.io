@@ -17,6 +17,7 @@ Input arguments followed by a `?` question mark indicate that those arguments ar
   - [`getMealInfo`](#getmealinfo)
   - [`getMealImage`](#getmealimage)
   - [`getMealsInCategory`](#getmealsincategory)
+  - [`getQuickMealsSearch`](#getquickmealssearch)
 
 ## Imports
 ```Javascript
@@ -99,6 +100,14 @@ Returns: `String`, base64 encoded image.
 ### `getMealsInCategory`
 
 Input: `(categoryID: String, limit?=10: Integer, lastPage?=0: Integer)`
+
+Returns: `[Object]`, meal objects
+
+> Meal Object structure outlined [here](../neptune/neptune_design.md#node-properties)
+
+### `getQuickMealsSearch`
+
+Input: `(userID: String, ingredients: [String])`
 
 Returns: `[Object]`, meal objects
 

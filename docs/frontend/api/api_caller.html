@@ -162,6 +162,7 @@ This is done by making use of a <a href="generic-call.html">generic API call</a>
 <li><a href="#getmealinfo"><code>getMealInfo</code></a></li>
 <li><a href="#getmealimage"><code>getMealImage</code></a></li>
 <li><a href="#getmealsincategory"><code>getMealsInCategory</code></a></li>
+<li><a href="#getquickmealssearch"><code>getQuickMealsSearch</code></a></li>
 </ul>
 </li>
 </ul>
@@ -222,6 +223,12 @@ apiCaller.methodName(params);
 <p>Returns: <code>String</code>, base64 encoded image.</p>
 <h3 id="getmealsincategory"><a class="header" href="#getmealsincategory"><code>getMealsInCategory</code></a></h3>
 <p>Input: <code>(categoryID: String, limit?=10: Integer, lastPage?=0: Integer)</code></p>
+<p>Returns: <code>[Object]</code>, meal objects</p>
+<blockquote>
+<p>Meal Object structure outlined <a href="../neptune/neptune_design.html#node-properties">here</a></p>
+</blockquote>
+<h3 id="getquickmealssearch"><a class="header" href="#getquickmealssearch"><code>getQuickMealsSearch</code></a></h3>
+<p>Input: <code>(userID: String, ingredients: [String])</code></p>
 <p>Returns: <code>[Object]</code>, meal objects</p>
 <blockquote>
 <p>Meal Object structure outlined <a href="../neptune/neptune_design.html#node-properties">here</a></p>

@@ -18,20 +18,11 @@ const event = {
 ```javascript
 return {
   statusCode: 200,
-  body: {
-   [
-    {
-      mealID: String,
-      categories: [String, ...],
-      edgeType: String,
-      value: Integer,
-      recommendedOrder: Float // For sorting results on frontend
-    }, 
-    ...
-   ]
-  }
+  body: [Object, ...] // Meal objects
 }
 ```
+
+> Meal Object structure outlined [here](../neptune/neptune_design.md#node-properties)
 
 ## Return Value On Failure
 ```javascript
