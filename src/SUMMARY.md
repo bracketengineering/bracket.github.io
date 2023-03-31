@@ -10,6 +10,7 @@
   - [Lambda Functions](./backend/lambda.md)
     - [getAccountMeals](./backend/lambda/getAccountMeals.md)
     - [getCategories](./backend/lambda/getCategories.md)
+    - [getCategoryImage](./backend/lambda/getCategoryImage.md)
     - [getExplorePage](./backend/lambda/getExplorePage.md)
     - [getFullMealInfo](./backend/lambda/getFullMealInfo.md)
     - [getMealsInCategories](./backend/lambda/getMealsInCategories.md)

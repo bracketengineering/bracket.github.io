@@ -11,6 +11,7 @@ Input arguments followed by a `?` question mark indicate that those arguments ar
 - [Available Functions](#available-functions)
   - [`getAccountMeals`](#getaccountmeals)
   - [`getCategories`](#getcategories)
+  - [`getCategoryImage`](#getcategoryimage)
 
 ## Imports
 ```Javascript
@@ -42,3 +43,9 @@ Input: `(limit?=10: Integer, lastPage?=0: Integer)`
 Returns: `{ categories: [Object, ...], lastPage: Integer }`
 
 > Category Object structure outlined [here](../neptune/neptune_design.md#node-properties-4)
+
+### `getCategoryImage`
+
+Input: `(categoryID: String)`
+
+Returns: `String`, base64 encoded image.
