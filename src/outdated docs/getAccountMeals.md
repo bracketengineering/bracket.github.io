@@ -7,22 +7,18 @@
  ## Expected Input Shape
  ```javascript
 const event = {
-  userID: String
+  userID: Integer
 }
  ```
  
 
  ## Return Value On Success
-
-Shape of returned meal `Object`s outlined [here](../neptune/neptune_design.md#node-properties)
-
 ```javascript
 return {
   statusCode: 200,
   body: {
-   savedMeals: [Object, ...],
-   recentCookedMeals: [Object, ...],
-   lastPage: Integer // For pagination
+   savedMeals: [Integer, ...],
+   recentMeals: [Integer, ...]
   }
 }
 ```

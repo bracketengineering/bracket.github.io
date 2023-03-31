@@ -2,8 +2,8 @@
 
 - [Frontend](./frontend/frontend_prefix.md)
   - [Cognito Via Amplify](./frontend/api/cognito.md)
-  - [API Caller](./frontend/api/lambda-calls.md)
-      - [#genericCall()](./frontend/api/generic-call.md)
+  - [API Caller](./frontend/api/api_caller.md)
+      - [#genericCall()](./frontend/api/generic_call.md)
 
 - [Backend](./backend/backend_prefix.md)
   - [Infrastructure](./backend/infrastructure.md)
@@ -25,7 +25,7 @@
     - [Design Proposal](./backend/neptune/design_proposal.md)
     - [Database Schema](./backend/neptune/neptune_design.md)
     - [API Design](./backend/neptune/neptune_api_design.md)
+    - [Neptune Client](./backend/neptune/neptune_client.md)
   - [Data Analytics](./backend/data_analytics/data_analytics.md)
   - [Dynamo](./backend/dynamo.md)
   - [S3](./backend/s3.md)
-  - [Database Codes](./backend/database.md)
