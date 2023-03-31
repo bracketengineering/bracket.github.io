@@ -11,21 +11,23 @@ const event = {
 }
  ```
  
-
- ## Return Value On Success
+## Return Value On Success
 ```javascript
 return {
   statusCode: 200,
-  // All values returned below are IDs for database items
   body: {
-    recentCategories: [String],
-    recentMeals: [String],
-    standardCategories: [String],
-    likedMeals: [String],
-    predictedMeals: String,
+    standardCategories: [Object, ...],
+    recentViewedCategries: [Object, ...],
+    recentCookedMeals: [Object, ...],
+    savedMeals: [Object, ...],
+    lastPage: Integer
   }
 }
 ```
+
+> Category Object structure outlined [here](../neptune/neptune_design.md#node-properties-4)
+> 
+> Meal Object structure outlined [here](../neptune/neptune_design.md#node-properties)
 
 ## Return Value On Failure
 ```javascript

@@ -184,6 +184,7 @@ This is done by making use of a <a href="frontend/api/generic-call.html">generic
 <li><a href="frontend/api/api_caller.html#getaccountmeals"><code>getAccountMeals</code></a></li>
 <li><a href="frontend/api/api_caller.html#getcategories"><code>getCategories</code></a></li>
 <li><a href="frontend/api/api_caller.html#getcategoryimage"><code>getCategoryImage</code></a></li>
+<li><a href="frontend/api/api_caller.html#getexplorepage"><code>getExplorePage</code></a></li>
 </ul>
 </li>
 </ul>
@@ -212,6 +213,21 @@ apiCaller.methodName(params);
 <h3 id="getcategoryimage"><a class="header" href="#getcategoryimage"><code>getCategoryImage</code></a></h3>
 <p>Input: <code>(categoryID: String)</code></p>
 <p>Returns: <code>String</code>, base64 encoded image.</p>
+<h3 id="getexplorepage"><a class="header" href="#getexplorepage"><code>getExplorePage</code></a></h3>
+<p>Input: <code>(limit?=10: Integer, lastPage?=0: Integer)</code></p>
+<p>Returns:</p>
+<pre><code class="language-javascript">{
+  standardCategories: [Object, ...],
+  recentViewedCategries: [Object, ...],
+  recentCookedMeals: [Object, ...],
+  savedMeals: [Object, ...],
+  lastPage: Integer
+}
+</code></pre>
+<blockquote>
+<p>Category Object structure outlined <a href="frontend/api/../neptune/neptune_design.html#node-properties-4">here</a></p>
+<p>Meal Object structure outlined <a href="frontend/api/../neptune/neptune_design.html#node-properties">here</a></p>
+</blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="genericcall"><a class="header" href="#genericcall"><code>#genericCall()</code></a></h1>
 <h3 id="function-information"><a class="header" href="#function-information">Function Information</a></h3>
 <ul>
@@ -362,7 +378,7 @@ We make use of AWS for all of our storage, computing, user authentication, and a
   error: &quot;Error Message&quot;
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="getexplorepage"><a class="header" href="#getexplorepage">getExplorePage</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="getexplorepage-1"><a class="header" href="#getexplorepage-1">getExplorePage</a></h1>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: left">Lambda ARN</th></tr></thead><tbody>
 <tr><td style="text-align: left">arn:aws:lambda:eu-west-2:065472310374:function:getExplorePage</td></tr>
 </tbody></table>
@@ -1125,7 +1141,7 @@ The advantage of having macros stored in the database is that we can make meal r
 <h2 id="frontend-features"><a class="header" href="#frontend-features">Frontend Features</a></h2>
 <h3 id="getaccountmeals-2"><a class="header" href="#getaccountmeals-2">getAccountMeals</a></h3>
 <p><a href="backend/neptune/neptune_api_design.html#getrecentcookedmealsuserid-limit"><code>getRecentCookedMeals</code></a> and <a href="backend/neptune/neptune_api_design.html#getsavedmealsuserid-limit-lastpage0"><code>getSavedMeals</code></a>, return results together.</p>
-<h3 id="getexplorepage-1"><a class="header" href="#getexplorepage-1">getExplorePage</a></h3>
+<h3 id="getexplorepage-2"><a class="header" href="#getexplorepage-2">getExplorePage</a></h3>
 <p><a href="backend/neptune/neptune_api_design.html#getrecentcookedmealsuserid-limit"><code>getRecentCookedMeals</code></a>, <a href="backend/neptune/neptune_api_design.html#getrecentviewedcategoriesuserid-limit-lastpage0"><code>getRecentViewedCategories</code></a>, <a href="backend/neptune/neptune_api_design.html#getcategorieslimit-lastpage0"><code>getCategories</code></a> and then <a href="backend/neptune/neptune_api_design.html#getsavedmealsuserid-limit-lastpage0"><code>getSavedMeals</code></a>. Return all results together.</p>
 <h3 id="getmealsincategory"><a class="header" href="#getmealsincategory">getMealsInCategory</a></h3>
 <p>Run <a href="backend/neptune/neptune_api_design.html#userviewscategoryuserid-mealid"><code>userViewsCategory</code></a> and return results from <a href="backend/neptune/neptune_api_design.html#getmealsincategorycategoryid-limit-lastpage0"><code>getMealsInCategory</code></a>.</p>

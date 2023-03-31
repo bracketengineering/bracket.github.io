@@ -157,6 +157,7 @@ This is done by making use of a <a href="generic-call.html">generic API call</a>
 <li><a href="#getaccountmeals"><code>getAccountMeals</code></a></li>
 <li><a href="#getcategories"><code>getCategories</code></a></li>
 <li><a href="#getcategoryimage"><code>getCategoryImage</code></a></li>
+<li><a href="#getexplorepage"><code>getExplorePage</code></a></li>
 </ul>
 </li>
 </ul>
@@ -185,6 +186,21 @@ apiCaller.methodName(params);
 <h3 id="getcategoryimage"><a class="header" href="#getcategoryimage"><code>getCategoryImage</code></a></h3>
 <p>Input: <code>(categoryID: String)</code></p>
 <p>Returns: <code>String</code>, base64 encoded image.</p>
+<h3 id="getexplorepage"><a class="header" href="#getexplorepage"><code>getExplorePage</code></a></h3>
+<p>Input: <code>(limit?=10: Integer, lastPage?=0: Integer)</code></p>
+<p>Returns:</p>
+<pre><code class="language-javascript">{
+  standardCategories: [Object, ...],
+  recentViewedCategries: [Object, ...],
+  recentCookedMeals: [Object, ...],
+  savedMeals: [Object, ...],
+  lastPage: Integer
+}
+</code></pre>
+<blockquote>
+<p>Category Object structure outlined <a href="../neptune/neptune_design.html#node-properties-4">here</a></p>
+<p>Meal Object structure outlined <a href="../neptune/neptune_design.html#node-properties">here</a></p>
+</blockquote>
 
                     </main>
 

@@ -12,6 +12,7 @@ Input arguments followed by a `?` question mark indicate that those arguments ar
   - [`getAccountMeals`](#getaccountmeals)
   - [`getCategories`](#getcategories)
   - [`getCategoryImage`](#getcategoryimage)
+  - [`getExplorePage`](#getexplorepage)
 
 ## Imports
 ```Javascript
@@ -49,3 +50,22 @@ Returns: `{ categories: [Object, ...], lastPage: Integer }`
 Input: `(categoryID: String)`
 
 Returns: `String`, base64 encoded image.
+
+### `getExplorePage`
+
+Input: `(limit?=10: Integer, lastPage?=0: Integer)`
+
+Returns:
+```javascript
+{
+  standardCategories: [Object, ...],
+  recentViewedCategries: [Object, ...],
+  recentCookedMeals: [Object, ...],
+  savedMeals: [Object, ...],
+  lastPage: Integer
+}
+```
+
+> Category Object structure outlined [here](../neptune/neptune_design.md#node-properties-4)
+> 
+> Meal Object structure outlined [here](../neptune/neptune_design.md#node-properties)
