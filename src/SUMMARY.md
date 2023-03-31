@@ -9,7 +9,7 @@
   - [Infrastructure](./backend/infrastructure.md)
   - [Lambda Functions](./backend/lambda.md)
     - [getAccountMeals](./backend/lambda/getAccountMeals.md)
-    - [getCategoryInfo](./backend/lambda/getCategoryInfo.md)
+    - [getCategories](./backend/lambda/getCategories.md)
     - [getExplorePage](./backend/lambda/getExplorePage.md)
     - [getFullMealInfo](./backend/lambda/getFullMealInfo.md)
     - [getMealsInCategories](./backend/lambda/getMealsInCategories.md)

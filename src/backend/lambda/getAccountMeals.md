@@ -7,14 +7,16 @@
  ## Expected Input Shape
  ```javascript
 const event = {
-  userID: String
+  userID: String,
+  limit: Integer, // Default 10
+  lastPage: Integer // Default 0
 }
  ```
  
 
  ## Return Value On Success
 
-Shape of returned meal `Object`s outlined [here](../neptune/neptune_design.md#node-properties)
+> Meal Object structure outlined [here](../neptune/neptune_design.md#node-properties)
 
 ```javascript
 return {

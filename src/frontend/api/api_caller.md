@@ -3,11 +3,14 @@
 API caller is a JavaScript class which can be used in the front end code to make requests to our backend infrastructure.
 This is done by making use of a [generic API call](generic-call.md).
 
+Input arguments followed by a `?` question mark indicate that those arguments are **optional**.
+
 ## Contents <!-- omit from toc -->
 - [Imports](#imports)
 - [Instantiation](#instantiation)
 - [Available Functions](#available-functions)
   - [`getAccountMeals`](#getaccountmeals)
+  - [`getCategories`](#getcategories)
 
 ## Imports
 ```Javascript
@@ -29,5 +32,13 @@ Input: `()`
 
 Returns: `{ savedMeals: [Object, ...], recentCookedMeals: [Object, ...], lastPage: Integer }`
 
-Shape of returned meal `Object`s outlined [here](../neptune/neptune_design.md#node-properties)
+> Meal Object structure outlined [here](../neptune/neptune_design.md#node-properties)
 
+
+### `getCategories`
+
+Input: `(limit?=10: Integer, lastPage?=0: Integer)`
+
+Returns: `{ categories: [Object, ...], lastPage: Integer }`
+
+> Category Object structure outlined [here](../neptune/neptune_design.md#node-properties-4)
