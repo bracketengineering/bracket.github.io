@@ -4,6 +4,7 @@ This document outlines the functions provided by our Javascript Neptune Client a
 
 ## Contents <!-- omit from toc -->
 - [Accessors/Getters](#accessorsgetters)
+  - [`getIngredients`](#getingredients)
   - [`getCategories`](#getcategories)
   - [`getSavedMeals`](#getsavedmeals)
   - [`getRecentCookedMeals`](#getrecentcookedmeals)
@@ -12,6 +13,14 @@ This document outlines the functions provided by our Javascript Neptune Client a
   - [`addCategory`](#addcategory)
 
 ## Accessors/Getters
+
+### `getIngredients` 
+
+Input: `(limit?=10: Integer, lastPage?=0: Integer)`
+
+Returns: `{ ingredients: [Object, ...], lastPage: Integer }`
+
+> Ingredient Object structure outlined [here](../neptune/neptune_design.md#node-properties-2)
 
 ### `getCategories`
 
