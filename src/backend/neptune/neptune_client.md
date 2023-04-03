@@ -11,8 +11,11 @@ This document outlines the functions provided by our Javascript Neptune Client a
   - [`getRecentCookedMeals`](#getrecentcookedmeals)
   - [`getMealsInCategory`](#getmealsincategory)
 - [Mutators/Setters](#mutatorssetters)
-  - [`addMeal`](#addmeal)
+  - [`addAllergen`](#addallergen)
   - [`addCategory`](#addcategory)
+  - [`addIngredient`](#addingredient)
+  - [`addMeal`](#addmeal)
+  - [`addSupercategory`](#addsupercategory)
   - [`addUser`](#adduser)
   - [`userSavesMeal`](#usersavesmeal)
   - [`userRatesMeal`](#userratesmeal)
@@ -71,6 +74,40 @@ Returns: `[Object]`, meal objects
 
 ## Mutators/Setters
 
+### `addAllergen`
+
+Input: `(name: String, ingredients?: [String])`
+
+> `ingredients?` is an optional list of Ingredient IDs that this allergen includes.
+
+Returns: `String`, new Allergen ID
+
+### `addCategory`
+
+Input: `name: String, meals?: [String]` 
+
+> `meals?` is an optional list of Meal IDs that this category includes.
+
+Returns: `String`, new Category ID
+
+### `addIngredient`
+
+Input: 
+
+```javascript
+{
+  name: String,
+  servingSize: Number,
+  servingUnit: String
+  substituteFor?: [String]
+}
+```
+
+> `substituteFor?` is an optional list of Ingredient IDs that this ingredient can be substituted for.
+
+Returns: `String`, new Ingredient ID
+
+
 ### `addMeal`
 
 Input:
@@ -96,11 +133,11 @@ Input:
 
 Returns: `String`, new Meal ID
 
-### `addCategory`
+### `addSupercategory`
 
-Input: `name: String, meals?: [String]` 
+Input: `name: String, categories?: [String]` 
 
-> `meals?` is a list of Meal IDs that this category includes.
+> `categories?` is an optional list of Category IDs that this supercategory includes.
 
 Returns: `String`, new Category ID
 
@@ -111,6 +148,7 @@ Input: `allergens?: [String]`
 > `allergens?` is an optional list of Allergen IDs that this user is allergic to.
 
 Returns: `String`, new User ID
+
 
 ### `userSavesMeal`
 

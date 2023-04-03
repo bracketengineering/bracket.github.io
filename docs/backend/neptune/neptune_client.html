@@ -160,8 +160,11 @@
 </li>
 <li><a href="#mutatorssetters">Mutators/Setters</a>
 <ul>
-<li><a href="#addmeal"><code>addMeal</code></a></li>
+<li><a href="#addallergen"><code>addAllergen</code></a></li>
 <li><a href="#addcategory"><code>addCategory</code></a></li>
+<li><a href="#addingredient"><code>addIngredient</code></a></li>
+<li><a href="#addmeal"><code>addMeal</code></a></li>
+<li><a href="#addsupercategory"><code>addSupercategory</code></a></li>
 <li><a href="#adduser"><code>addUser</code></a></li>
 <li><a href="#usersavesmeal"><code>userSavesMeal</code></a></li>
 <li><a href="#userratesmeal"><code>userRatesMeal</code></a></li>
@@ -207,6 +210,31 @@
 <p>Meal Object structure outlined <a href="../neptune/neptune_design.html#node-properties">here</a></p>
 </blockquote>
 <h2 id="mutatorssetters"><a class="header" href="#mutatorssetters">Mutators/Setters</a></h2>
+<h3 id="addallergen"><a class="header" href="#addallergen"><code>addAllergen</code></a></h3>
+<p>Input: <code>(name: String, ingredients?: [String])</code></p>
+<blockquote>
+<p><code>ingredients?</code> is an optional list of Ingredient IDs that this allergen includes.</p>
+</blockquote>
+<p>Returns: <code>String</code>, new Allergen ID</p>
+<h3 id="addcategory"><a class="header" href="#addcategory"><code>addCategory</code></a></h3>
+<p>Input: <code>name: String, meals?: [String]</code> </p>
+<blockquote>
+<p><code>meals?</code> is an optional list of Meal IDs that this category includes.</p>
+</blockquote>
+<p>Returns: <code>String</code>, new Category ID</p>
+<h3 id="addingredient"><a class="header" href="#addingredient"><code>addIngredient</code></a></h3>
+<p>Input: </p>
+<pre><code class="language-javascript">{
+  name: String,
+  servingSize: Number,
+  servingUnit: String
+  substituteFor?: [String]
+}
+</code></pre>
+<blockquote>
+<p><code>substituteFor?</code> is an optional list of Ingredient IDs that this ingredient can be substituted for.</p>
+</blockquote>
+<p>Returns: <code>String</code>, new Ingredient ID</p>
 <h3 id="addmeal"><a class="header" href="#addmeal"><code>addMeal</code></a></h3>
 <p>Input:</p>
 <pre><code class="language-javascript">( 
@@ -228,10 +256,10 @@
 )
 </code></pre>
 <p>Returns: <code>String</code>, new Meal ID</p>
-<h3 id="addcategory"><a class="header" href="#addcategory"><code>addCategory</code></a></h3>
-<p>Input: <code>name: String, meals?: [String]</code> </p>
+<h3 id="addsupercategory"><a class="header" href="#addsupercategory"><code>addSupercategory</code></a></h3>
+<p>Input: <code>name: String, categories?: [String]</code> </p>
 <blockquote>
-<p><code>meals?</code> is a list of Meal IDs that this category includes.</p>
+<p><code>categories?</code> is an optional list of Category IDs that this supercategory includes.</p>
 </blockquote>
 <p>Returns: <code>String</code>, new Category ID</p>
 <h3 id="adduser"><a class="header" href="#adduser"><code>addUser</code></a></h3>
