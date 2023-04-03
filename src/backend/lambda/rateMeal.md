@@ -9,7 +9,7 @@
 const event {
   userID: String,
   mealID: String,
-  rating: Integer
+  rating: Number
 }
  ```
  

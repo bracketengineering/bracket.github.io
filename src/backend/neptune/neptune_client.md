@@ -13,6 +13,9 @@ This document outlines the functions provided by our Javascript Neptune Client a
 - [Mutators/Setters](#mutatorssetters)
   - [`addMeal`](#addmeal)
   - [`addCategory`](#addcategory)
+  - [`addUser`](#adduser)
+  - [`userSavesMeal`](#usersavesmeal)
+  - [`userRatesMeal`](#userratesmeal)
   - [`getQuickMealsSearch`](#getquickmealssearch)
 
 ## Accessors/Getters
@@ -100,6 +103,26 @@ Input: `name: String, meals?: [String]`
 > `meals?` is a list of Meal IDs that this category includes.
 
 Returns: `String`, new Category ID
+
+### `addUser`
+
+Input: `allergens?: [String]` 
+
+> `allergens?` is an optional list of Allergen IDs that this user is allergic to.
+
+Returns: `String`, new User ID
+
+### `userSavesMeal`
+
+Input: `(userID: String, mealID: String)`
+
+Returns: `()`
+
+### `userRatesMeal`
+
+Input: `(userID: String, mealID: String, rating: Number)`
+
+Returns: `()`
 
 ### `getQuickMealsSearch`
 

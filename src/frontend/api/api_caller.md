@@ -18,6 +18,9 @@ Input arguments followed by a `?` question mark indicate that those arguments ar
   - [`getMealImage`](#getmealimage)
   - [`getMealsInCategory`](#getmealsincategory)
   - [`getQuickMealsSearch`](#getquickmealssearch)
+  - [`saveMeal`](#savemeal)
+  - [`signUpUser`](#signupuser)
+  - [`rateMeal`](#ratemeal)
 
 ## Imports
 ```Javascript
@@ -112,3 +115,23 @@ Input: `(userID: String, ingredients: [String])`
 Returns: `[Object]`, meal objects
 
 > Meal Object structure outlined [here](../neptune/neptune_design.md#node-properties)
+
+### `saveMeal`
+
+Input: `(userID: String, mealID: String)`
+
+Returns: `()`
+
+### `signUpUser`
+
+Input: `allergens?: [String]` 
+
+> `allergens?` is an optional list of Allergen IDs that this user is allergic to.
+
+Returns: `String`, new User ID
+
+### `rateMeal`
+
+Input: `(userID: String, mealID: String)`
+
+Returns: `()`
