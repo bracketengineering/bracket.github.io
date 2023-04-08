@@ -9,6 +9,7 @@ Input arguments followed by a `?` question mark indicate that those arguments ar
 - [Imports](#imports)
 - [Instantiation](#instantiation)
 - [Available Functions](#available-functions)
+  - [`cookMeal`](#cookmeal)
   - [`getAccountMeals`](#getaccountmeals)
   - [`getCategories`](#getcategories)
   - [`getCategoryImage`](#getcategoryimage)
@@ -36,6 +37,12 @@ apiCaller.methodName(params);
 ```
 
 ## Available Functions
+
+### `cookMeal`
+
+Input: `(mealID: String)`
+
+Returns: `()`
 
 ### `getAccountMeals`
 Input: `(limit?=10: Integer, lastPage?=0: Integer)`

@@ -17,6 +17,7 @@ This document outlines the functions provided by our Javascript Neptune Client a
   - [`addMeal`](#addmeal)
   - [`addSupercategory`](#addsupercategory)
   - [`addUser`](#adduser)
+  - [`userCooksMeal`](#usercooksmeal)
   - [`userSavesMeal`](#usersavesmeal)
   - [`userRatesMeal`](#userratesmeal)
   - [`getQuickMealsSearch`](#getquickmealssearch)
@@ -149,12 +150,18 @@ Input: `allergens?: [String]`
 
 Returns: `String`, new User ID
 
+### `userCooksMeal`
+
+Input: `(userID: String, mealID: String)`
+
+Returns: `()`
 
 ### `userSavesMeal`
 
 Input: `(userID: String, mealID: String)`
 
 Returns: `()`
+
 
 ### `userRatesMeal`
 

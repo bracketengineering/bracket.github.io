@@ -8,6 +8,7 @@
 - [Backend](./backend/backend_prefix.md)
   - [Infrastructure](./backend/infrastructure.md)
   - [Lambda Functions](./backend/lambda.md)
+    - [cookMeal](./backend/lambda/cookMeal.md)
     - [getAccountMeals](./backend/lambda/getAccountMeals.md)
     - [getCategories](./backend/lambda/getCategories.md)
     - [getCategoryImage](./backend/lambda/getCategoryImage.md)
