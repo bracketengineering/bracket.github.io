@@ -29,4 +29,5 @@
     - [Neptune Client](./backend/neptune/neptune_client.md)
   - [Data Analytics](./backend/data_analytics/data_analytics.md)
   - [Dynamo](./backend/dynamo.md)
-  - [S3](./backend/s3.md)
+  - [S3](./backend/s3/s3.md)
+    - [Meal Data](./backend/s3/meal_data.md)
