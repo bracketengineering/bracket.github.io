@@ -20,6 +20,7 @@ Information about meals is currently planned to be stored as JSON with the follo
     protein: Number,
     salt: Number
   },
+  sections: ["For the sauce", "For the garnish", String, ...]
   ingredients: {
     0: {
       ingredientID: String, sectionName: String,
@@ -31,12 +32,13 @@ Information about meals is currently planned to be stored as JSON with the follo
       ingredientID: String, sectionName: String,
       ingredientName: String, quantity: Number,
       unit: String, notes: String
-    },
+    }
   }
   method: [
     {
       ingredientsReferenced: [Integer, Integer],
-      instruction: "Add %0% to the pan, simmer for 5 mins and then stir in %1%"},
+      instruction: "Add %0% to the pan, fry for 5 mins and then stir in %1%"
+    },
       // Numerical references can be used to retrieve
       // the ingredient info to put inside the string,
       // meaning we can dynamically recalculate and reassign ingredients and their quantities.
