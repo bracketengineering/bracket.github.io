@@ -36,6 +36,9 @@ Information about meals is currently planned to be stored as JSON with the follo
   }
   method: [
     {
+      ingredientSection: String, //E.g "For the sauce", so we can
+        // display the right ingredients somewhere on screen, outside of
+        // the specifics in the instruction
       ingredientsReferenced: [Integer, Integer],
       instruction: "Add %0% to the pan, fry for 5 mins and then stir in %1%"
     },
@@ -43,8 +46,9 @@ Information about meals is currently planned to be stored as JSON with the follo
       // the ingredient info to put inside the string,
       // meaning we can dynamically recalculate and reassign ingredients and their quantities.
     {
+      ingredientSection: String,
       ingredientsReferenced: [Integer, Integer],
-       instruction: String
+      instruction: String
     }
   ]
 }
