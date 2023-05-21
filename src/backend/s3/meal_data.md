@@ -24,13 +24,13 @@ Information about meals is currently planned to be stored as JSON with the follo
   ingredients: {
     0: {
       ingredientID: String, sectionName: String,
-      ingredientName: String, quantity: Number,
+      name: String, quantity: Number,
       unit: String, notes: String
     },  
     // 'notes' e.g 'chopped', 'finely diced', 'to taste'
     1: {
       ingredientID: String, sectionName: String,
-      ingredientName: String, quantity: Number,
+      name: String, quantity: Number,
       unit: String, notes: String
     }
   }
