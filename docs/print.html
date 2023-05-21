@@ -1404,6 +1404,7 @@ const item = {
     protein: Number,
     salt: Number
   },
+  sections: [&quot;For the sauce&quot;, &quot;For the garnish&quot;, String, ...]
   ingredients: {
     0: {
       ingredientID: String, sectionName: String,
@@ -1415,12 +1416,13 @@ const item = {
       ingredientID: String, sectionName: String,
       ingredientName: String, quantity: Number,
       unit: String, notes: String
-    },
+    }
   }
   method: [
     {
       ingredientsReferenced: [Integer, Integer],
-      instruction: &quot;Add %0% to the pan, simmer for 5 mins and then stir in %1%&quot;},
+      instruction: &quot;Add %0% to the pan, fry for 5 mins and then stir in %1%&quot;
+    },
       // Numerical references can be used to retrieve
       // the ingredient info to put inside the string,
       // meaning we can dynamically recalculate and reassign ingredients and their quantities.
