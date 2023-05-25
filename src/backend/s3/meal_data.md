@@ -40,6 +40,7 @@ Information about meals is currently planned to be stored as JSON with the follo
         // display the right ingredients somewhere on screen, outside of
         // the specifics in the instruction
       ingredientsReferenced: [String, String],
+      // Being the strings used to as keys in ingredients: {}
       instruction: String
     },
     {
