@@ -22,13 +22,13 @@ Information about meals is currently planned to be stored as JSON with the follo
   },
   sections: ["For the sauce", "For the garnish", String, ...]
   ingredients: {
-    0: {
+    "0": {
       id: String, sectionName: String,
       name: String, quantity: Number,
       unit: String, notes: String
     },  
     // 'notes' e.g 'chopped', 'finely diced', 'to taste'
-    1: {
+    "1": {
       id: String, sectionName: String,
       name: String, quantity: Number,
       unit: String, notes: String
@@ -39,12 +39,12 @@ Information about meals is currently planned to be stored as JSON with the follo
       ingredientSection: String, //E.g "For the sauce", so we can
         // display the right ingredients somewhere on screen, outside of
         // the specifics in the instruction
-      ingredientsReferenced: [Integer, Integer],
+      ingredientsReferenced: [String, String],
       instruction: String
     },
     {
       ingredientSection: String,
-      ingredientsReferenced: [Integer, Integer],
+      ingredientsReferenced: [String, String],
       instruction: String
     }
   ]

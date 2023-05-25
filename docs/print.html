@@ -1406,13 +1406,13 @@ const item = {
   },
   sections: [&quot;For the sauce&quot;, &quot;For the garnish&quot;, String, ...]
   ingredients: {
-    0: {
+    &quot;0&quot;: {
       id: String, sectionName: String,
       name: String, quantity: Number,
       unit: String, notes: String
     },  
     // 'notes' e.g 'chopped', 'finely diced', 'to taste'
-    1: {
+    &quot;1&quot;: {
       id: String, sectionName: String,
       name: String, quantity: Number,
       unit: String, notes: String
@@ -1423,12 +1423,12 @@ const item = {
       ingredientSection: String, //E.g &quot;For the sauce&quot;, so we can
         // display the right ingredients somewhere on screen, outside of
         // the specifics in the instruction
-      ingredientsReferenced: [Integer, Integer],
+      ingredientsReferenced: [String, String],
       instruction: String
     },
     {
       ingredientSection: String,
-      ingredientsReferenced: [Integer, Integer],
+      ingredientsReferenced: [String, String],
       instruction: String
     }
   ]
