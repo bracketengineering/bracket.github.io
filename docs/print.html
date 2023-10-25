@@ -71,12 +71,10 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = null;
+            var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
-            } else {
-                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -84,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="frontend/frontend_prefix.html"><strong aria-hidden="true">1.</strong> Frontend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="frontend/api/cognito.html"><strong aria-hidden="true">1.1.</strong> Cognito Via Amplify</a></li><li class="chapter-item expanded "><a href="frontend/api/api_caller.html"><strong aria-hidden="true">1.2.</strong> API Caller</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="frontend/api/generic_call.html"><strong aria-hidden="true">1.2.1.</strong> #genericCall()</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="backend/backend_prefix.html"><strong aria-hidden="true">2.</strong> Backend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="backend/infrastructure.html"><strong aria-hidden="true">2.1.</strong> Infrastructure</a></li><li class="chapter-item expanded "><a href="backend/lambda.html"><strong aria-hidden="true">2.2.</strong> Lambda Functions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="backend/lambda/cookMeal.html"><strong aria-hidden="true">2.2.1.</strong> cookMeal</a></li><li class="chapter-item expanded "><a href="backend/lambda/getAccountMeals.html"><strong aria-hidden="true">2.2.2.</strong> getAccountMeals</a></li><li class="chapter-item expanded "><a href="backend/lambda/getCategories.html"><strong aria-hidden="true">2.2.3.</strong> getCategories</a></li><li class="chapter-item expanded "><a href="backend/lambda/getCategoryImage.html"><strong aria-hidden="true">2.2.4.</strong> getCategoryImage</a></li><li class="chapter-item expanded "><a href="backend/lambda/getExplorePage.html"><strong aria-hidden="true">2.2.5.</strong> getExplorePage</a></li><li class="chapter-item expanded "><a href="backend/lambda/getIngredients.html"><strong aria-hidden="true">2.2.6.</strong> getIngredients</a></li><li class="chapter-item expanded "><a href="backend/lambda/getMealImage.html"><strong aria-hidden="true">2.2.7.</strong> getMealImage</a></li><li class="chapter-item expanded "><a href="backend/lambda/getMealsInCategory.html"><strong aria-hidden="true">2.2.8.</strong> getMealsInCategory</a></li><li class="chapter-item expanded "><a href="backend/lambda/getMealInfo.html"><strong aria-hidden="true">2.2.9.</strong> getMealInfo</a></li><li class="chapter-item expanded "><a href="backend/lambda/getQMSearch.html"><strong aria-hidden="true">2.2.10.</strong> getQMSearch</a></li><li class="chapter-item expanded "><a href="backend/lambda/rateMeal.html"><strong aria-hidden="true">2.2.11.</strong> rateMeal</a></li><li class="chapter-item expanded "><a href="backend/lambda/saveMeal.html"><strong aria-hidden="true">2.2.12.</strong> saveMeal</a></li><li class="chapter-item expanded "><a href="backend/lambda/setMetadata.html"><strong aria-hidden="true">2.2.13.</strong> setMetadata</a></li><li class="chapter-item expanded "><a href="backend/lambda/userSignUp.html"><strong aria-hidden="true">2.2.14.</strong> userSignUp</a></li></ol></li><li class="chapter-item expanded "><a href="backend/neptune/neptune.html"><strong aria-hidden="true">2.3.</strong> Neptune</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="backend/neptune/design_proposal.html"><strong aria-hidden="true">2.3.1.</strong> Design Proposal</a></li><li class="chapter-item expanded "><a href="backend/neptune/neptune_design.html"><strong aria-hidden="true">2.3.2.</strong> Database Schema</a></li><li class="chapter-item expanded "><a href="backend/neptune/neptune_api_design.html"><strong aria-hidden="true">2.3.3.</strong> API Design</a></li><li class="chapter-item expanded "><a href="backend/neptune/neptune_client.html"><strong aria-hidden="true">2.3.4.</strong> Neptune Client</a></li></ol></li><li class="chapter-item expanded "><a href="backend/data_analytics/data_analytics.html"><strong aria-hidden="true">2.4.</strong> Data Analytics</a></li><li class="chapter-item expanded "><a href="backend/dynamo.html"><strong aria-hidden="true">2.5.</strong> Dynamo</a></li><li class="chapter-item expanded "><a href="backend/s3/s3.html"><strong aria-hidden="true">2.6.</strong> S3</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="backend/s3/meal_data.html"><strong aria-hidden="true">2.6.1.</strong> Meal Data</a></li></ol></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="frontend/frontend_prefix.html"><strong aria-hidden="true">1.</strong> Frontend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="frontend/api/cognito.html"><strong aria-hidden="true">1.1.</strong> Cognito Via Amplify</a></li><li class="chapter-item expanded "><a href="frontend/api/api_caller.html"><strong aria-hidden="true">1.2.</strong> API Caller</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="frontend/api/generic_call.html"><strong aria-hidden="true">1.2.1.</strong> #genericCall()</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="backend/backend_prefix.html"><strong aria-hidden="true">2.</strong> Backend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="backend/infrastructure.html"><strong aria-hidden="true">2.1.</strong> Infrastructure</a></li><li class="chapter-item expanded "><a href="backend/cicd/cicd.html"><strong aria-hidden="true">2.2.</strong> CI/CD</a></li><li class="chapter-item expanded "><a href="backend/neptune/neptune.html"><strong aria-hidden="true">2.3.</strong> Neptune</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="backend/neptune/design_proposal.html"><strong aria-hidden="true">2.3.1.</strong> Design Proposal</a></li><li class="chapter-item expanded "><a href="backend/neptune/neptune_design.html"><strong aria-hidden="true">2.3.2.</strong> Database Schema</a></li><li class="chapter-item expanded "><a href="backend/neptune/neptune_api_design.html"><strong aria-hidden="true">2.3.3.</strong> API Design</a></li><li class="chapter-item expanded "><a href="backend/neptune/neptune_client.html"><strong aria-hidden="true">2.3.4.</strong> Neptune Client</a></li></ol></li><li class="chapter-item expanded "><a href="backend/data_analytics/data_analytics.html"><strong aria-hidden="true">2.4.</strong> Data Analytics</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -147,563 +145,40 @@
                     <main>
                         <h1 id="frontend"><a class="header" href="#frontend">Frontend</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="cognito-via-amplify"><a class="header" href="#cognito-via-amplify">Cognito Via Amplify</a></h1>
-<h3 id="imports"><a class="header" href="#imports">Imports</a></h3>
-<pre><code class="language-javascript">import CognitoAPI from './apiScripts/amplify/cognitoAPI.js';
-</code></pre>
-<p>### Instantiation</p>
-<pre><code class="language-javascript">const cognito = new CognitoAPI();
-
-// example use
-cognito.methodName(params);
-</code></pre>
-<hr />
-<h3 id="methods"><a class="header" href="#methods">Methods</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Method Name</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>signUp</code></td><td>Submits user information to cognito - <strong>not to be used directly.</strong> Instead use <a href="https://github.com/bracketengineering/quick-meals/blob/63ac5b9f97bc7cee734b3faedc08d288fe71e22d/app/apiScripts/apiCalls/apiCaller.js#L217">apiCaller.signUpUser</a></td></tr>
-<tr><td><code>confirmSignUp</code></td><td>Uses username and code from email to verify a new user</td></tr>
-<tr><td><code>signIn</code></td><td>Signs in a user</td></tr>
-<tr><td><code>signOut</code></td><td>Signs out a user</td></tr>
-<tr><td><code>globalSignOut</code></td><td>Signs out a user from all devices</td></tr>
-<tr><td><code>verifyAttribute</code></td><td>Verifies updated email</td></tr>
-<tr><td><code>resendConfirmationCode</code></td><td>Resends confirmation code</td></tr>
-<tr><td><code>changePassword</code></td><td>Sends code to email, takes this code and new password to update a user's password</td></tr>
-<tr><td><code>updateAttributes</code></td><td>Updates a user setting</td></tr>
-<tr><td><code>getAccessToken</code></td><td>Gets user's current access token</td></tr>
-<tr><td><code>getCognitoInfo</code></td><td>Gets given name, email or userID for current user</td></tr>
-</tbody></table>
-</div><div style="break-before: page; page-break-before: always;"></div><h1 id="api-caller"><a class="header" href="#api-caller">API Caller <!-- omit from toc --></a></h1>
-<p>API caller is a JavaScript class which can be used in the front end code to make requests to our backend infrastructure.
-This is done by making use of a <a href="frontend/api/generic-call.html">generic API call</a>.</p>
-<p>Input arguments followed by a <code>?</code> question mark indicate that those arguments are <strong>optional</strong>.</p>
-<h2 id="contents"><a class="header" href="#contents">Contents <!-- omit from toc --></a></h2>
-<ul>
-<li><a href="frontend/api/api_caller.html#imports">Imports</a></li>
-<li><a href="frontend/api/api_caller.html#instantiation">Instantiation</a></li>
-<li><a href="frontend/api/api_caller.html#available-functions">Available Functions</a>
-<ul>
-<li><a href="frontend/api/api_caller.html#cookmeal"><code>cookMeal</code></a></li>
-<li><a href="frontend/api/api_caller.html#getaccountmeals"><code>getAccountMeals</code></a></li>
-<li><a href="frontend/api/api_caller.html#getcategories"><code>getCategories</code></a></li>
-<li><a href="frontend/api/api_caller.html#getcategoryimage"><code>getCategoryImage</code></a></li>
-<li><a href="frontend/api/api_caller.html#getexplorepage"><code>getExplorePage</code></a></li>
-<li><a href="frontend/api/api_caller.html#getingredients"><code>getIngredients</code></a></li>
-<li><a href="frontend/api/api_caller.html#getmealinfo"><code>getMealInfo</code></a></li>
-<li><a href="frontend/api/api_caller.html#getmealimage"><code>getMealImage</code></a></li>
-<li><a href="frontend/api/api_caller.html#getmealsincategory"><code>getMealsInCategory</code></a></li>
-<li><a href="frontend/api/api_caller.html#getquickmealssearch"><code>getQuickMealsSearch</code></a></li>
-<li><a href="frontend/api/api_caller.html#savemeal"><code>saveMeal</code></a></li>
-<li><a href="frontend/api/api_caller.html#signupuser"><code>signUpUser</code></a></li>
-<li><a href="frontend/api/api_caller.html#ratemeal"><code>rateMeal</code></a></li>
-</ul>
-</li>
-</ul>
-<h2 id="imports-1"><a class="header" href="#imports-1">Imports</a></h2>
-<pre><code class="language-Javascript">import apiCaller from 'apiCaller.js';
-</code></pre>
-<h2 id="instantiation"><a class="header" href="#instantiation">Instantiation</a></h2>
-<pre><code class="language-Javascript">const apiCaller = new apiCaller();
-
-//example use
-apiCaller.methodName(params);
-</code></pre>
-<h2 id="available-functions"><a class="header" href="#available-functions">Available Functions</a></h2>
-<h3 id="cookmeal"><a class="header" href="#cookmeal"><code>cookMeal</code></a></h3>
-<p>Input: <code>(mealID: String)</code></p>
-<p>Returns: <code>()</code></p>
-<h3 id="getaccountmeals"><a class="header" href="#getaccountmeals"><code>getAccountMeals</code></a></h3>
-<p>Input: <code>(limit?=10: Integer, lastPage?=0: Integer)</code></p>
-<p>Returns: <code>{ savedMeals: [Object, ...], recentCookedMeals: [Object, ...], lastPage: Integer }</code></p>
-<blockquote>
-<p>Meal Object structure outlined <a href="frontend/api/../neptune/neptune_design.html#node-properties">here</a></p>
-</blockquote>
-<h3 id="getcategories"><a class="header" href="#getcategories"><code>getCategories</code></a></h3>
-<p>Input: <code>(limit?=10: Integer, lastPage?=0: Integer)</code></p>
-<p>Returns: <code>{ categories: [Object, ...], lastPage: Integer }</code></p>
-<blockquote>
-<p>Category Object structure outlined <a href="frontend/api/../neptune/neptune_design.html#node-properties-4">here</a></p>
-</blockquote>
-<h3 id="getcategoryimage"><a class="header" href="#getcategoryimage"><code>getCategoryImage</code></a></h3>
-<p>Input: <code>(categoryID: String)</code></p>
-<p>Returns: <code>String</code>, base64 encoded image.</p>
-<h3 id="getexplorepage"><a class="header" href="#getexplorepage"><code>getExplorePage</code></a></h3>
-<p>Input: <code>(limit?=10: Integer, lastPage?=0: Integer)</code></p>
-<p>Returns:</p>
-<pre><code class="language-javascript">{
-  standardCategories: [Object, ...],
-  recentViewedCategries: [Object, ...],
-  recentCookedMeals: [Object, ...],
-  savedMeals: [Object, ...],
-  lastPage: Integer
-}
-</code></pre>
-<blockquote>
-<p>Category Object structure outlined <a href="frontend/api/../neptune/neptune_design.html#node-properties-4">here</a></p>
-<p>Meal Object structure outlined <a href="frontend/api/../neptune/neptune_design.html#node-properties">here</a></p>
-</blockquote>
-<h3 id="getingredients"><a class="header" href="#getingredients"><code>getIngredients</code></a></h3>
-<p>Input: <code>(limit?=10: Integer, lastPage?=0: Integer)</code></p>
-<p>Returns: <code>{ ingredients: [Object, ...], lastPage: Integer }</code></p>
-<blockquote>
-<p>Ingredient Object structure outlined <a href="frontend/api/../neptune/neptune_design.html#node-properties-2">here</a></p>
-</blockquote>
-<h3 id="getmealinfo"><a class="header" href="#getmealinfo"><code>getMealInfo</code></a></h3>
-<p>Input: <code>(mealID: String)</code></p>
-<p>Returns: <code>Object</code>, meal Object</p>
-<blockquote>
-<p>Meal Object structure outlined <a href="frontend/api/../neptune/neptune_design.html#node-properties">here</a></p>
-</blockquote>
-<h3 id="getmealimage"><a class="header" href="#getmealimage"><code>getMealImage</code></a></h3>
-<p>Input: <code>(mealID: String)</code></p>
-<p>Returns: <code>String</code>, base64 encoded image.</p>
-<h3 id="getmealsincategory"><a class="header" href="#getmealsincategory"><code>getMealsInCategory</code></a></h3>
-<p>Input: <code>(categoryID: String, limit?=10: Integer, lastPage?=0: Integer)</code></p>
-<p>Returns: <code>[Object]</code>, meal objects</p>
-<blockquote>
-<p>Meal Object structure outlined <a href="frontend/api/../neptune/neptune_design.html#node-properties">here</a></p>
-</blockquote>
-<h3 id="getquickmealssearch"><a class="header" href="#getquickmealssearch"><code>getQuickMealsSearch</code></a></h3>
-<p>Input: <code>(userID: String, ingredients: [String])</code></p>
-<p>Returns: <code>[Object]</code>, meal objects</p>
-<blockquote>
-<p>Meal Object structure outlined <a href="frontend/api/../neptune/neptune_design.html#node-properties">here</a></p>
-</blockquote>
-<h3 id="savemeal"><a class="header" href="#savemeal"><code>saveMeal</code></a></h3>
-<p>Input: <code>(userID: String, mealID: String)</code></p>
-<p>Returns: <code>()</code></p>
-<h3 id="signupuser"><a class="header" href="#signupuser"><code>signUpUser</code></a></h3>
-<p>Input: <code>allergens?: [String]</code> </p>
-<blockquote>
-<p><code>allergens?</code> is an optional list of Allergen IDs that this user is allergic to.</p>
-</blockquote>
-<p>Returns: <code>String</code>, new User ID</p>
-<h3 id="ratemeal"><a class="header" href="#ratemeal"><code>rateMeal</code></a></h3>
-<p>Input: <code>(userID: String, mealID: String)</code></p>
-<p>Returns: <code>()</code></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="genericcall"><a class="header" href="#genericcall"><code>#genericCall()</code></a></h1>
-<h3 id="function-information"><a class="header" href="#function-information">Function Information</a></h3>
-<ul>
-<li><code>#genericCall()</code> is a protected function</li>
-<li>Sould not be called directly</li>
-<li>Makes call via AWS Amplify SDK to endpoint specified in the <code>methodPath</code></li>
-</ul>
-<h3 id="input-structure"><a class="header" href="#input-structure">Input Structure</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Parameter Name</th><th>Type</th><th>Information</th></tr></thead><tbody>
-<tr><td><strong><code>apiName</code></strong></td><td>String</td><td>type of api call (either get or set)</td></tr>
-<tr><td><strong><code>methodPath</code></strong></td><td>String</td><td>path of method in API gateway</td></tr>
-<tr><td><strong><code>data</code></strong></td><td>Object</td><td>JSON object of data payload to be sent to lambda function</td></tr>
-</tbody></table>
-</div>
-<h3 id="output-structure"><a class="header" href="#output-structure">Output Structure</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Parameter Name</th><th>Type</th><th>Information</th></tr></thead><tbody>
-<tr><td><strong><code>body</code></strong></td><td>Object</td><td>JSON object returned from the api call specified by the input parameters</td></tr>
-</tbody></table>
-</div>
-<hr />
-<ul>
-<li>Defined here: <a href="https://github.com/bracketengineering/quick-meals/blob/2d5008af9118de94462c417512302639d0137e27/app/apiScripts/apiCalls/apiCaller.js#L7">#genericCall</a></li>
-</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="api-caller"><a class="header" href="#api-caller">API Caller</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="genericcall"><a class="header" href="#genericcall">#genericCall()</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="backend"><a class="header" href="#backend">Backend</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="infrastructure"><a class="header" href="#infrastructure">Infrastructure</a></h1>
 <p>Our Infrastructure is laid out in the image below.
 We make use of AWS for all of our storage, computing, user authentication, and analytics.</p>
 <p><img src="backend/Infrastructure-diagram.png" alt="Infrastructure Diagram" /></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="lambda"><a class="header" href="#lambda">Lambda</a></h1>
-<h3 id="what-is-lambda"><a class="header" href="#what-is-lambda">What is Lambda?</a></h3>
-<p>AWS Lambda is a serverless, event-driven compute service that lets you run code for virtually any type of application or backend service without provisioning or managing servers. You only need to pay for what you use.</p>
-<h3 id="our-lambda-function-structure"><a class="header" href="#our-lambda-function-structure">Our Lambda Function Structure</a></h3>
-<pre><code class="language-bash">├── Dynamo ───&gt; Returned to user
-│   └── S3
-│       └──&gt; Returned to user
-├── Neptune ───&gt; Returned to user
-│   └── Dynamo
-│       └── S3
-│           └──&gt; Returned to user
-│   └── Calculations
-│       └── Dynamo
-│           └──&gt; Returned to user
-│       └── S3
-│           └──&gt; Returned to user
-│   └── S3
-│       └──&gt; Returned to user
- 
-</code></pre>
-<h3 id="feature-branches"><a class="header" href="#feature-branches">Feature Branches</a></h3>
-<pre><code class="language-bash">├── Quick Meals
-│   └── Neptune
-│   │   └── Calculations
-│   │   │   └── Dynamo 
-│   │   │   └── S3 
-├── Explore
-│   └── Neptune
-│   │   └── Calculations
-│   │   │   └── Dynamo 
-│   │   │   └── S3
-├── Meal Planner
-│   └── Dynamo
-│   │   └── S3
-├── User Information
-│   └── Dynamo
-├── Liked Meals
-│   └── Dynamo
-│   │   └── S3
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="cookmeal-1"><a class="header" href="#cookmeal-1">cookMeal</a></h1>
-<div class="table-wrapper"><table><thead><tr><th>Lambda ARN</th></tr></thead><tbody>
-<tr><td>arn:aws:lambda:eu-west-2:065472310374:function:cookMeal</td></tr>
-</tbody></table>
-</div>
-<h2 id="expected-input-shape"><a class="header" href="#expected-input-shape">Expected Input Shape</a></h2>
-<pre><code class="language-javascript">const event {
- userID: String,
- mealID: String
-}
-</code></pre>
-<h2 id="return-value-on-success"><a class="header" href="#return-value-on-success">Return Value On Success</a></h2>
-<pre><code class="language-javascript">return {
-  statusCode: 200,
-}
-</code></pre>
-<h2 id="return-value-on-failure"><a class="header" href="#return-value-on-failure">Return Value On Failure</a></h2>
-<pre><code class="language-javascript">return {
-  statusCode: 500,
-  error: &quot;Error Message&quot;
-}
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="getaccountmeals-1"><a class="header" href="#getaccountmeals-1">getAccountMeals</a></h1>
-<div class="table-wrapper"><table><thead><tr><th>Lambda ARN</th></tr></thead><tbody>
-<tr><td>arn:aws:lambda:eu-west-2:065472310374:function:getAccountMeals</td></tr>
-</tbody></table>
-</div>
-<h2 id="expected-input-shape-1"><a class="header" href="#expected-input-shape-1">Expected Input Shape</a></h2>
-<pre><code class="language-javascript">const event = {
- userID: String,
- limit: Integer, // Default 10
- lastPage: Integer // Default 0
-}
-</code></pre>
-<h2 id="return-value-on-success-1"><a class="header" href="#return-value-on-success-1">Return Value On Success</a></h2>
-<blockquote>
-<p>Meal Object structure outlined <a href="backend/lambda/../neptune/neptune_design.html#node-properties">here</a></p>
-</blockquote>
-<pre><code class="language-javascript">return {
-  statusCode: 200,
-  body: {
-   savedMeals: [Object, ...],
-   recentCookedMeals: [Object, ...],
-   lastPage: Integer // For pagination
-  }
-}
-</code></pre>
-<h2 id="return-value-on-failure-1"><a class="header" href="#return-value-on-failure-1">Return Value On Failure</a></h2>
-<pre><code class="language-javascript">return {
-  statusCode: 500,
-  error: &quot;Error Message&quot;
-}
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="getcategories-1"><a class="header" href="#getcategories-1">getCategories</a></h1>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Lambda ARN</th></tr></thead><tbody>
-<tr><td style="text-align: left">arn:aws:lambda:eu-west-2:065472310374:function:getCategories</td></tr>
-</tbody></table>
-</div>
-<h2 id="expected-input-shape-2"><a class="header" href="#expected-input-shape-2">Expected Input Shape</a></h2>
-<pre><code class="language-javascript">const event = {
-  limit: Integer,
-  lastPage: Integer
-}
-</code></pre>
-<h2 id="return-value-on-success-2"><a class="header" href="#return-value-on-success-2">Return Value On Success</a></h2>
-<blockquote>
-<p>Category Object structure outlined <a href="backend/lambda/../neptune/neptune_design.html#node-properties-4">here</a></p>
-</blockquote>
-<pre><code class="language-javascript">return {
-  statusCode: 200,
-  body: {
-    categories: [Object, ...],
-    lastPage: Integer
-  }
-}
-</code></pre>
-<h2 id="return-value-on-failure-2"><a class="header" href="#return-value-on-failure-2">Return Value On Failure</a></h2>
-<pre><code class="language-javascript">return {
-  statusCode: 500,
-  error: &quot;Error Message&quot;
-}
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="getcategoryimage-1"><a class="header" href="#getcategoryimage-1">getCategoryImage</a></h1>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Lambda ARN</th></tr></thead><tbody>
-<tr><td style="text-align: left">arn:aws:lambda:eu-west-2:065472310374:function:getCategoryImage</td></tr>
-</tbody></table>
-</div>
-<h2 id="expected-input-shape-3"><a class="header" href="#expected-input-shape-3">Expected Input Shape</a></h2>
-<pre><code class="language-javascript">const event = {
-  &quot;categoryID&quot;: String
-}
-</code></pre>
-<h2 id="return-value-on-success-3"><a class="header" href="#return-value-on-success-3">Return Value On Success</a></h2>
-<pre><code class="language-javascript">return {
-  statusCode: 200,
-  body: String // Base64 encoded image
-}
-</code></pre>
-<h2 id="return-value-on-failure-3"><a class="header" href="#return-value-on-failure-3">Return Value On Failure</a></h2>
-<pre><code class="language-javascript">return {
-  statusCode: 500,
-  error: &quot;Error Message&quot;
-}
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="getexplorepage-1"><a class="header" href="#getexplorepage-1">getExplorePage</a></h1>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Lambda ARN</th></tr></thead><tbody>
-<tr><td style="text-align: left">arn:aws:lambda:eu-west-2:065472310374:function:getExplorePage</td></tr>
-</tbody></table>
-</div>
-<h2 id="expected-input-shape-4"><a class="header" href="#expected-input-shape-4">Expected Input Shape</a></h2>
-<pre><code class="language-javascript">const event = {
- userID: String
-}
-</code></pre>
-<h2 id="return-value-on-success-4"><a class="header" href="#return-value-on-success-4">Return Value On Success</a></h2>
-<pre><code class="language-javascript">return {
-  statusCode: 200,
-  // All values returned below are IDs for database items
-  body: {
-    recentCategories: [String],
-    recentMeals: [String],
-    standardCategories: [String],
-    likedMeals: [String],
-    predictedMeals: String,
-  }
-}
-</code></pre>
-<h2 id="return-value-on-failure-4"><a class="header" href="#return-value-on-failure-4">Return Value On Failure</a></h2>
-<pre><code class="language-javascript">return {
-  statusCode: 500,
-  error: &quot;Error Message&quot;
-}
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="getingredients-1"><a class="header" href="#getingredients-1">getIngredients</a></h1>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Lambda ARN</th></tr></thead><tbody>
-<tr><td style="text-align: left">arn:aws:lambda:eu-west-2:065472310374:function:getIngredients</td></tr>
-</tbody></table>
-</div>
-<h2 id="expected-input-shape-5"><a class="header" href="#expected-input-shape-5">Expected Input Shape</a></h2>
-<pre><code class="language-javascript">const event = {
-  limit: Integer,
-  lastPage: Integer
-}
-</code></pre>
-<h2 id="return-value-on-success-5"><a class="header" href="#return-value-on-success-5">Return Value On Success</a></h2>
-<blockquote>
-<p>Ingredient Object structure outlined <a href="backend/lambda/../neptune/neptune_design.html#node-properties-2">here</a></p>
-</blockquote>
-<pre><code class="language-javascript">return {
-  statusCode: 200,
-  body: {
-    ingredients: [Object, ...],
-    lastPage: Integer
-  }
-}
-</code></pre>
-<h2 id="return-value-on-failure-5"><a class="header" href="#return-value-on-failure-5">Return Value On Failure</a></h2>
-<pre><code class="language-javascript">return {
-  statusCode: 500,
-  error: &quot;Error Message&quot;
-}
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="getmealimage-1"><a class="header" href="#getmealimage-1">getMealImage</a></h1>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Lambda ARN</th></tr></thead><tbody>
-<tr><td style="text-align: left">arn:aws:lambda:eu-west-2:065472310374:function:getMealImage</td></tr>
-</tbody></table>
-</div>
-<h2 id="expected-input-shape-6"><a class="header" href="#expected-input-shape-6">Expected Input Shape</a></h2>
-<pre><code class="language-javascript">const event = {
-  &quot;mealID&quot;: String
-}
-</code></pre>
-<h2 id="return-value-on-success-6"><a class="header" href="#return-value-on-success-6">Return Value On Success</a></h2>
-<pre><code class="language-javascript">return {
-  statusCode: 200,
-  body: String // Base64 encoded image
-}
-</code></pre>
-<h2 id="return-value-on-failure-6"><a class="header" href="#return-value-on-failure-6">Return Value On Failure</a></h2>
-<pre><code class="language-javascript">return {
-  statusCode: 500,
-  error: &quot;Error Message&quot;
-}
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="getmealsincategory-1"><a class="header" href="#getmealsincategory-1">getMealsInCategory</a></h1>
-<div class="table-wrapper"><table><thead><tr><th>Lambda ARN</th></tr></thead><tbody>
-<tr><td>arn:aws:lambda:eu-west-2:065472310374:function:getMealsInCategories</td></tr>
-</tbody></table>
-</div>
-<h2 id="expected-input-shape-7"><a class="header" href="#expected-input-shape-7">Expected Input Shape</a></h2>
-<pre><code class="language-javascript">const event = {
- userID: String,
- categoryID: String,
- limit: Integer,
- lastPage: Integer
-}
-</code></pre>
-<blockquote>
-<p>Meal Object structure outlined <a href="backend/lambda/../neptune/neptune_design.html#node-properties">here</a></p>
-</blockquote>
-<h2 id="return-value-on-success-7"><a class="header" href="#return-value-on-success-7">Return Value On Success</a></h2>
-<pre><code class="language-javascript">return {
-  statusCode: 200,
-  body: [Object, ...]
-}
-</code></pre>
-<h2 id="return-value-on-failure-7"><a class="header" href="#return-value-on-failure-7">Return Value On Failure</a></h2>
-<pre><code class="language-javascript">return {
-  statusCode: 500,
-  error: &quot;Error Message&quot;
-}
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="getmealinfo-1"><a class="header" href="#getmealinfo-1">getMealInfo</a></h1>
-<div class="table-wrapper"><table><thead><tr><th>Lambda ARN</th></tr></thead><tbody>
-<tr><td>arn:aws:lambda:eu-west-2:065472310374:function:getMealInfo</td></tr>
-</tbody></table>
-</div>
-<h2 id="expected-input-shape-8"><a class="header" href="#expected-input-shape-8">Expected Input Shape</a></h2>
-<pre><code class="language-javascript">const event = {
- mealID: String
-}
-</code></pre>
-<h2 id="return-value-on-success-8"><a class="header" href="#return-value-on-success-8">Return Value On Success</a></h2>
-<pre><code class="language-javascript">return {
-  statusCode: 200,
-  body: Image // Meal object
-}
-</code></pre>
-<blockquote>
-<p>Meal Object structure outlined <a href="backend/lambda/../neptune/neptune_design.html#node-properties">here</a></p>
-</blockquote>
-<h2 id="return-value-on-failure-8"><a class="header" href="#return-value-on-failure-8">Return Value On Failure</a></h2>
-<pre><code class="language-javascript">return {
-  statusCode: 500,
-  error: &quot;Error Message&quot;
-}
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="getqmsearch"><a class="header" href="#getqmsearch">getQMSearch</a></h1>
-<div class="table-wrapper"><table><thead><tr><th>Lambda ARN</th></tr></thead><tbody>
-<tr><td>arn:aws:lambda:eu-west-2:065472310374:function:getQMSearch</td></tr>
-</tbody></table>
-</div>
-<h2 id="expected-input-shape-9"><a class="header" href="#expected-input-shape-9">Expected Input Shape</a></h2>
-<pre><code class="language-javascript">const event = {
- userID: STR,
- ingredients: [STR], // Ingredients to search for
- session: OBJECT
-}  
-</code></pre>
-<h2 id="return-value-on-success-9"><a class="header" href="#return-value-on-success-9">Return Value On Success</a></h2>
-<pre><code class="language-javascript">return {
-  statusCode: 200,
-  body: [Object, ...] // Meal objects
-}
-</code></pre>
-<blockquote>
-<p>Meal Object structure outlined <a href="backend/lambda/../neptune/neptune_design.html#node-properties">here</a></p>
-</blockquote>
-<h2 id="return-value-on-failure-9"><a class="header" href="#return-value-on-failure-9">Return Value On Failure</a></h2>
-<pre><code class="language-javascript">return {
-  statusCode: 500,
-  error: &quot;Error Message&quot;
-}
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="ratemeal-1"><a class="header" href="#ratemeal-1">rateMeal</a></h1>
-<div class="table-wrapper"><table><thead><tr><th>Lambda ARN</th></tr></thead><tbody>
-<tr><td>arn:aws:lambda:eu-west-2:065472310374:function:rateMeal</td></tr>
-</tbody></table>
-</div>
-<h2 id="expected-input-shape-10"><a class="header" href="#expected-input-shape-10">Expected Input Shape</a></h2>
-<pre><code class="language-javascript">const event {
- userID: String,
- mealID: String,
- rating: Number
-}
-</code></pre>
-<h2 id="return-value-on-success-10"><a class="header" href="#return-value-on-success-10">Return Value On Success</a></h2>
-<pre><code class="language-javascript">return {
-  statusCode: 200,
-}
-</code></pre>
-<h2 id="return-value-on-failure-10"><a class="header" href="#return-value-on-failure-10">Return Value On Failure</a></h2>
-<pre><code class="language-javascript">return {
-  statusCode: 500,
-  error: &quot;Error Message&quot;
-}
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="savemeal-1"><a class="header" href="#savemeal-1">saveMeal</a></h1>
-<div class="table-wrapper"><table><thead><tr><th>Lambda ARN</th></tr></thead><tbody>
-<tr><td>arn:aws:lambda:eu-west-2:065472310374:function:saveMeal</td></tr>
-</tbody></table>
-</div>
-<h2 id="expected-input-shape-11"><a class="header" href="#expected-input-shape-11">Expected Input Shape</a></h2>
-<pre><code class="language-javascript">const event {
- userID: String,
- mealID: String
-}
-</code></pre>
-<h2 id="return-value-on-success-11"><a class="header" href="#return-value-on-success-11">Return Value On Success</a></h2>
-<pre><code class="language-javascript">return {
-  statusCode: 200,
-}
-</code></pre>
-<h2 id="return-value-on-failure-11"><a class="header" href="#return-value-on-failure-11">Return Value On Failure</a></h2>
-<pre><code class="language-javascript">return {
-  statusCode: 500,
-  error: &quot;Error Message&quot;
-}
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="setmetadata"><a class="header" href="#setmetadata">setMetadata</a></h1>
-<div class="table-wrapper"><table><thead><tr><th>Lambda ARN</th></tr></thead><tbody>
-<tr><td>arn:aws:lambda:eu-west-2:065472310374:function:setMetadata</td></tr>
-</tbody></table>
-</div>
-<h2 id="expected-input-shape-12"><a class="header" href="#expected-input-shape-12">Expected Input Shape</a></h2>
-<pre><code class="language-javascript">const event = {
- type: String,
- metadata: Object
-}
-</code></pre>
-<h2 id="return-value-on-success-12"><a class="header" href="#return-value-on-success-12">Return Value On Success</a></h2>
-<pre><code class="language-javascript">return {
-  statusCode: 200
-}
-</code></pre>
-<h2 id="return-value-on-failure-12"><a class="header" href="#return-value-on-failure-12">Return Value On Failure</a></h2>
-<pre><code class="language-javascript">return {
-  statusCode: 500,
-  error: &quot;Error Message&quot;
-}
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="usersignup"><a class="header" href="#usersignup">userSignUp</a></h1>
-<div class="table-wrapper"><table><thead><tr><th>Lambda ARN</th></tr></thead><tbody>
-<tr><td>arn:aws:lambda:eu-west-2:065472310374:function:userSignUp</td></tr>
-</tbody></table>
-</div>
-<h2 id="expected-input-shape-13"><a class="header" href="#expected-input-shape-13">Expected Input Shape</a></h2>
-<pre><code class="language-javascript">const event = {
- data: {
-   allergens?: [String, ...], // Optional list of user's allergens.
- }
-}
-</code></pre>
-<h2 id="return-value-on-success-13"><a class="header" href="#return-value-on-success-13">Return Value On Success</a></h2>
-<pre><code class="language-javascript">return {
-  statusCode: 200,
-  body: {
-   neptuneID: String // User's newly generated UUID
-  }
-}
-</code></pre>
-<h2 id="return-value-on-failure-13"><a class="header" href="#return-value-on-failure-13">Return Value On Failure</a></h2>
-<pre><code class="language-javascript">return {
-  statusCode: 500,
-  error: &quot;Error Message&quot;
-}
-</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="aws-code-pipelines"><a class="header" href="#aws-code-pipelines">AWS Code Pipelines</a></h1>
+<h2 id="pipeline-1-pushing-to-new-feature-branches"><a class="header" href="#pipeline-1-pushing-to-new-feature-branches">Pipeline 1: Pushing to new feature branches</a></h2>
+<h4 id="overview"><a class="header" href="#overview">Overview:</a></h4>
+<p>This pipeline is used to deploy infrastructure for new features for testing when you push to new feature branches. Builds only create new infrastructure and do not let you modify existing structure.</p>
+<h4 id="rules"><a class="header" href="#rules">Rules:</a></h4>
+<ul>
+<li>All Typescript code should be compiled before pushing the changes.</li>
+<li>All AWS CloudFormation templates should be written according to our documentation.</li>
+</ul>
+<h2 id="pipeline-2-development-to-staging"><a class="header" href="#pipeline-2-development-to-staging">Pipeline 2: Development to staging</a></h2>
+<h4 id="overview-1"><a class="header" href="#overview-1">Overview:</a></h4>
+<p>This pipeline is used to push newly developed and tested lambdas/layers to a staging (testing) environment when the changes are pushed to the development branch. Only infrastructure that has been changed is redeployed.</p>
+<h4 id="rules-1"><a class="header" href="#rules-1">Rules:</a></h4>
+<ul>
+<li>All Typescript code should be compiled before pushing the changes.</li>
+<li>All lambdas should be tested in development environments.</li>
+<li>All AWS CloudFormation templates should be written according to our documentation.</li>
+</ul>
+<h2 id="pipeline-3-staging-to-production"><a class="header" href="#pipeline-3-staging-to-production">Pipeline 3: Staging to production</a></h2>
+<h4 id="overview-2"><a class="header" href="#overview-2">Overview:</a></h4>
+<p>This is the final stage of the pipeline used to push well-tested and constructed code to production along with deploying new infrastructure. All infrastructure is redeployed entirely.</p>
+<h4 id="rules-2"><a class="header" href="#rules-2">Rules:</a></h4>
+<ul>
+<li>All Typescript code should be compiled before pushing the changes.</li>
+<li>All lambdas should be thoroughly tested in test environments.</li>
+<li>All AWS CloudFormation templates should be written according to our documentation.</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="neptune"><a class="header" href="#neptune">Neptune</a></h1>
 <p>TODO: Write stuff here.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="neptune-design-proposal"><a class="header" href="#neptune-design-proposal">Neptune Design Proposal</a></h1>
@@ -766,7 +241,7 @@ The advantage of having macros stored in the database is that we can make meal r
 <p>The JSON that stores a meal's information (not including the image) comes to an average size of about 500 bytes. Should we store this information as a node property, so the title and basic info of a meal can be returned and displayed to the client without waiting for the image to be returned from s3? It won't make much of a difference to the way our system works, but I think the potential benefit in user experience might be worth it. Particularly when internet connection is poor, a user won't have to wait for the image to download to see the meal's info, which will likely improve their experience.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="neptune-database-schema"><a class="header" href="#neptune-database-schema">Neptune Database Schema  <!-- omit from toc --></a></h1>
 <p>This document outlines the design details of the data that will be stored in our graph database</p>
-<h2 id="contents-1"><a class="header" href="#contents-1">Contents  <!-- omit from toc --></a></h2>
+<h2 id="contents"><a class="header" href="#contents">Contents  <!-- omit from toc --></a></h2>
 <ul>
 <li><a href="backend/neptune/neptune_design.html#nodes--relationships">Nodes &amp; Relationships</a>
 <ul>
@@ -938,7 +413,7 @@ The advantage of having macros stored in the database is that we can make meal r
 <p>This document outlines the functions that will be offered by our Neptune client/API, written in Javascript, and how they will work with regards to querying the graph.</p>
 <p>The final section also outlines which of the Neptune API functions will be used for our features (currently running in Lambda).</p>
 <p>I will add more documentation here as more requirements arise.</p>
-<h2 id="contents-2"><a class="header" href="#contents-2">Contents <!-- omit from toc --></a></h2>
+<h2 id="contents-1"><a class="header" href="#contents-1">Contents <!-- omit from toc --></a></h2>
 <ul>
 <li><a href="backend/neptune/neptune_api_design.html#getters">Getters</a>
 <ul>
@@ -1140,17 +615,17 @@ The advantage of having macros stored in the database is that we can make meal r
 </tbody></table>
 </div>
 <h2 id="frontend-features"><a class="header" href="#frontend-features">Frontend Features</a></h2>
-<h3 id="getaccountmeals-2"><a class="header" href="#getaccountmeals-2">getAccountMeals</a></h3>
+<h3 id="getaccountmeals"><a class="header" href="#getaccountmeals">getAccountMeals</a></h3>
 <p><a href="backend/neptune/neptune_api_design.html#getrecentcookedmealsuserid-limit"><code>getRecentCookedMeals</code></a> and <a href="backend/neptune/neptune_api_design.html#getsavedmealsuserid-limit-lastpage0"><code>getSavedMeals</code></a>, return results together.</p>
-<h3 id="getexplorepage-2"><a class="header" href="#getexplorepage-2">getExplorePage</a></h3>
+<h3 id="getexplorepage"><a class="header" href="#getexplorepage">getExplorePage</a></h3>
 <p><a href="backend/neptune/neptune_api_design.html#getrecentcookedmealsuserid-limit"><code>getRecentCookedMeals</code></a>, <a href="backend/neptune/neptune_api_design.html#getrecentviewedcategoriesuserid-limit-lastpage0"><code>getRecentViewedCategories</code></a>, <a href="backend/neptune/neptune_api_design.html#getcategorieslimit-lastpage0"><code>getCategories</code></a> and then <a href="backend/neptune/neptune_api_design.html#getsavedmealsuserid-limit-lastpage0"><code>getSavedMeals</code></a>. Return all results together.</p>
-<h3 id="getmealsincategory-2"><a class="header" href="#getmealsincategory-2">getMealsInCategory</a></h3>
+<h3 id="getmealsincategory"><a class="header" href="#getmealsincategory">getMealsInCategory</a></h3>
 <p>Run <a href="backend/neptune/neptune_api_design.html#userviewscategoryuserid-mealid"><code>userViewsCategory</code></a> and return results from <a href="backend/neptune/neptune_api_design.html#getmealsincategorycategoryid-limit-lastpage0"><code>getMealsInCategory</code></a>.</p>
 <h3 id="user-preferences-page"><a class="header" href="#user-preferences-page">User Preferences Page</a></h3>
 <p>Make use of <a href="backend/neptune/neptune_api_design.html#getuseringredientpreferencesuserid"><code>getUserIngredientPreferences</code></a> and <a href="backend/neptune/neptune_api_design.html#updateuseringredientpreferencesuserid-likes-dislikes"><code>updateUserIngredientPreferences</code></a> as needed.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="neptune-client"><a class="header" href="#neptune-client">Neptune Client <!-- omit from toc --></a></h1>
 <p>This document outlines the functions provided by our Javascript Neptune Client and their usages. Input arguments followed by a <code>?</code> question mark indicate that those arguments are <strong>optional</strong>.</p>
-<h2 id="contents-3"><a class="header" href="#contents-3">Contents <!-- omit from toc --></a></h2>
+<h2 id="contents-2"><a class="header" href="#contents-2">Contents <!-- omit from toc --></a></h2>
 <ul>
 <li><a href="backend/neptune/neptune_client.html#accessorsgetters">Accessors/Getters</a>
 <ul>
@@ -1178,13 +653,13 @@ The advantage of having macros stored in the database is that we can make meal r
 </li>
 </ul>
 <h2 id="accessorsgetters"><a class="header" href="#accessorsgetters">Accessors/Getters</a></h2>
-<h3 id="getingredients-2"><a class="header" href="#getingredients-2"><code>getIngredients</code></a></h3>
+<h3 id="getingredients"><a class="header" href="#getingredients"><code>getIngredients</code></a></h3>
 <p>Input: <code>(limit?=10: Integer, lastPage?=0: Integer)</code></p>
 <p>Returns: <code>{ ingredients: [Object, ...], lastPage: Integer }</code></p>
 <blockquote>
 <p>Ingredient Object structure outlined <a href="backend/neptune/../neptune/neptune_design.html#node-properties-2">here</a></p>
 </blockquote>
-<h3 id="getcategories-2"><a class="header" href="#getcategories-2"><code>getCategories</code></a></h3>
+<h3 id="getcategories"><a class="header" href="#getcategories"><code>getCategories</code></a></h3>
 <p>Input: <code>(limit?=10: Integer, lastPage?=0: Integer)</code></p>
 <p>Returns: <code>[categoryObject]</code></p>
 <blockquote>
@@ -1208,7 +683,7 @@ The advantage of having macros stored in the database is that we can make meal r
 <blockquote>
 <p>Meal Object structure outlined <a href="backend/neptune/../neptune/neptune_design.html#node-properties">here</a></p>
 </blockquote>
-<h3 id="getmealsincategory-3"><a class="header" href="#getmealsincategory-3"><code>getMealsInCategory</code></a></h3>
+<h3 id="getmealsincategory-1"><a class="header" href="#getmealsincategory-1"><code>getMealsInCategory</code></a></h3>
 <p>Input: <code>(categoryID: String)</code></p>
 <p>Returns: <code>[Object]</code>, meal objects</p>
 <blockquote>
@@ -1282,7 +757,7 @@ The advantage of having macros stored in the database is that we can make meal r
 <h3 id="userratesmeal"><a class="header" href="#userratesmeal"><code>userRatesMeal</code></a></h3>
 <p>Input: <code>(userID: String, mealID: String, rating: Number)</code></p>
 <p>Returns: <code>()</code></p>
-<h3 id="getquickmealssearch-1"><a class="header" href="#getquickmealssearch-1"><code>getQuickMealsSearch</code></a></h3>
+<h3 id="getquickmealssearch"><a class="header" href="#getquickmealssearch"><code>getQuickMealsSearch</code></a></h3>
 <p>Input: <code>(userID: String, ingredients: [String])</code></p>
 <p>Returns: <code>[Object]</code>, meal objects</p>
 <blockquote>
@@ -1314,127 +789,6 @@ The AWS Glue Crawler tool connects to your data sources and automatically discov
 <li>In the &quot;Location&quot; field of the table definition, specify the S3 location where the data is stored. </li>
 <li>Once the table is defined, we can start querying our data using SQL queries in Athena. The AWS Glue Data Catalog provides metadata about the data, such as column names, data types, and relationships between tables, which we can use in our queries.</li>
 </ol>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="dynamodb"><a class="header" href="#dynamodb">DynamoDB</a></h1>
-<h2 id="example-input-structure"><a class="header" href="#example-input-structure">Example Input Structure</a></h2>
-<pre><code class="language-javascript">//Example structure for writing to recently cooked meals:
-const item = {
-  userID: { S: `${userID}` },
-  mealID: { S: `${mealID}` },
-  lastUsed: { N: `${Date.now()}`}
-}
-</code></pre>
-<h2 id="tables"><a class="header" href="#tables">Tables</a></h2>
-<h3 id="recently-cooked-meals"><a class="header" href="#recently-cooked-meals">Recently Cooked Meals</a></h3>
-<p>Table Name: <code>cookly-user-recent-meals</code></p>
-<div class="table-wrapper"><table><thead><tr><th>Column</th><th>Description</th><th>Type</th></tr></thead><tbody>
-<tr><td>userID</td><td></td><td>str</td></tr>
-<tr><td>mealID</td><td></td><td>str</td></tr>
-<tr><td>lastUsed</td><td>UNIX timestamp format (ms since 01/01/1970)</td><td>int</td></tr>
-</tbody></table>
-</div>
-<h3 id="ingredients-table"><a class="header" href="#ingredients-table">Ingredients Table</a></h3>
-<p>Table Name: <code>cookly-ingredients</code></p>
-<div class="table-wrapper"><table><thead><tr><th>Column</th><th>Description</th><th>Type</th></tr></thead><tbody>
-<tr><td>ingredientID</td><td></td><td>str</td></tr>
-<tr><td>name</td><td>String name</td><td>str</td></tr>
-<tr><td>substitutions</td><td>List of ingredient IDs that can be substituted for this one</td><td>[int]</td></tr>
-</tbody></table>
-</div>
-<h3 id="categories"><a class="header" href="#categories">Categories</a></h3>
-<p>Table Name: <code>cookly-categories</code></p>
-<div class="table-wrapper"><table><thead><tr><th>Column</th><th>Description</th><th>Type</th></tr></thead><tbody>
-<tr><td>categoryID</td><td></td><td>str</td></tr>
-<tr><td>name</td><td>String name</td><td>str</td></tr>
-</tbody></table>
-</div>
-<h3 id="recently-used-categories"><a class="header" href="#recently-used-categories">Recently Used Categories</a></h3>
-<p>Table Name: <code>cookly-user-recent-categories</code></p>
-<div class="table-wrapper"><table><thead><tr><th>Column</th><th>Description</th><th>Type</th></tr></thead><tbody>
-<tr><td>userID</td><td></td><td>str</td></tr>
-<tr><td>categoryID</td><td></td><td>str</td></tr>
-<tr><td>lastUsed</td><td>UNIX timestamp format (ms since 01/01/1970)</td><td>int</td></tr>
-</tbody></table>
-</div>
-<h3 id="allergens"><a class="header" href="#allergens">Allergens</a></h3>
-<p>Table Name: <code>cookly-allergens</code></p>
-<div class="table-wrapper"><table><thead><tr><th>Column</th><th>Description</th><th>Type</th></tr></thead><tbody>
-<tr><td>allergenID</td><td></td><td>str</td></tr>
-<tr><td>name</td><td>String name</td><td>str</td></tr>
-<tr><td>ingredients</td><td>List of ingredient IDs which include this allergen</td><td>[int]</td></tr>
-</tbody></table>
-</div><div style="break-before: page; page-break-before: always;"></div><h1 id="s3-data-structures-and-other-information"><a class="header" href="#s3-data-structures-and-other-information">S3 Data Structures and Other Information</a></h1>
-<h3 id="s3-overview"><a class="header" href="#s3-overview">S3 Overview</a></h3>
-<p><strong>What is S3?</strong></p>
-<p>Simply put, S3 (Simple Storage Service) is an object storage service in the cloud.</p>
-<p><code>IMPORTANT: NOT A DATABASE</code></p>
-<p><strong>Storage in S3</strong></p>
-<p>Storage in S3 is not structured, and is considered a data lake where data is stored in a single file</p>
-<p><code>Note: files and paths are for UI ease of use only</code></p>
-<h3 id="our-s3-storage-structure"><a class="header" href="#our-s3-storage-structure">Our S3 Storage Structure</a></h3>
-<div class="table-wrapper"><table><thead><tr><th>Bucket</th><th>Folders</th><th>Keys</th></tr></thead><tbody>
-<tr><td><code>Metadata</code></td><td><code>Session</code>, <code>Features</code></td><td>Session: <code>users/${userID}/sessions/${sessionID}</code>, Features: <code>users/${userID}/features/${feature}/${sessionID}</code></td></tr>
-<tr><td><code>Content</code></td><td><code>Images</code>, <code>Main_Content</code>, <code>Method</code></td><td>Images: <code>Image_${MealId}</code>, Main_Content: <code>Main_Content_${MealId}</code>, Method: <code>Method_${MealId}</code></td></tr>
-</tbody></table>
-</div>
-<h3 id="metadata-standard-structure"><a class="header" href="#metadata-standard-structure">Metadata standard structure</a></h3>
-<p><strong>For Feature metadata</strong></p>
-<pre><code class="language-javascript">{
-  userID: 
-  time:
-  request: // information to do with request e.g. ingredients for quick meals search
-  sessionMetadata: // device, sessionID etc
-}
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="meal-data"><a class="header" href="#meal-data">Meal Data</a></h1>
-<p>Information about meals is currently planned to be stored as JSON with the following format:</p>
-<pre><code class="language-javascript">{
-  name: String,
-  description: String,
-  prepTime: Integer, // In minutes
-  cookTime: Integer, // In minutes
-  serves: Integer, // Number of servings this recipe makes
-  rating: Number,
-  macros: {
-    kcal: Number,
-    fat: Number,
-    saturates: Number,
-    carbs: Number,
-    sugars: Number,
-    fibre: Number,
-    protein: Number,
-    salt: Number
-  },
-  sections: [&quot;For the sauce&quot;, &quot;For the garnish&quot;, String, ...]
-  ingredients: {
-    &quot;0&quot;: {
-      id: String, sectionName: String,
-      name: String, quantity: Number,
-      unit: String, notes: String
-    },  
-    // 'notes' e.g 'chopped', 'finely diced', 'to taste'
-    &quot;1&quot;: {
-      id: String, sectionName: String,
-      name: String, quantity: Number,
-      unit: String, notes: String
-    }
-  }
-  method: [
-    {
-      ingredientSection: String, //E.g &quot;For the sauce&quot;, so we can
-        // display the right ingredients somewhere on screen, outside of
-        // the specifics in the instruction
-      ingredientsReferenced: [String, String],
-      // Being the strings used to as keys in ingredients: {}
-      instruction: String
-    },
-    {
-      ingredientSection: String,
-      ingredientsReferenced: [String, String],
-      instruction: String
-    }
-  ]
-}
-</code></pre>
 
                     </main>
 
