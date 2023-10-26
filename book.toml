@@ -1,0 +1,12 @@
+[book]
+authors = ["willbowden", "0xFarted"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Bracket Engineering Docs"
+
+[build]
+build-dir="./docs"
+
+[output.html]
+cname="docs.bracket.software"
