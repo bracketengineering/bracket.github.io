@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../../frontend/frontend_prefix.html"><strong aria-hidden="true">1.</strong> Frontend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../frontend/api/cognito.html"><strong aria-hidden="true">1.1.</strong> Cognito Via Amplify</a></li><li class="chapter-item expanded "><a href="../../frontend/api/api_caller.html"><strong aria-hidden="true">1.2.</strong> API Caller</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../frontend/api/generic_call.html"><strong aria-hidden="true">1.2.1.</strong> #genericCall()</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../backend/backend_prefix.html"><strong aria-hidden="true">2.</strong> Backend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../backend/infrastructure.html"><strong aria-hidden="true">2.1.</strong> Infrastructure</a></li><li class="chapter-item expanded "><a href="../../backend/cicd/cicd.html" class="active"><strong aria-hidden="true">2.2.</strong> CI/CD</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune.html"><strong aria-hidden="true">2.3.</strong> Neptune</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../backend/neptune/design_proposal.html"><strong aria-hidden="true">2.3.1.</strong> Design Proposal</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_design.html"><strong aria-hidden="true">2.3.2.</strong> Database Schema</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_api_design.html"><strong aria-hidden="true">2.3.3.</strong> API Design</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_client.html"><strong aria-hidden="true">2.3.4.</strong> Neptune Client</a></li></ol></li><li class="chapter-item expanded "><a href="../../backend/data_analytics/data_analytics.html"><strong aria-hidden="true">2.4.</strong> Data Analytics</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../frontend/frontend_prefix.html"><strong aria-hidden="true">1.</strong> Frontend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../frontend/api/cognito.html"><strong aria-hidden="true">1.1.</strong> Cognito Via Amplify</a></li><li class="chapter-item expanded "><a href="../../frontend/api/api_caller.html"><strong aria-hidden="true">1.2.</strong> API Caller</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../frontend/api/generic_call.html"><strong aria-hidden="true">1.2.1.</strong> #genericCall()</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../backend/backend_prefix.html"><strong aria-hidden="true">2.</strong> Backend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../backend/infrastructure.html"><strong aria-hidden="true">2.1.</strong> Infrastructure</a></li><li class="chapter-item expanded "><a href="../../backend/cicd/cicd.html" class="active"><strong aria-hidden="true">2.2.</strong> CI/CD</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../backend/CICD/setup.html"><strong aria-hidden="true">2.2.1.</strong> Setup</a></li></ol></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune.html"><strong aria-hidden="true">2.3.</strong> Neptune</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../backend/neptune/design_proposal.html"><strong aria-hidden="true">2.3.1.</strong> Design Proposal</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_design.html"><strong aria-hidden="true">2.3.2.</strong> Database Schema</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_api_design.html"><strong aria-hidden="true">2.3.3.</strong> API Design</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_client.html"><strong aria-hidden="true">2.3.4.</strong> Neptune Client</a></li></ol></li><li class="chapter-item expanded "><a href="../../backend/data_analytics/data_analytics.html"><strong aria-hidden="true">2.4.</strong> Data Analytics</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -143,31 +143,43 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="aws-code-pipelines"><a class="header" href="#aws-code-pipelines">AWS Code Pipelines</a></h1>
-<h2 id="pipeline-1-pushing-to-new-feature-branches"><a class="header" href="#pipeline-1-pushing-to-new-feature-branches">Pipeline 1: Pushing to new feature branches</a></h2>
-<h4 id="overview"><a class="header" href="#overview">Overview:</a></h4>
-<p>This pipeline is used to deploy infrastructure for new features for testing when you push to new feature branches. Builds only create new infrastructure and do not let you modify existing structure.</p>
-<h4 id="rules"><a class="header" href="#rules">Rules:</a></h4>
+<h2 id="pipeline-1-pushing-to-development-from-feature-branches"><a class="header" href="#pipeline-1-pushing-to-development-from-feature-branches">Pipeline 1: Pushing to Development from feature Branches</a></h2>
+<h3 id="overview"><a class="header" href="#overview">Overview:</a></h3>
 <ul>
-<li>All Typescript code should be compiled before pushing the changes.</li>
-<li>All AWS CloudFormation templates should be written according to our documentation.</li>
+<li>When you push to development from a feature branch, the Code Pipeline will run the unit tests, figure out what has changed from the last commit, package up the changed code, and then place it in S3. </li>
+<li>It will then invoke a Lambda function that will then deploy the infrastructure based on the Cloudformation SAM templates.</li>
 </ul>
-<h2 id="pipeline-2-development-to-staging"><a class="header" href="#pipeline-2-development-to-staging">Pipeline 2: Development to staging</a></h2>
-<h4 id="overview-1"><a class="header" href="#overview-1">Overview:</a></h4>
-<p>This pipeline is used to push newly developed and tested lambdas/layers to a staging (testing) environment when the changes are pushed to the development branch. Only infrastructure that has been changed is redeployed.</p>
-<h4 id="rules-1"><a class="header" href="#rules-1">Rules:</a></h4>
+<h3 id="rules"><a class="header" href="#rules">Rules:</a></h3>
+<ol>
+<li>Treat pushing to development as if it were production.</li>
+<li>Ensure all code being pushed to development is complete and working.</li>
+<li>When working on feature branches, only change what you are meant to be working on with that branch. If you need to change code outside the remit of that feature make a new branch from development.</li>
+</ol>
+<hr />
+<h2 id="pipeline-2-pushing-to-testing-from-development"><a class="header" href="#pipeline-2-pushing-to-testing-from-development">Pipeline 2: Pushing to Testing from Development</a></h2>
+<h3 id="overview-1"><a class="header" href="#overview-1">Overview:</a></h3>
 <ul>
-<li>All Typescript code should be compiled before pushing the changes.</li>
-<li>All lambdas should be tested in development environments.</li>
-<li>All AWS CloudFormation templates should be written according to our documentation.</li>
+<li>When changes from development are pushed into testing, it will rerun all the unit tests along with all of the integration tests which will test things like APIs, Redux thunks, DataStore etc.</li>
+<li>Once the tests pass, the Pipeline will package up the code by feature and place it in s3. It will then invoke a lambda function that will deploy the infrastructure by feature to allow for easy but granular roll backs.</li>
+<li>The pipeline will also automatically push a new version of the app to TestFlight.</li>
 </ul>
-<h2 id="pipeline-3-staging-to-production"><a class="header" href="#pipeline-3-staging-to-production">Pipeline 3: Staging to production</a></h2>
-<h4 id="overview-2"><a class="header" href="#overview-2">Overview:</a></h4>
-<p>This is the final stage of the pipeline used to push well-tested and constructed code to production along with deploying new infrastructure. All infrastructure is redeployed entirely.</p>
-<h4 id="rules-2"><a class="header" href="#rules-2">Rules:</a></h4>
+<h3 id="rules-1"><a class="header" href="#rules-1">Rules:</a></h3>
 <ul>
-<li>All Typescript code should be compiled before pushing the changes.</li>
-<li>All lambdas should be thoroughly tested in test environments.</li>
-<li>All AWS CloudFormation templates should be written according to our documentation.</li>
+<li>Only changes from development can be pushed into testing</li>
+</ul>
+<hr />
+<h2 id="pipeline-3-pushing-to-production-from-testing"><a class="header" href="#pipeline-3-pushing-to-production-from-testing">Pipeline 3: Pushing to Production from Testing</a></h2>
+<h3 id="overview-2"><a class="header" href="#overview-2">Overview:</a></h3>
+<ul>
+<li>When changes are pushed into production from testing, the pipeline will run all the tests to ensure nothing has snuck in. </li>
+<li>Once tests pass, the Pipeline will package up all of the cloudformation templates and source code and place it all in S3. </li>
+<li>It will then invoke a lambda function that will build a singular cloudformation file from all of the cloudformation templates in S3.</li>
+<li>It will then invoke another lambda function that will pass this single template to cloudformation to be deployed.</li>
+<li>Once complete it will also trigger a build and submit of the front end app to the appstore</li>
+</ul>
+<h3 id="rules-2"><a class="header" href="#rules-2">Rules:</a></h3>
+<ul>
+<li>Only changes from testing can be pushed into production</li>
 </ul>
 
                     </main>
@@ -178,7 +190,7 @@
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="../../backend/neptune/neptune.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../../backend/CICD/setup.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -192,7 +204,7 @@
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="../../backend/neptune/neptune.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../../backend/CICD/setup.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
