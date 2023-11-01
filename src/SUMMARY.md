@@ -8,7 +8,7 @@
 - [Backend](./backend/backend_prefix.md)
   - [Infrastructure](./backend/infrastructure.md)
   - [CI/CD](./backend/cicd/cicd.md)
-    - [Setup](./backend/CICD/setup.md)
+    - [Setup](./backend/cicd/setup.md)
   - [Neptune](./backend/neptune/neptune.md)
     - [Design Proposal](./backend/neptune/design_proposal.md)
     - [Database Schema](./backend/neptune/neptune_design.md)
