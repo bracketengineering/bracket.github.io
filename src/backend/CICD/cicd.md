@@ -1,30 +1,38 @@
 # AWS Code Pipelines
 
-## Pipeline 1: Pushing to new feature branches
+## Pipeline 1: Pushing to Development from feature Branches
 
-#### Overview: 
-This pipeline is used to deploy infrastructure for new features for testing when you push to new feature branches. Builds only create new infrastructure and do not let you modify existing structure.
+### Overview:
+- When you push to development from a feature branch, the Code Pipeline will run the unit tests, figure out what has changed from the last commit, package up the changed code, and then place it in S3. 
+- It will then invoke a Lambda function that will then deploy the infrastructure based on the Cloudformation SAM templates.
 
-#### Rules:
-- All Typescript code should be compiled before pushing the changes.
-- All AWS CloudFormation templates should be written according to our documentation.
+### Rules: 
+1. Treat pushing to development as if it were production.
+2. Ensure all code being pushed to development is complete and working.
+3. When working on feature branches, only change what you are meant to be working on with that branch. If you need to change code outside the remit of that feature make a new branch from development.
 
-## Pipeline 2: Development to staging
+---
 
-#### Overview:
-This pipeline is used to push newly developed and tested lambdas/layers to a staging (testing) environment when the changes are pushed to the development branch. Only infrastructure that has been changed is redeployed.
+## Pipeline 2: Pushing to Testing from Development
 
-#### Rules:
-- All Typescript code should be compiled before pushing the changes.
-- All lambdas should be tested in development environments.
-- All AWS CloudFormation templates should be written according to our documentation.
+### Overview: 
+- When changes from development are pushed into testing, it will rerun all the unit tests along with all of the integration tests which will test things like APIs, Redux thunks, DataStore etc.
+- Once the tests pass, the Pipeline will package up the code by feature and place it in s3. It will then invoke a lambda function that will deploy the infrastructure by feature to allow for easy but granular roll backs.
+- The pipeline will also automatically push a new version of the app to TestFlight.
 
-## Pipeline 3: Staging to production
+### Rules:
+- Only changes from development can be pushed into testing
 
-#### Overview:
-This is the final stage of the pipeline used to push well-tested and constructed code to production along with deploying new infrastructure. All infrastructure is redeployed entirely.
+---
 
-#### Rules:
-- All Typescript code should be compiled before pushing the changes.
-- All lambdas should be thoroughly tested in test environments.
-- All AWS CloudFormation templates should be written according to our documentation.
+## Pipeline 3: Pushing to Production from Testing
+
+### Overview: 
+- When changes are pushed into production from testing, the pipeline will run all the tests to ensure nothing has snuck in. 
+- Once tests pass, the Pipeline will package up all of the cloudformation templates and source code and place it all in S3. 
+- It will then invoke a lambda function that will build a singular cloudformation file from all of the cloudformation templates in S3.
+- It will then invoke another lambda function that will pass this single template to cloudformation to be deployed.
+- Once complete it will also trigger a build and submit of the front end app to the appstore
+
+### Rules:
+- Only changes from testing can be pushed into production
