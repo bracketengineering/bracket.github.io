@@ -70,10 +70,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -81,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../../frontend/frontend_prefix.html"><strong aria-hidden="true">1.</strong> Frontend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../frontend/api/cognito.html"><strong aria-hidden="true">1.1.</strong> Cognito Via Amplify</a></li><li class="chapter-item expanded "><a href="../../frontend/api/api_caller.html"><strong aria-hidden="true">1.2.</strong> API Caller</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../frontend/api/generic_call.html"><strong aria-hidden="true">1.2.1.</strong> #genericCall()</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../backend/backend_prefix.html"><strong aria-hidden="true">2.</strong> Backend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../backend/infrastructure.html"><strong aria-hidden="true">2.1.</strong> Infrastructure</a></li><li class="chapter-item expanded "><a href="../../backend/cicd/cicd.html"><strong aria-hidden="true">2.2.</strong> CI/CD</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../backend/cicd/setup.html"><strong aria-hidden="true">2.2.1.</strong> Setup</a></li></ol></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune.html"><strong aria-hidden="true">2.3.</strong> Neptune</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../backend/neptune/design_proposal.html"><strong aria-hidden="true">2.3.1.</strong> Design Proposal</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_design.html"><strong aria-hidden="true">2.3.2.</strong> Database Schema</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_api_design.html"><strong aria-hidden="true">2.3.3.</strong> API Design</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_client.html"><strong aria-hidden="true">2.3.4.</strong> Neptune Client</a></li></ol></li><li class="chapter-item expanded "><a href="../../backend/data_analytics/data_analytics.html" class="active"><strong aria-hidden="true">2.4.</strong> Data Analytics</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../frontend/frontend_prefix.html"><strong aria-hidden="true">1.</strong> Frontend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../frontend/api/cognito.html"><strong aria-hidden="true">1.1.</strong> Cognito Via Amplify</a></li><li class="chapter-item expanded "><a href="../../frontend/api/api_caller.html"><strong aria-hidden="true">1.2.</strong> API Caller</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../frontend/api/generic_call.html"><strong aria-hidden="true">1.2.1.</strong> #genericCall()</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../backend/backend_prefix.html"><strong aria-hidden="true">2.</strong> Backend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../backend/infrastructure.html"><strong aria-hidden="true">2.1.</strong> Infrastructure</a></li><li class="chapter-item expanded "><a href="../../backend/cicd/cicd.html"><strong aria-hidden="true">2.2.</strong> CI/CD</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../backend/cicd/setup.html"><strong aria-hidden="true">2.2.1.</strong> Setup</a></li></ol></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune.html"><strong aria-hidden="true">2.3.</strong> Neptune</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../backend/neptune/design_proposal.html"><strong aria-hidden="true">2.3.1.</strong> Design Proposal</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_design.html"><strong aria-hidden="true">2.3.2.</strong> Database Schema</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_api_design.html"><strong aria-hidden="true">2.3.3.</strong> API Design</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_client.html"><strong aria-hidden="true">2.3.4.</strong> Neptune Client</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_macros.html"><strong aria-hidden="true">2.3.5.</strong> Macro Data</a></li></ol></li><li class="chapter-item expanded "><a href="../../backend/data_analytics/data_analytics.html" class="active"><strong aria-hidden="true">2.4.</strong> Data Analytics</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -173,7 +175,7 @@ The AWS Glue Crawler tool connects to your data sources and automatically discov
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../backend/neptune/neptune_client.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../backend/neptune/neptune_macros.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
@@ -184,7 +186,7 @@ The AWS Glue Crawler tool connects to your data sources and automatically discov
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../backend/neptune/neptune_client.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../backend/neptune/neptune_macros.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
@@ -192,6 +194,22 @@ The AWS Glue Crawler tool connects to your data sources and automatically discov
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 

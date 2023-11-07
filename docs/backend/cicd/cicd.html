@@ -70,10 +70,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -81,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../../frontend/frontend_prefix.html"><strong aria-hidden="true">1.</strong> Frontend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../frontend/api/cognito.html"><strong aria-hidden="true">1.1.</strong> Cognito Via Amplify</a></li><li class="chapter-item expanded "><a href="../../frontend/api/api_caller.html"><strong aria-hidden="true">1.2.</strong> API Caller</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../frontend/api/generic_call.html"><strong aria-hidden="true">1.2.1.</strong> #genericCall()</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../backend/backend_prefix.html"><strong aria-hidden="true">2.</strong> Backend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../backend/infrastructure.html"><strong aria-hidden="true">2.1.</strong> Infrastructure</a></li><li class="chapter-item expanded "><a href="../../backend/cicd/cicd.html" class="active"><strong aria-hidden="true">2.2.</strong> CI/CD</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../backend/cicd/setup.html"><strong aria-hidden="true">2.2.1.</strong> Setup</a></li></ol></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune.html"><strong aria-hidden="true">2.3.</strong> Neptune</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../backend/neptune/design_proposal.html"><strong aria-hidden="true">2.3.1.</strong> Design Proposal</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_design.html"><strong aria-hidden="true">2.3.2.</strong> Database Schema</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_api_design.html"><strong aria-hidden="true">2.3.3.</strong> API Design</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_client.html"><strong aria-hidden="true">2.3.4.</strong> Neptune Client</a></li></ol></li><li class="chapter-item expanded "><a href="../../backend/data_analytics/data_analytics.html"><strong aria-hidden="true">2.4.</strong> Data Analytics</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../frontend/frontend_prefix.html"><strong aria-hidden="true">1.</strong> Frontend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../frontend/api/cognito.html"><strong aria-hidden="true">1.1.</strong> Cognito Via Amplify</a></li><li class="chapter-item expanded "><a href="../../frontend/api/api_caller.html"><strong aria-hidden="true">1.2.</strong> API Caller</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../frontend/api/generic_call.html"><strong aria-hidden="true">1.2.1.</strong> #genericCall()</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../backend/backend_prefix.html"><strong aria-hidden="true">2.</strong> Backend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../backend/infrastructure.html"><strong aria-hidden="true">2.1.</strong> Infrastructure</a></li><li class="chapter-item expanded "><a href="../../backend/cicd/cicd.html" class="active"><strong aria-hidden="true">2.2.</strong> CI/CD</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../backend/cicd/setup.html"><strong aria-hidden="true">2.2.1.</strong> Setup</a></li></ol></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune.html"><strong aria-hidden="true">2.3.</strong> Neptune</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../backend/neptune/design_proposal.html"><strong aria-hidden="true">2.3.1.</strong> Design Proposal</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_design.html"><strong aria-hidden="true">2.3.2.</strong> Database Schema</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_api_design.html"><strong aria-hidden="true">2.3.3.</strong> API Design</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_client.html"><strong aria-hidden="true">2.3.4.</strong> Neptune Client</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_macros.html"><strong aria-hidden="true">2.3.5.</strong> Macro Data</a></li></ol></li><li class="chapter-item expanded "><a href="../../backend/data_analytics/data_analytics.html"><strong aria-hidden="true">2.4.</strong> Data Analytics</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -142,45 +144,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="aws-code-pipelines"><a class="header" href="#aws-code-pipelines">AWS Code Pipelines</a></h1>
-<h2 id="pipeline-1-pushing-to-development-from-feature-branches"><a class="header" href="#pipeline-1-pushing-to-development-from-feature-branches">Pipeline 1: Pushing to Development from feature Branches</a></h2>
-<h3 id="overview"><a class="header" href="#overview">Overview:</a></h3>
-<ul>
-<li>When you push to development from a feature branch, the Code Pipeline will run the unit tests, figure out what has changed from the last commit, package up the changed code, and then place it in S3. </li>
-<li>It will then invoke a Lambda function that will then deploy the infrastructure based on the Cloudformation SAM templates.</li>
-</ul>
-<h3 id="rules"><a class="header" href="#rules">Rules:</a></h3>
-<ol>
-<li>Treat pushing to development as if it were production.</li>
-<li>Ensure all code being pushed to development is complete and working.</li>
-<li>When working on feature branches, only change what you are meant to be working on with that branch. If you need to change code outside the remit of that feature make a new branch from development.</li>
-</ol>
-<hr />
-<h2 id="pipeline-2-pushing-to-testing-from-development"><a class="header" href="#pipeline-2-pushing-to-testing-from-development">Pipeline 2: Pushing to Testing from Development</a></h2>
-<h3 id="overview-1"><a class="header" href="#overview-1">Overview:</a></h3>
-<ul>
-<li>When changes from development are pushed into testing, it will rerun all the unit tests along with all of the integration tests which will test things like APIs, Redux thunks, DataStore etc.</li>
-<li>Once the tests pass, the Pipeline will package up the code by feature and place it in s3. It will then invoke a lambda function that will deploy the infrastructure by feature to allow for easy but granular roll backs.</li>
-<li>The pipeline will also automatically push a new version of the app to TestFlight.</li>
-</ul>
-<h3 id="rules-1"><a class="header" href="#rules-1">Rules:</a></h3>
-<ul>
-<li>Only changes from development can be pushed into testing</li>
-</ul>
-<hr />
-<h2 id="pipeline-3-pushing-to-production-from-testing"><a class="header" href="#pipeline-3-pushing-to-production-from-testing">Pipeline 3: Pushing to Production from Testing</a></h2>
-<h3 id="overview-2"><a class="header" href="#overview-2">Overview:</a></h3>
-<ul>
-<li>When changes are pushed into production from testing, the pipeline will run all the tests to ensure nothing has snuck in. </li>
-<li>Once tests pass, the Pipeline will package up all of the cloudformation templates and source code and place it all in S3. </li>
-<li>It will then invoke a lambda function that will build a singular cloudformation file from all of the cloudformation templates in S3.</li>
-<li>It will then invoke another lambda function that will pass this single template to cloudformation to be deployed.</li>
-<li>Once complete it will also trigger a build and submit of the front end app to the appstore</li>
-</ul>
-<h3 id="rules-2"><a class="header" href="#rules-2">Rules:</a></h3>
-<ul>
-<li>Only changes from testing can be pushed into production</li>
-</ul>
+                        <h1 id="cicd"><a class="header" href="#cicd">CI/CD</a></h1>
 
                     </main>
 
@@ -211,6 +175,22 @@
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 
