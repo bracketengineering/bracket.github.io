@@ -185,28 +185,54 @@ Description: SAM Template for {lambdaFunction_name}
   CommitHash:
     Description: The commit hash for the Lambda deployment package
     Type: String
+  Branch:
+    Description: The branch for the Lambda deployment package
+    Type: String
+  APINAME:
+    Description: The name of the API Gateway
+    Type: String
+    Default: &quot;API_NAME&quot; # Change this to name of API
+  APIARN:
+    Description: The ARN of the API Gateway
+    Type: String
+    Default: &quot;arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${APINAME}&quot;
+  APIENDPOINT:
+    Description: The endpoint of the API Gateway
+    Type: String
+    Default: &quot;API_ENDPOINT_NAME&quot; # name of endpoint path
+    # should be same as lambda function in form `get-explore-page`
+  FunctionName:
+    Description: The name of the Lambda function
+    Type: String
+    Default: &quot;FUNCTION_NAME&quot; # replace this with actual function name
+  Feature:
+    Description: The feature name
+    Type: String
+    Default: &quot;FEATURE_NAME&quot; # replace this with the name of the feature that this lambda function is under (name of parent folder)
 </code></pre>
 <h3 id="resources"><a class="header" href="#resources">Resources:</a></h3>
 <p>The resources part of the template is where you define the lambda functions, the versions, the alias's and the APIs.</p>
 <h5 id="lambda-function"><a class="header" href="#lambda-function">Lambda Function:</a></h5>
-<pre><code class="language-yaml">function: # variable name for the function you are making
-  Type: AWS::Serverless::Function 
+<pre><code class="language-yaml">function:
+  Type: AWS::Serverless::Function
   Properties:
-    CodeUri: # where the source code is stored in S3
-      Bucket: !Ref BucketName
-      Key: !Sub &quot;${LambdaFunctionName}/${CommitHash}/src.zip&quot;
-    FunctionName: {function_name} 
-    Handler: {file_name.function_name} # see below
-    Description: An AWS Lambda function
-    Role: {role_arn} # arn of the role in IAM
-    Runtime: {runtime} # either nodejs18.x or python3.11
-    Timeout: 3 # number of seconds before lambda function timesout
-    MemorySize: 128 # RAM in MB
-    Architectures: # always leave as arm64 (uses graviton 2 chip this way)
-      - 'arm64'
+    FunctionName: !Ref FunctionName
+    Description: An AWS Lambda function that ...
+    CodeUri: # where code for lambda function is stored
+      Bucket: &quot;cookly-deployment-builds&quot;
+      Key: !Sub &quot;${Branch}/${Feature}/${FunctionName}/${CommitHash}.zip&quot;
+    Role: arn:aws:iam::${AWS::AccountId}:role/cookly-lambda-neptune-get # role for lambda function to assume
+    Handler: lambda_function.lambda_handler # See below
+    Runtime: nodejs18.x # runtime - for Python use `python3.11`
+    Timeout: 5 # time out in seconds
+    MemorySize: 128 # RAM in MB (must be &gt;= 128MB)
+    Architectures:
+      - &quot;arm64&quot; # always use arm
+    Layers: # list of layers for lambda function to use
+      - arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:layer:neptune-client:49
 </code></pre>
 <ul>
-<li><code>file_name.function_name</code>: the file name of the lambda function and the name of the handler function. 
+<li><code>file_name.function_name</code>: the file name of the lambda function and the name of the handler function.
 <ul>
 <li>For Python: <code>lambda_function.function_handler</code></li>
 <li>For JavaScript: <code>index.handler</code></li>
@@ -214,54 +240,61 @@ Description: SAM Template for {lambdaFunction_name}
 </li>
 </ul>
 <h5 id="lambda-function-aliass-and-versions"><a class="header" href="#lambda-function-aliass-and-versions">Lambda Function Alias's and Versions</a></h5>
-<pre><code class="language-yaml">functionVersion:
+<pre><code class="language-yaml"># Lambda function version
+version:
   Type: AWS::Lambda::Version
+  DependsOn: function
   Properties:
     FunctionName: !Ref function
+    Description: !Sub &quot;Version for ${CommitHash}.&quot; # leave as this
 
-# Lambda function alias for Development
-DevelopmentAlias:
+# Lambda function alias
+alias:
   Type: AWS::Lambda::Alias
+  DeletionPolicy: Retain
   Properties:
     FunctionName: !Ref function
-    FunctionVersion: !GetAtt functionVersion.Version 
-    Name: &quot;Development&quot; # this is the only bit you have to change
+    FunctionVersion: !GetAtt version.Version
+    Name: &quot;Production&quot; # leave as production for all lambda functions
+
+    # config for provisioned concurrency.
+    # Remove this whole bit if there is no Provisioned concurrency for this lambda function.
+    ProvisionedConcurrencyConfig:
+      ProvisionedConcurrentExecutions: 3
+    # REMEMBER TO DELETE THIS IF NO CONCURRENCY NEEDED
 </code></pre>
 <h5 id="api"><a class="header" href="#api">API</a></h5>
-<pre><code class="language-yaml"># API Gateway setup
-Api:
-  Type: AWS::ApiGateway::RestApi
-  Properties:
-    Name: {API-Name}
-    Description: Description for the API
-
-# API Gateway resource
-ApiResource:
+<pre><code class="language-yaml"># API Gateway setup ASSUMING API IS ALREADY CREATED
+apiResouce:
   Type: AWS::ApiGateway::Resource
   Properties:
-    RestApiId: !Ref Api
-    ParentId: !GetAtt Api.RootResourceId
-    PathPart: !Ref ApiResourceName
+    ParentId: !GetAtt MyApi.RootResourceId
+    PathPart: &quot;ENDPOINT_NAME&quot; # the endpoint in your API of the lambda function
+    RestApiId: !Ref APIARN
 
-# API Gateway method
-ApiMethod:
+apiMethod:
   Type: AWS::ApiGateway::Method
   Properties:
-    RestApiId: !Ref Api
-    ResourceId: !Ref ApiResource
-    HttpMethod: {METHOD} # GET, POST, PUT etc. 
-    AuthorizationType: &quot;IAM&quot; # If test api that will be deleted use &quot;NONE&quot;
+    HttpMethod: POST # Request type of method (GET/POST/PUT etc)
+    ResourceId: !Ref apiResouce
+    RestApiId: !Ref APIARN
+    AuthorizationType: AWS_IAM
     Integration:
-      Type: &quot;AWS&quot;
-      IntegrationHttpMethod: &quot;POST&quot; # will usually always be post 
-      Uri: !Sub &quot;arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/${function.Arn}/invocations&quot;
-      PassthroughBehavior: &quot;WHEN_NO_MATCH&quot;
-      RequestTemplates:
-        application/json: '{&quot;statusCode&quot;: 200}'
+      IntegrationHttpMethod: POST # Almost always leave as post
+      Type: AWS_PROXY
+      Uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${function.Arn}:Production/invocations
     MethodResponses:
       - StatusCode: &quot;200&quot;
-        ResponseModels:
-          application/json: &quot;Empty&quot;
+      - StatusCode: &quot;400&quot;
+      - StatusCode: &quot;500&quot;
+
+LambdaInvokePermission:
+  Type: AWS::Lambda::Permission
+  Properties:
+    Action: lambda:InvokeFunction
+    FunctionName: !Ref function
+    Principal: apigateway.amazonaws.com
+    SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${APINAME}/*/POST/ENDPOINT_NAME
 </code></pre>
 <ul>
 <li>Shouldnt have to change most of the API gateway template for most lambda function integrations.</li>
