@@ -381,7 +381,11 @@ Parameters:
     Description: The feature name
     Type: String
     Default: &quot;FEATURE_NAME&quot; # replace this with the name of the feature that this lambda function is under (name of parent folder)
-  
+  RootResouceID:
+    Description: The ID of the root resource of the API Gateway
+    Type: String
+    Default: &quot;ROOT_ID&quot; # replace this with the ID of the root resource of the API Gateway
+
 
 Resources:
   function:
@@ -429,8 +433,8 @@ Resources:
   apiResouce:
     Type: AWS::ApiGateway::Resource
     Properties:
-      ParentId: !GetAtt MyApi.RootResourceId
-      PathPart: &quot;ENDPOINT_NAME&quot; # the endpoint in your API of the lambda function
+      ParentId: !Ref RootResouceID
+      PathPart: !Ref APIENDPOINT&quot; # the endpoint in your API of the lambda function
       RestApiId: !Ref APIARN
 
   apiMethod:
