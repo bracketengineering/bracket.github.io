@@ -70,12 +70,10 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = null;
+            var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
-            } else {
-                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -144,7 +142,130 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="setup"><a class="header" href="#setup">Setup</a></h1>
+                        <h1 id="overview"><a class="header" href="#overview">Overview</a></h1>
+<p>This is an overview of how we will be using cloudformation templates using SAM (Serverless Application Model). Below there are some guides on how to format a template, the components of a template and how to modify it to a specific functionality.</p>
+<hr />
+<h3 id="cloudformation"><a class="header" href="#cloudformation">CloudFormation</a></h3>
+<p>CloudFormation is an Infrastructure as Code (IaC) service provided by AWS that deploys infrastructure to the cloud for you usually via YAML templates.</p>
+<h3 id="sam-serverless-application-model"><a class="header" href="#sam-serverless-application-model">SAM (Serverless Application Model)</a></h3>
+<p>AWS SAM is an open-source framework developed by AWS for building serverless applications. It extends AWS CloudFormation to offer a simplified way of defining the Amazon API Gateway APIs, AWS Lambda functions, and Amazon DynamoDB tables needed by a serverless application.</p>
+<hr />
+<h1 id="how-we-are-using-cloudformation-and-sam"><a class="header" href="#how-we-are-using-cloudformation-and-sam">How we are using CloudFormation and SAM</a></h1>
+<h2 id="directories"><a class="header" href="#directories">Directories</a></h2>
+<p>We are using YAML files to define our resources to be passed to CloudFormation to be deployed.</p>
+<p>The file structure of Lambda functions must be as follows:</p>
+<pre><code>lambdas
+└───── {lambda_name}
+        └───── src/
+                └───── {functionCodeFile}
+        └───── template.yml
+</code></pre>
+<ul>
+<li>Where {lambda_name} is the name of the lambda function</li>
+<li>{functionCodeFile} is the actual code for the lambda function. The table below details the names that these files should take depending on the language:</li>
+</ul>
+<div class="table-wrapper"><table><thead><tr><th>Language</th><th>File Name</th></tr></thead><tbody>
+<tr><td>JavaScript</td><td><code>index.mjs</code></td></tr>
+<tr><td>Python</td><td><code>lambda_function.py</code></td></tr>
+</tbody></table>
+</div>
+<p>Example:
+<img src="./directory_example.png" alt="example" /></p>
+<hr />
+<h2 id="templateyml-files"><a class="header" href="#templateyml-files">Template.yml Files</a></h2>
+<h4 id="transformations"><a class="header" href="#transformations">Transformations:</a></h4>
+<p>CloudFormation templates that use SAM must be transformed from SAM syntax to plain CloudFormation syntax. To do this you need to include some instructions at the top of the template to instruct CloudFormation on how to convert the template.</p>
+<pre><code class="language-yaml">AWSTemplateFormatVersion: &quot;2010-09-09&quot;
+Transform: AWS::Serverless-2016-10-31
+Description: SAM Template for {lambdaFunction_name}
+</code></pre>
+<h4 id="parameters"><a class="header" href="#parameters">Parameters:</a></h4>
+<p>CloudFormation templates can be passed parameters that can be used in the template. In all of the templates, the Code Pipeline we use to build these templates passes the current GitHub commit hash to the template so that the template can get the correct version of the code from S3.</p>
+<pre><code class="language-yaml">Parameters:
+  CommitHash:
+    Description: The commit hash for the Lambda deployment package
+    Type: String
+</code></pre>
+<h3 id="resources"><a class="header" href="#resources">Resources:</a></h3>
+<p>The resources part of the template is where you define the lambda functions, the versions, the alias's and the APIs.</p>
+<h5 id="lambda-function"><a class="header" href="#lambda-function">Lambda Function:</a></h5>
+<pre><code class="language-yaml">function: # variable name for the function you are making
+  Type: AWS::Serverless::Function 
+  Properties:
+    CodeUri: # where the source code is stored in S3
+      Bucket: !Ref BucketName
+      Key: !Sub &quot;${LambdaFunctionName}/${CommitHash}/src.zip&quot;
+    FunctionName: {function_name} 
+    Handler: {file_name.function_name} # see below
+    Description: An AWS Lambda function
+    Role: {role_arn} # arn of the role in IAM
+    Runtime: {runtime} # either nodejs18.x or python3.11
+    Timeout: 3 # number of seconds before lambda function timesout
+    MemorySize: 128 # RAM in MB
+    Architectures: # always leave as arm64 (uses graviton 2 chip this way)
+      - 'arm64'
+</code></pre>
+<ul>
+<li><code>file_name.function_name</code>: the file name of the lambda function and the name of the handler function. 
+<ul>
+<li>For Python: <code>lambda_function.function_handler</code></li>
+<li>For JavaScript: <code>index.handler</code></li>
+</ul>
+</li>
+</ul>
+<h5 id="lambda-function-aliass-and-versions"><a class="header" href="#lambda-function-aliass-and-versions">Lambda Function Alias's and Versions</a></h5>
+<pre><code class="language-yaml">functionVersion:
+  Type: AWS::Lambda::Version
+  Properties:
+    FunctionName: !Ref function
+
+# Lambda function alias for Development
+DevelopmentAlias:
+  Type: AWS::Lambda::Alias
+  Properties:
+    FunctionName: !Ref function
+    FunctionVersion: !GetAtt functionVersion.Version 
+    Name: &quot;Development&quot; # this is the only bit you have to change
+</code></pre>
+<h5 id="api"><a class="header" href="#api">API</a></h5>
+<pre><code class="language-yaml"># API Gateway setup
+Api:
+  Type: AWS::ApiGateway::RestApi
+  Properties:
+    Name: {API-Name}
+    Description: Description for the API
+
+# API Gateway resource
+ApiResource:
+  Type: AWS::ApiGateway::Resource
+  Properties:
+    RestApiId: !Ref Api
+    ParentId: !GetAtt Api.RootResourceId
+    PathPart: !Ref ApiResourceName
+
+# API Gateway method
+ApiMethod:
+  Type: AWS::ApiGateway::Method
+  Properties:
+    RestApiId: !Ref Api
+    ResourceId: !Ref ApiResource
+    HttpMethod: {METHOD} # GET, POST, PUT etc. 
+    AuthorizationType: &quot;IAM&quot; # If test api that will be deleted use &quot;NONE&quot;
+    Integration:
+      Type: &quot;AWS&quot;
+      IntegrationHttpMethod: &quot;POST&quot; # will usually always be post 
+      Uri: !Sub &quot;arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/${function.Arn}/invocations&quot;
+      PassthroughBehavior: &quot;WHEN_NO_MATCH&quot;
+      RequestTemplates:
+        application/json: '{&quot;statusCode&quot;: 200}'
+    MethodResponses:
+      - StatusCode: &quot;200&quot;
+        ResponseModels:
+          application/json: &quot;Empty&quot;
+</code></pre>
+<ul>
+<li>Shouldnt have to change most of the API gateway template for most lambda function integrations.</li>
+</ul>
 
                     </main>
 
@@ -175,22 +296,6 @@
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script>
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
 
 
 
