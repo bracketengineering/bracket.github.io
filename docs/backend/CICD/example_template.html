@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>API Caller - Bracket Engineering Docs</title>
+        <title>Exmample Template - Bracket Engineering Docs</title>
 
 
         <!-- Custom HTML head -->
@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../../frontend/frontend_prefix.html"><strong aria-hidden="true">1.</strong> Frontend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../frontend/api/cognito.html"><strong aria-hidden="true">1.1.</strong> Cognito Via Amplify</a></li><li class="chapter-item expanded "><a href="../../frontend/api/api_caller.html" class="active"><strong aria-hidden="true">1.2.</strong> API Caller</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../frontend/api/generic_call.html"><strong aria-hidden="true">1.2.1.</strong> #genericCall()</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../backend/backend_prefix.html"><strong aria-hidden="true">2.</strong> Backend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../backend/infrastructure.html"><strong aria-hidden="true">2.1.</strong> Infrastructure</a></li><li class="chapter-item expanded "><a href="../../backend/cicd/cicd.html"><strong aria-hidden="true">2.2.</strong> CI/CD</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../backend/cicd/setup.html"><strong aria-hidden="true">2.2.1.</strong> Setup</a></li><li class="chapter-item expanded "><a href="../../backend/cicd/example_template.html"><strong aria-hidden="true">2.2.2.</strong> Exmample Template</a></li></ol></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune.html"><strong aria-hidden="true">2.3.</strong> Neptune</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../backend/neptune/design_proposal.html"><strong aria-hidden="true">2.3.1.</strong> Design Proposal</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_design.html"><strong aria-hidden="true">2.3.2.</strong> Database Schema</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_api_design.html"><strong aria-hidden="true">2.3.3.</strong> API Design</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_client.html"><strong aria-hidden="true">2.3.4.</strong> Neptune Client</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_macros.html"><strong aria-hidden="true">2.3.5.</strong> Macro Data</a></li></ol></li><li class="chapter-item expanded "><a href="../../backend/data_analytics/data_analytics.html"><strong aria-hidden="true">2.4.</strong> Data Analytics</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../frontend/frontend_prefix.html"><strong aria-hidden="true">1.</strong> Frontend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../frontend/api/cognito.html"><strong aria-hidden="true">1.1.</strong> Cognito Via Amplify</a></li><li class="chapter-item expanded "><a href="../../frontend/api/api_caller.html"><strong aria-hidden="true">1.2.</strong> API Caller</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../frontend/api/generic_call.html"><strong aria-hidden="true">1.2.1.</strong> #genericCall()</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../backend/backend_prefix.html"><strong aria-hidden="true">2.</strong> Backend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../backend/infrastructure.html"><strong aria-hidden="true">2.1.</strong> Infrastructure</a></li><li class="chapter-item expanded "><a href="../../backend/cicd/cicd.html"><strong aria-hidden="true">2.2.</strong> CI/CD</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../backend/cicd/setup.html"><strong aria-hidden="true">2.2.1.</strong> Setup</a></li><li class="chapter-item expanded "><a href="../../backend/cicd/example_template.html" class="active"><strong aria-hidden="true">2.2.2.</strong> Exmample Template</a></li></ol></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune.html"><strong aria-hidden="true">2.3.</strong> Neptune</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../backend/neptune/design_proposal.html"><strong aria-hidden="true">2.3.1.</strong> Design Proposal</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_design.html"><strong aria-hidden="true">2.3.2.</strong> Database Schema</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_api_design.html"><strong aria-hidden="true">2.3.3.</strong> API Design</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_client.html"><strong aria-hidden="true">2.3.4.</strong> Neptune Client</a></li><li class="chapter-item expanded "><a href="../../backend/neptune/neptune_macros.html"><strong aria-hidden="true">2.3.5.</strong> Macro Data</a></li></ol></li><li class="chapter-item expanded "><a href="../../backend/data_analytics/data_analytics.html"><strong aria-hidden="true">2.4.</strong> Data Analytics</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -142,17 +142,126 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="api-caller"><a class="header" href="#api-caller">API Caller</a></h1>
+                        <h1 id="example-cloudformation-template"><a class="header" href="#example-cloudformation-template">Example Cloudformation Template</a></h1>
+<pre><code class="language-yaml">AWSTemplateFormatVersion: &quot;2010-09-09&quot;
+Transform: AWS::Serverless-2016-10-31
+Description: SAM Template for {lambdaFunction_name}
+
+Parameters:
+  CommitHash:
+    Description: The commit hash for the Lambda deployment package
+    Type: String
+  Branch:
+    Description: The branch for the Lambda deployment package
+    Type: String
+  APINAME:
+    Description: The name of the API Gateway
+    Type: String
+    Default: &quot;API_NAME&quot; # Change this to name of API
+  APIARN:
+    Description: The ARN of the API Gateway
+    Type: String
+    Default: &quot;arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${APINAME}&quot;
+  APIENDPOINT:
+    Description: The endpoint of the API Gateway
+    Type: String
+    Default: &quot;API_ENDPOINT_NAME&quot; # name of endpoint path
+    # should be same as lambda function in form `get-explore-page`
+  FunctionName:
+    Description: The name of the Lambda function
+    Type: String
+    Default: &quot;FUNCTION_NAME&quot; # replace this with actual function name
+  Feature:
+    Description: The feature name
+    Type: String
+    Default: &quot;FEATURE_NAME&quot; # replace this with the name of the feature that this lambda function is under (name of parent folder)
+  
+
+Resources:
+  function:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Ref FunctionName
+      Description: An AWS Lambda function that ...
+      CodeUri: # where code for lambda function is stored
+        Bucket: &quot;cookly-deployment-builds&quot;
+        Key: !Sub &quot;${Branch}/${Feature}/${FunctionName}/${CommitHash}.zip&quot;
+      Role: arn:aws:iam::${AWS::AccountId}:role/cookly-lambda-neptune-get # role for lambda function to assume
+      Handler: index.handler # handler for lambda function - (for python use `lambda_function.lambda_handler`)
+      Runtime: nodejs18.x # runtime - (for Python use `python3.11`)
+      Timeout: 5 # time out in seconds
+      MemorySize: 128 # RAM in MB (must be &gt;= 128MB)
+      Architectures:
+        - &quot;arm64&quot; # always use arm
+      Layers: # list of layers for lambda function to use
+        - arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:layer:neptune-client:49
+
+  # Lambda function version
+  version:
+    Type: AWS::Lambda::Version
+    DependsOn: function
+    Properties:
+      FunctionName: !Ref function
+      Description: !Sub &quot;Version for ${CommitHash}.&quot; # leave as this
+
+  # Lambda function alias
+  alias:
+    Type: AWS::Lambda::Alias
+    DeletionPolicy: Retain
+    Properties:
+      FunctionName: !Ref function
+      FunctionVersion: !GetAtt version.Version
+      Name: &quot;Production&quot; # leave as production for all lambda functions
+
+      # config for provisioned concurrency.
+      # Remove this whole bit if there is no Provisioned concurrency for this lambda function.
+      ProvisionedConcurrencyConfig:
+        ProvisionedConcurrentExecutions: 3
+      # REMEMBER TO DELETE THIS IF NO CONCURRENCY NEEDED
+
+  # API Gateway setup ASSUMING API IS ALREADY CREATED
+  apiResouce:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId: !GetAtt MyApi.RootResourceId
+      PathPart: &quot;ENDPOINT_NAME&quot; # the endpoint in your API of the lambda function
+      RestApiId: !Ref APIARN
+
+  apiMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      HttpMethod: POST # Request type of method (GET/POST/PUT etc)
+      ResourceId: !Ref apiResouce
+      RestApiId: !Ref APIARN
+      AuthorizationType: AWS_IAM
+      Integration:
+        IntegrationHttpMethod: POST # Almost always leave as post
+        Type: AWS_PROXY
+        Uri: !Sub arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${function.Arn}:Production/invocations
+      MethodResponses:
+        - StatusCode: &quot;200&quot;
+        - StatusCode: &quot;400&quot;
+        - StatusCode: &quot;500&quot;
+
+  LambdaInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref function
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${APINAME}/*/POST/ENDPOINT_NAME
+
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../frontend/api/cognito.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../backend/cicd/setup.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="../../frontend/api/generic_call.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../../backend/neptune/neptune.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -162,11 +271,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../frontend/api/cognito.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../backend/cicd/setup.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="../../frontend/api/generic_call.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../../backend/neptune/neptune.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
