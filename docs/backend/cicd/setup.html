@@ -222,7 +222,7 @@ Description: SAM Template for {lambdaFunction_name}
       Bucket: &quot;cookly-deployment-builds&quot;
       Key: !Sub &quot;${Branch}/${Feature}/${FunctionName}/${CommitHash}.zip&quot;
     Role: arn:aws:iam::${AWS::AccountId}:role/cookly-lambda-neptune-get # role for lambda function to assume
-    Handler: lambda_function.lambda_handler # See below
+    Handler: index.handler # handler for lambda function - (for python use `lambda_function.lambda_handler`)
     Runtime: nodejs18.x # runtime - for Python use `python3.11`
     Timeout: 5 # time out in seconds
     MemorySize: 128 # RAM in MB (must be &gt;= 128MB)
