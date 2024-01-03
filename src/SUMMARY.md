@@ -1,9 +1,11 @@
 # Summary
 
+- [CLI Tool](./Cookly-CLI-Tool/cookly-cli.md)
 - [Frontend](./frontend/frontend_prefix.md)
+
   - [Cognito Via Amplify](./frontend/api/cognito.md)
   - [API Caller](./frontend/api/api_caller.md)
-      - [#genericCall()](./frontend/api/generic_call.md)
+    - [#genericCall()](./frontend/api/generic_call.md)
 
 - [Backend](./backend/backend_prefix.md)
   - [Infrastructure](./backend/infrastructure.md)
