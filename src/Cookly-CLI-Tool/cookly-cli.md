@@ -48,18 +48,12 @@ gh auth login
 
 **On Mac**
 ```bash
-
-gh release download --clobber -p '*_macos' -R bracketengineering/cookly-cli -O ~/cookly-cli-src-macos
-sudo mv ~/cookly-cli-src-macos /usr/local/bin/cookly
-chmod +x /usr/local/bin/cookly
-
+sudo gh release download --clobber -p '*_macos' -R bracketengineering/cookly-cli -O /usr/local/bin/cookly && chmod +x /usr/local/bin/cookly
 ```
 
 **On Linux**
 ```bash
-gh release download --clobber -p '*_linux' -R bracketengineering/cookly-cli -O ~/cookly-cli-src-linux
-sudo mv ~/cookly-cli-src-linux /usr/local/bin/cookly
-sudo chmod +x /usr/local/bin/cookly
+sudo gh release download --clobber -p '*_linux' -R bracketengineering/cookly-cli -O /usr/local/bin/cookly && sudo chmod +x /usr/local/bin/cookly
 ```
 
 
