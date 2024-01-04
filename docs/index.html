@@ -176,16 +176,10 @@ To do this run:</p>
 </code></pre>
 <h3 id="run-the-following-in-your-terminal-to-install-the-cookly-cli"><a class="header" href="#run-the-following-in-your-terminal-to-install-the-cookly-cli">Run the following in your terminal to install the cookly-cli</a></h3>
 <p><strong>On Mac</strong></p>
-<pre><code class="language-bash">
-gh release download --clobber -p '*_macos' -R bracketengineering/cookly-cli -O ~/cookly-cli-src-macos
-sudo mv ~/cookly-cli-src-macos /usr/local/bin/cookly
-chmod +x /usr/local/bin/cookly
-
+<pre><code class="language-bash">sudo gh release download --clobber -p '*_macos' -R bracketengineering/cookly-cli -O /usr/local/bin/cookly &amp;&amp; sudo chmod +x /usr/local/bin/cookly
 </code></pre>
 <p><strong>On Linux</strong></p>
-<pre><code class="language-bash">gh release download --clobber -p '*_linux' -R bracketengineering/cookly-cli -O ~/cookly-cli-src-linux
-sudo mv ~/cookly-cli-src-linux /usr/local/bin/cookly
-sudo chmod +x /usr/local/bin/cookly
+<pre><code class="language-bash">sudo gh release download --clobber -p '*_linux' -R bracketengineering/cookly-cli -O /usr/local/bin/cookly &amp;&amp; sudo chmod +x /usr/local/bin/cookly
 </code></pre>
 
                     </main>
