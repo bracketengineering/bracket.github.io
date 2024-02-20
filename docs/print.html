@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="Cookly-CLI-Tool/cookly-cli.html"><strong aria-hidden="true">1.</strong> CLI Tool</a></li><li class="chapter-item expanded "><a href="frontend/frontend_prefix.html"><strong aria-hidden="true">2.</strong> Frontend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="frontend/api/cognito.html"><strong aria-hidden="true">2.1.</strong> Cognito Via Amplify</a></li><li class="chapter-item expanded "><a href="frontend/api/api_caller.html"><strong aria-hidden="true">2.2.</strong> API Caller</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="frontend/api/generic_call.html"><strong aria-hidden="true">2.2.1.</strong> #genericCall()</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="backend/backend_prefix.html"><strong aria-hidden="true">3.</strong> Backend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="backend/infrastructure.html"><strong aria-hidden="true">3.1.</strong> Infrastructure</a></li><li class="chapter-item expanded "><a href="backend/cicd/cicd.html"><strong aria-hidden="true">3.2.</strong> CI/CD</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="backend/cicd/setup.html"><strong aria-hidden="true">3.2.1.</strong> Setup</a></li><li class="chapter-item expanded "><a href="backend/cicd/example_template.html"><strong aria-hidden="true">3.2.2.</strong> Example Template</a></li></ol></li><li class="chapter-item expanded "><a href="backend/neptune/neptune.html"><strong aria-hidden="true">3.3.</strong> Neptune</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="backend/neptune/design_proposal.html"><strong aria-hidden="true">3.3.1.</strong> Design Proposal</a></li><li class="chapter-item expanded "><a href="backend/neptune/neptune_design.html"><strong aria-hidden="true">3.3.2.</strong> Database Schema</a></li><li class="chapter-item expanded "><a href="backend/neptune/neptune_api_design.html"><strong aria-hidden="true">3.3.3.</strong> API Design</a></li><li class="chapter-item expanded "><a href="backend/neptune/neptune_client.html"><strong aria-hidden="true">3.3.4.</strong> Neptune Client</a></li><li class="chapter-item expanded "><a href="backend/neptune/neptune_macros.html"><strong aria-hidden="true">3.3.5.</strong> Macro Data</a></li></ol></li><li class="chapter-item expanded "><a href="backend/data_analytics/data_analytics.html"><strong aria-hidden="true">3.4.</strong> Data Analytics</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="Cookly-CLI-Tool/cookly-cli.html"><strong aria-hidden="true">1.</strong> CLI Tool</a></li><li class="chapter-item expanded "><a href="frontend/frontend_prefix.html"><strong aria-hidden="true">2.</strong> Frontend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="frontend/api/cognito.html"><strong aria-hidden="true">2.1.</strong> Cognito Via Amplify</a></li><li class="chapter-item expanded "><a href="frontend/api/api_caller.html"><strong aria-hidden="true">2.2.</strong> API Caller</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="frontend/api/generic_call.html"><strong aria-hidden="true">2.2.1.</strong> #genericCall()</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="backend/backend_prefix.html"><strong aria-hidden="true">3.</strong> Backend</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="backend/appRunner/apprunner.html"><strong aria-hidden="true">3.1.</strong> AppRunner</a></li><li class="chapter-item expanded "><a href="backend/cicd/cicd.html"><strong aria-hidden="true">3.2.</strong> CI/CD</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="backend/cicd/setup.html"><strong aria-hidden="true">3.2.1.</strong> Setup</a></li><li class="chapter-item expanded "><a href="backend/cicd/example_template.html"><strong aria-hidden="true">3.2.2.</strong> Example Template</a></li></ol></li><li class="chapter-item expanded "><a href="backend/neptune/neptune.html"><strong aria-hidden="true">3.3.</strong> Neptune</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="backend/neptune/design_proposal.html"><strong aria-hidden="true">3.3.1.</strong> Design Proposal</a></li><li class="chapter-item expanded "><a href="backend/neptune/neptune_design.html"><strong aria-hidden="true">3.3.2.</strong> Database Schema</a></li><li class="chapter-item expanded "><a href="backend/neptune/neptune_api_design.html"><strong aria-hidden="true">3.3.3.</strong> API Design</a></li><li class="chapter-item expanded "><a href="backend/neptune/neptune_client.html"><strong aria-hidden="true">3.3.4.</strong> Neptune Client</a></li><li class="chapter-item expanded "><a href="backend/neptune/neptune_macros.html"><strong aria-hidden="true">3.3.5.</strong> Macro Data</a></li></ol></li><li class="chapter-item expanded "><a href="backend/data_analytics/data_analytics.html"><strong aria-hidden="true">3.4.</strong> Data Analytics</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -187,10 +187,298 @@ To do this run:</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="api-caller"><a class="header" href="#api-caller">API Caller</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="genericcall"><a class="header" href="#genericcall">#genericCall()</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="backend"><a class="header" href="#backend">Backend</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="infrastructure"><a class="header" href="#infrastructure">Infrastructure</a></h1>
-<p>Our Infrastructure is laid out in the image below.
-We make use of AWS for all of our storage, computing, user authentication, and analytics.</p>
-<p><img src="backend/Infrastructure-diagram.png" alt="Infrastructure Diagram" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="app-runner-api-reference"><a class="header" href="#app-runner-api-reference"> App Runner API Reference </a></h1>
+<h4 id="endpoints"><a class="header" href="#endpoints"> Endpoints </a></h4>
+<ul>
+<li><a href="backend/appRunner/apprunner.html#account-page">Account Page</a>
+<ul>
+<li><a href="backend/appRunner/apprunner.html#getaccountmeals">getAccountMeals</a>
+<ul>
+<li><a href="backend/appRunner/apprunner.html#request">Request</a></li>
+<li><a href="backend/appRunner/apprunner.html#response">Response</a></li>
+<li><a href="backend/appRunner/apprunner.html#container-function-definition">Container function definition</a></li>
+<li><a href="backend/appRunner/apprunner.html#api-endpoint-path">API Endpoint Path</a></li>
+</ul>
+</li>
+<li><a href="backend/appRunner/apprunner.html#getuserallergens">getUserAllergens</a>
+<ul>
+<li><a href="backend/appRunner/apprunner.html#request-1">Request</a></li>
+<li><a href="backend/appRunner/apprunner.html#response-1">Response</a></li>
+<li><a href="backend/appRunner/apprunner.html#container-function-definition-1">Container function definition</a></li>
+<li><a href="backend/appRunner/apprunner.html#api-endpoint-path-1">API Endpoint Path</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="backend/appRunner/apprunner.html#explore-page">Explore Page</a>
+<ul>
+<li><a href="backend/appRunner/apprunner.html#getexplorepage">getExplorePage</a>
+<ul>
+<li><a href="backend/appRunner/apprunner.html#request-2">Request</a></li>
+<li><a href="backend/appRunner/apprunner.html#response-2">Response</a></li>
+<li><a href="backend/appRunner/apprunner.html#container-function-definition-2">Container function definition</a></li>
+<li><a href="backend/appRunner/apprunner.html#api-endpoint-path-2">API Endpoint Path</a></li>
+</ul>
+</li>
+<li><a href="backend/appRunner/apprunner.html#getmealsincategory">getMealsInCategory</a>
+<ul>
+<li><a href="backend/appRunner/apprunner.html#request-3">Request</a></li>
+<li><a href="backend/appRunner/apprunner.html#response-3">Response</a></li>
+<li><a href="backend/appRunner/apprunner.html#container-function-definition-3">Container function definition</a></li>
+<li><a href="backend/appRunner/apprunner.html#api-endpoint-path-3">API Endpoint Path</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="backend/appRunner/apprunner.html#general">General</a>
+<ul>
+<li><a href="backend/appRunner/apprunner.html#getcategories">getCategories</a>
+<ul>
+<li><a href="backend/appRunner/apprunner.html#request-4">Request</a></li>
+<li><a href="backend/appRunner/apprunner.html#response-4">Response</a></li>
+<li><a href="backend/appRunner/apprunner.html#container-function-definition-4">Container function definition</a></li>
+<li><a href="backend/appRunner/apprunner.html#api-endpoint-path-4">API Endpoint Path</a></li>
+</ul>
+</li>
+<li><a href="backend/appRunner/apprunner.html#getmealinfo">getMealInfo</a>
+<ul>
+<li><a href="backend/appRunner/apprunner.html#request-5">Request</a></li>
+<li><a href="backend/appRunner/apprunner.html#response-5">Response</a></li>
+<li><a href="backend/appRunner/apprunner.html#container-function-definition-5">Container function definition</a></li>
+<li><a href="backend/appRunner/apprunner.html#api-endpoint-path-5">API Endpoint Path</a></li>
+</ul>
+</li>
+<li><a href="backend/appRunner/apprunner.html#outputcustomneptunemeal">OutputCustomNeptuneMeal</a></li>
+<li><a href="backend/appRunner/apprunner.html#outputneptunemeal">OutputNeptuneMeal</a></li>
+<li><a href="backend/appRunner/apprunner.html#outputneptuneingredient">OutputNeptuneIngredient</a></li>
+<li><a href="backend/appRunner/apprunner.html#outputneptunemacrodata">OutputNeptuneMacroData</a></li>
+<li><a href="backend/appRunner/apprunner.html#outputneptunecategory">OutputNeptuneCategory</a></li>
+<li><a href="backend/appRunner/apprunner.html#explorepagelimitsandlps">ExplorePageLimitsAndLPs</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="types"><a class="header" href="#types"> Types </a></h4>
+<ul>
+<li><a href="backend/appRunner/apprunner.html#outputcustomneptunemeal">OutputCustomNeptuneMeal</a></li>
+<li><a href="backend/appRunner/apprunner.html#outputneptunemeal">OutputNeptuneMeal</a></li>
+<li><a href="backend/appRunner/apprunner.html#outputneptuneingredient">OutputNeptuneIngredient</a></li>
+<li><a href="backend/appRunner/apprunner.html#outputneptunemacrodata">OutputNeptuneMacroData</a></li>
+<li><a href="backend/appRunner/apprunner.html#outputneptunecategory">OutputNeptuneCategory</a></li>
+<li><a href="backend/appRunner/apprunner.html#explorepagelimitsandlps">ExplorePageLimitsAndLPs</a></li>
+</ul>
+<!-- #### Types
+- [OutputNeptuneMeal](#outputneptunemeal)  -->
+<hr />
+<h1 id="endpoints-1"><a class="header" href="#endpoints-1"> Endpoints </a></h1>
+<h2 id="account-page"><a class="header" href="#account-page">Account Page</a></h2>
+<h4 id="getaccountmeals"><a class="header" href="#getaccountmeals">getAccountMeals</a></h4>
+<details>
+<h6 id="request"><a class="header" href="#request">Request</a></h6>
+<pre><code class="language-go">{
+    &quot;userID&quot;:   string
+    &quot;limit&quot;:    int
+    &quot;lastPage&quot;: int
+}
+</code></pre>
+<h6 id="response"><a class="header" href="#response">Response</a></h6>
+<pre><code class="language-go">{
+    &quot;savedMeals&quot;: [OutputNeptuneMeal]
+    &quot;limit&quot;:      int
+    &quot;lastPage&quot;:   int
+}
+</code></pre>
+<ul>
+<li><a href="backend/appRunner/apprunner.html#outputneptunemeal">OutputNeptuneMeal</a></li>
+</ul>
+<h6 id="container-function-definition"><a class="header" href="#container-function-definition">Container function definition</a></h6>
+<pre><code class="language-go">func (p *ConnPool) GetAccountMeals(c *gin.Context) 
+</code></pre>
+<h6 id="api-endpoint-path"><a class="header" href="#api-endpoint-path">API Endpoint Path</a></h6>
+<pre><code class="language-go">&quot;/accountPage/getAccountMeals&quot;
+</code></pre>
+</details>
+<h4 id="getuserallergens"><a class="header" href="#getuserallergens">getUserAllergens</a></h4>
+<details>
+<h6 id="request-1"><a class="header" href="#request-1">Request</a></h6>
+<pre><code class="language-go">{
+    &quot;userID&quot;:   string
+}
+</code></pre>
+<h6 id="response-1"><a class="header" href="#response-1">Response</a></h6>
+<pre><code class="language-go">{
+    &quot;allergens&quot;: [OutputNeptuneAllergen]
+}
+</code></pre>
+<ul>
+<li><a href="backend/appRunner/apprunner.html#outputneptuneallergen">OutputNeptuneAllergen</a></li>
+</ul>
+<h6 id="container-function-definition-1"><a class="header" href="#container-function-definition-1">Container function definition</a></h6>
+<pre><code class="language-go">func (p *ConnPool) GetUserAllergens(c *gin.Context) 
+</code></pre>
+<h6 id="api-endpoint-path-1"><a class="header" href="#api-endpoint-path-1">API Endpoint Path</a></h6>
+<pre><code class="language-go">&quot;/accountPage/getUserAllergens&quot;
+</code></pre>
+</details>
+<h2 id="explore-page"><a class="header" href="#explore-page">Explore Page</a></h2>
+<h4 id="getexplorepage"><a class="header" href="#getexplorepage">getExplorePage</a></h4>
+<details>
+<h6 id="request-2"><a class="header" href="#request-2">Request</a></h6>
+<pre><code class="language-go">{
+    &quot;userID&quot;:   string
+    &quot;limits&quot;:   ExplorePageLimitsAndLPs
+    &quot;lastPages&quot;: ExplorePageLimitsAndLPs
+}
+</code></pre>
+<ul>
+<li><a href="backend/appRunner/apprunner.html#explorepagelimitsandlps">ExplorePageLimitsAndLPs</a></li>
+</ul>
+<h6 id="response-2"><a class="header" href="#response-2">Response</a></h6>
+<pre><code class="language-go">{	
+  &quot;genericRecommendation&quot;:  OutputNeptuneMeal
+  &quot;mealRecommendations&quot;:    OutputNeptuneMeal
+  &quot;standardCategories&quot;:     OutputNeptuneMeal
+  &quot;recentCategories&quot;:       OutputNeptuneMeal
+  &quot;recentMeals&quot;:            OutputNeptuneMeal
+  &quot;recentCookedMeals&quot;:      OutputNeptuneMeal
+  &quot;savedMeals&quot;:             OutputNeptuneMeal
+  &quot;lastPage&quot;:               ExplorePageLimitsAndLPs
+}
+</code></pre>
+<ul>
+<li><a href="backend/appRunner/apprunner.html#outputneptunemeal">OutputNeptuneMeal</a></li>
+<li><a href="backend/appRunner/apprunner.html#explorepagelimitsandlps">ExplorePageLimitsAndLPs</a></li>
+</ul>
+<h6 id="container-function-definition-2"><a class="header" href="#container-function-definition-2">Container function definition</a></h6>
+<pre><code class="language-go">func (p *ConnPool) GetExplorePage(c *gin.Context) 
+</code></pre>
+<h6 id="api-endpoint-path-2"><a class="header" href="#api-endpoint-path-2">API Endpoint Path</a></h6>
+<pre><code class="language-go">&quot;/explorePage/getExplorePage&quot;
+</code></pre>
+</details>
+<h4 id="getmealsincategory"><a class="header" href="#getmealsincategory">getMealsInCategory</a></h4>
+<details>
+<h6 id="request-3"><a class="header" href="#request-3">Request</a></h6>
+<pre><code class="language-go">{
+    &quot;userID&quot;:     string
+    &quot;categoryID&quot;: string
+    &quot;limit&quot;:      int
+    &quot;lastPage&quot;:   int
+}
+</code></pre>
+<h6 id="response-3"><a class="header" href="#response-3">Response</a></h6>
+<pre><code class="language-go">{
+  &quot;meals&quot;:    [OutputNeptuneMeals]
+  &quot;lastPage&quot;: int
+}
+</code></pre>
+<ul>
+<li><a href="backend/appRunner/apprunner.html#outputneptunemeal">OutputNeptuneMeal</a></li>
+</ul>
+<h6 id="container-function-definition-3"><a class="header" href="#container-function-definition-3">Container function definition</a></h6>
+<pre><code class="language-go">func (p *ConnPool) GetMealsInCategory(c *gin.Context) 
+</code></pre>
+<h6 id="api-endpoint-path-3"><a class="header" href="#api-endpoint-path-3">API Endpoint Path</a></h6>
+<pre><code class="language-go">&quot;/explorePage/getMealsInCategory&quot;
+</code></pre>
+</details>
+<h2 id="general"><a class="header" href="#general">General</a></h2>
+<h4 id="getcategories"><a class="header" href="#getcategories">getCategories</a></h4>
+<details>
+<h6 id="request-4"><a class="header" href="#request-4">Request</a></h6>
+<pre><code class="language-go">{
+    &quot;limit&quot;:    int
+    &quot;lastPage&quot;: int
+}
+</code></pre>
+<h6 id="response-4"><a class="header" href="#response-4">Response</a></h6>
+<pre><code class="language-go">[OutputNeptuneCategory]
+</code></pre>
+<ul>
+<li><a href="backend/appRunner/apprunner.html#outputneptunecategory">OutputNeptuneCategory</a></li>
+</ul>
+<h6 id="container-function-definition-4"><a class="header" href="#container-function-definition-4">Container function definition</a></h6>
+<pre><code class="language-go">func (p *ConnPool) GetCategories(c *gin.Context) 
+</code></pre>
+<h6 id="api-endpoint-path-4"><a class="header" href="#api-endpoint-path-4">API Endpoint Path</a></h6>
+<pre><code class="language-go">&quot;/explorePage/getCategories&quot;
+</code></pre>
+</details>
+<h4 id="getmealinfo"><a class="header" href="#getmealinfo">getMealInfo</a></h4>
+<details>
+<h6 id="request-5"><a class="header" href="#request-5">Request</a></h6>
+<pre><code class="language-go">{
+   &quot;mealID&quot;: string 
+}
+</code></pre>
+<h6 id="response-5"><a class="header" href="#response-5">Response</a></h6>
+<pre><code class="language-go">{  
+    &quot;itemID&quot;:     string
+    &quot;itemName&quot;:   string
+    &quot;itemType&quot;:   string
+    &quot;difficulty&quot;: string
+}
+</code></pre>
+<h6 id="container-function-definition-5"><a class="header" href="#container-function-definition-5">Container function definition</a></h6>
+<pre><code class="language-go">func (p *ConnPool) GetMealInfo(c *gin.Context) 
+</code></pre>
+<h6 id="api-endpoint-path-5"><a class="header" href="#api-endpoint-path-5">API Endpoint Path</a></h6>
+<pre><code class="language-go">&quot;/explorePage/getMealInfo&quot;
+</code></pre>
+</details>
+<hr />
+<h1 id="types-1"><a class="header" href="#types-1"> Types </a></h1>
+<h4 id="outputcustomneptunemeal"><a class="header" href="#outputcustomneptunemeal">OutputCustomNeptuneMeal</a></h4>
+<pre><code class="language-go">{
+    &quot;itemID&quot;:      string
+    &quot;itemName&quot;:    string
+    &quot;itemType&quot;:    string
+    &quot;ingredients&quot;: [OutputNeptuneIngredient]
+}
+</code></pre>
+<h4 id="outputneptunemeal"><a class="header" href="#outputneptunemeal">OutputNeptuneMeal</a></h4>
+<pre><code class="language-go">{
+    &quot;itemID&quot;:       string
+    &quot;itemName&quot;:     string
+    &quot;itemType&quot;:     string
+    &quot;difficulty&quot;:   string
+    &quot;userHasSaved&quot;: bool
+}
+</code></pre>
+<h4 id="outputneptuneingredient"><a class="header" href="#outputneptuneingredient">OutputNeptuneIngredient</a></h4>
+<pre><code class="language-go">{
+    &quot;itemID&quot;:      string
+    &quot;itemName&quot;:    string
+    &quot;itemType&quot;:    string
+    &quot;quantity&quot;:    int
+    &quot;unit&quot;:        string
+    &quot;macroData&quot;:   [OutputNeptuneMacroData]
+}
+</code></pre>
+<h4 id="outputneptunemacrodata"><a class="header" href="#outputneptunemacrodata">OutputNeptuneMacroData</a></h4>
+<pre><code class="language-go">{
+    &quot;itemID&quot;:      string
+    &quot;itemName&quot;:    string
+    &quot;quantity&quot;:    int
+    &quot;unit&quot;:        string
+}
+</code></pre>
+<h4 id="outputneptunecategory"><a class="header" href="#outputneptunecategory">OutputNeptuneCategory</a></h4>
+<pre><code class="language-go">{
+    &quot;itemID&quot;:   string
+    &quot;itemName&quot;: string
+}
+</code></pre>
+<h4 id="explorepagelimitsandlps"><a class="header" href="#explorepagelimitsandlps">ExplorePageLimitsAndLPs</a></h4>
+<pre><code class="language-go">{
+  &quot;genericRecommendations&quot;: int
+  &quot;mealRecommendations&quot;:    int
+  &quot;standardCategories&quot;:     int
+  &quot;recentCategories&quot;:       int
+  &quot;recentMeals&quot;:            int
+  &quot;recentCookedMeals&quot;:      int
+  &quot;savedMeals&quot;:             int
+}
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="aws-code-pipelines"><a class="header" href="#aws-code-pipelines">AWS Code Pipelines</a></h1>
 <h2 id="pipeline-1-pushing-to-development-from-feature-branches"><a class="header" href="#pipeline-1-pushing-to-development-from-feature-branches">Pipeline 1: Pushing to Development from feature Branches</a></h2>
 <h3 id="overview-1"><a class="header" href="#overview-1">Overview:</a></h3>
@@ -937,11 +1225,11 @@ The advantage of having macros stored in the database is that we can make meal r
 </tbody></table>
 </div>
 <h2 id="frontend-features"><a class="header" href="#frontend-features">Frontend Features</a></h2>
-<h3 id="getaccountmeals"><a class="header" href="#getaccountmeals">getAccountMeals</a></h3>
+<h3 id="getaccountmeals-1"><a class="header" href="#getaccountmeals-1">getAccountMeals</a></h3>
 <p><a href="backend/neptune/neptune_api_design.html#getrecentcookedmealsuserid-limit"><code>getRecentCookedMeals</code></a> and <a href="backend/neptune/neptune_api_design.html#getsavedmealsuserid-limit-lastpage0"><code>getSavedMeals</code></a>, return results together.</p>
-<h3 id="getexplorepage"><a class="header" href="#getexplorepage">getExplorePage</a></h3>
+<h3 id="getexplorepage-1"><a class="header" href="#getexplorepage-1">getExplorePage</a></h3>
 <p><a href="backend/neptune/neptune_api_design.html#getrecentcookedmealsuserid-limit"><code>getRecentCookedMeals</code></a>, <a href="backend/neptune/neptune_api_design.html#getrecentviewedcategoriesuserid-limit-lastpage0"><code>getRecentViewedCategories</code></a>, <a href="backend/neptune/neptune_api_design.html#getcategorieslimit-lastpage0"><code>getCategories</code></a> and then <a href="backend/neptune/neptune_api_design.html#getsavedmealsuserid-limit-lastpage0"><code>getSavedMeals</code></a>. Return all results together.</p>
-<h3 id="getmealsincategory"><a class="header" href="#getmealsincategory">getMealsInCategory</a></h3>
+<h3 id="getmealsincategory-1"><a class="header" href="#getmealsincategory-1">getMealsInCategory</a></h3>
 <p>Run <a href="backend/neptune/neptune_api_design.html#userviewscategoryuserid-mealid"><code>userViewsCategory</code></a> and return results from <a href="backend/neptune/neptune_api_design.html#getmealsincategorycategoryid-limit-lastpage0"><code>getMealsInCategory</code></a>.</p>
 <h3 id="user-preferences-page"><a class="header" href="#user-preferences-page">User Preferences Page</a></h3>
 <p>Make use of <a href="backend/neptune/neptune_api_design.html#getuseringredientpreferencesuserid"><code>getUserIngredientPreferences</code></a> and <a href="backend/neptune/neptune_api_design.html#updateuseringredientpreferencesuserid-likes-dislikes"><code>updateUserIngredientPreferences</code></a> as needed.</p>
@@ -981,7 +1269,7 @@ The advantage of having macros stored in the database is that we can make meal r
 <blockquote>
 <p>Ingredient Object structure outlined <a href="backend/neptune/../neptune/neptune_design.html#node-properties-2">here</a></p>
 </blockquote>
-<h3 id="getcategories"><a class="header" href="#getcategories"><code>getCategories</code></a></h3>
+<h3 id="getcategories-1"><a class="header" href="#getcategories-1"><code>getCategories</code></a></h3>
 <p>Input: <code>(limit?=10: Integer, lastPage?=0: Integer)</code></p>
 <p>Returns: <code>[categoryObject]</code></p>
 <blockquote>
@@ -1005,7 +1293,7 @@ The advantage of having macros stored in the database is that we can make meal r
 <blockquote>
 <p>Meal Object structure outlined <a href="backend/neptune/../neptune/neptune_design.html#node-properties">here</a></p>
 </blockquote>
-<h3 id="getmealsincategory-1"><a class="header" href="#getmealsincategory-1"><code>getMealsInCategory</code></a></h3>
+<h3 id="getmealsincategory-2"><a class="header" href="#getmealsincategory-2"><code>getMealsInCategory</code></a></h3>
 <p>Input: <code>(categoryID: String)</code></p>
 <p>Returns: <code>[Object]</code>, meal objects</p>
 <blockquote>

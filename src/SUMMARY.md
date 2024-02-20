@@ -8,7 +8,7 @@
     - [#genericCall()](./frontend/api/generic_call.md)
 
 - [Backend](./backend/backend_prefix.md)
-  - [Infrastructure](./backend/infrastructure.md)
+  - [AppRunner](./backend/appRunner/apprunner.md)
   - [CI/CD](./backend/cicd/cicd.md)
     - [Setup](./backend/cicd/setup.md)
     - [Example Template](./backend/cicd/example_template.md)
